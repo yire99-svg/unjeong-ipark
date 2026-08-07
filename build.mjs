@@ -67,38 +67,7 @@ function parse(text, trade) {
 const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 
 function render(items, counts, stamp) {
-  const sale = items.filter((i) => i.trade === "매매");
-  const prices = sale.map((i) => i.price).sort((a, b) => a - b);
-  const med = prices[Math.floor(prices.length / 2)];
-  const fmt = (n) => (Math.round(n * 100) / 100).toFixed(2).replace(/\.?0+$/, "") + "억";
-
-  // 0.2억 구간 히스토그램 (단일 계열 → 시퀀셜 1색, 범례 불필요)
-  const lo = Math.floor(prices[0] * 5) / 5, hi = Math.ceil(prices[prices.length - 1] * 5) / 5;
-  const bins = [];
-  for (let x = lo; x < hi - 1e-9; x = +(x + 0.2).toFixed(2)) {
-    const to = +(x + 0.2).toFixed(2);
-    const last = to >= hi - 1e-9;
-    // 마지막 구간은 상한 포함 — 아니면 최고가 매물이 어느 막대에도 안 잡힌다
-    const n = prices.filter((p) => p >= x - 1e-9 && (last ? p <= to + 1e-9 : p < to - 1e-9)).length;
-    bins.push({ from: x, to, n });
-  }
-  const binSum = bins.reduce((a, b) => a + b.n, 0);
-  if (binSum !== prices.length) throw new Error(`히스토그램 합 ${binSum} ≠ 매물 ${prices.length}`);
-  const maxN = Math.max(...bins.map((b) => b.n), 1);
-
-  const BW = 44, GAP = 6, CH = 150, PADB = 26;
-  const chartW = bins.length * (BW + GAP) - GAP;
-  const barsSvg = bins.map((b, i) => {
-    const h = b.n === 0 ? 0 : Math.max(4, Math.round((b.n / maxN) * (CH - PADB - 14)));
-    const x = i * (BW + GAP), y = CH - PADB - h;
-    return `<g class="bin" tabindex="0" data-label="${b.from}~${b.to}억" data-n="${b.n}">
-      <rect class="hit" x="${x}" y="0" width="${BW}" height="${CH}"></rect>
-      ${b.n ? `<rect class="bar" x="${x}" y="${y}" width="${BW}" height="${h}" rx="4"></rect>` : ""}
-      ${b.n ? `<text class="barval" x="${x + BW / 2}" y="${y - 5}">${b.n}</text>` : ""}
-      <text class="tick" x="${x + BW / 2}" y="${CH - 8}">${b.from.toFixed(1)}</text>
-    </g>`;
-  }).join("");
-
+  // KPI·분포는 클라이언트에서 현재 필터 기준으로 다시 계산한다 (표와 숫자가 어긋나지 않도록)
   const rows = items.map((i) => `{p:${i.price},t:"${i.trade}",d:${i.dong},f:"${esc(i.floor)}",fs:${i.floorSort},a:${i.area},y:"${i.type}",dir:"${i.dir}",v:"${esc(i.verify)}",fee:"${esc(i.fee)}",b:"${esc(i.broker)}",r:${i.room ?? "null"},c:"${i.cond}",o:${JSON.stringify(i.opts)},m:"${esc(i.memo).replace(/"/g, "&quot;")}",u:"${i.url}"}`).join(",\n");
 
   return `<!doctype html>
@@ -208,31 +177,28 @@ function render(items, counts, stamp) {
 </header>
 
 <div class="kpi">
-  <div><div class="k">매매 매물</div><div class="v">${sale.length}<span style="font-size:15px">건</span></div><div class="n">단지 전체 ${counts.deal}건 중 34평</div></div>
-  <div><div class="k">최저 호가</div><div class="v">${fmt(prices[0])}</div><div class="n">${sale.find((s) => s.price === prices[0]).dong}동</div></div>
-  <div><div class="k">중앙 호가</div><div class="v">${fmt(med)}</div><div class="n">34평 매매 기준</div></div>
-  <div><div class="k">최고 호가</div><div class="v">${fmt(prices[prices.length - 1])}</div><div class="n">최저 대비 +${fmt(prices[prices.length - 1] - prices[0])}</div></div>
+  <div><div class="k" id="k0">매물</div><div class="v" id="v0">–</div><div class="n" id="n0">단지 전체 ${counts.deal}건 중 34평</div></div>
+  <div><div class="k">최저 호가</div><div class="v" id="v1">–</div><div class="n" id="n1"></div></div>
+  <div><div class="k">중앙 호가</div><div class="v" id="v2">–</div><div class="n" id="n2"></div></div>
+  <div><div class="k">최고 호가</div><div class="v" id="v3">–</div><div class="n" id="n3"></div></div>
 </div>
 
 <div class="card">
   <h2>호가 분포</h2>
-  <p class="cap">0.2억 구간별 매매 매물 수 · 총 ${sale.length}건</p>
-  <div class="chartbox">
-    <svg width="${chartW}" height="${CH}" viewBox="0 0 ${chartW} ${CH}" role="img"
-         aria-label="호가 구간별 매물 수 분포. 아래 표에 전체 매물이 있습니다.">
-      <line x1="0" y1="${CH - PADB}" x2="${chartW}" y2="${CH - PADB}" stroke="var(--axis)" stroke-width="1"/>
-      ${barsSvg}
-    </svg>
-  </div>
+  <p class="cap" id="chartcap">0.2억 구간별 매물 수</p>
+  <div class="chartbox"><div id="chart"></div></div>
 </div>
 
 <div class="filters">
   <select id="f-trade"><option value="">거래 전체</option><option value="매매" selected>매매</option><option value="전세">전세</option></select>
+  <select id="f-cond">
+    <option value="__noago" selected>안고 제외</option>
+    <option value="">조건 전체</option>
+  </select>
   <select id="f-type"><option value="">타입 전체</option></select>
   <select id="f-dong"><option value="">동 전체</option></select>
   <select id="f-dir"><option value="">향 전체</option></select>
   <select id="f-room"><option value="">방 전체</option><option value="3">방3</option><option value="4">방4</option></select>
-  <select id="f-cond"><option value="">조건 전체</option></select>
   <input type="search" id="f-q" placeholder="중개사·설명 검색">
 </div>
 
@@ -263,6 +229,7 @@ const $=s=>document.querySelector(s);
 const fmt=n=>(Math.round(n*100)/100).toFixed(2).replace(/\\.?0+$/,'')+'억';
 const uniq=(k,f)=>[...new Set(DATA.filter(f||(()=>1)).map(x=>x[k]).filter(v=>v!==''&&v!=null))];
 
+const AGO=['전세안고','월세안고'];   // 기본으로 숨기는 조건
 for(const [sel,key,lab] of [['#f-type','y',v=>v],['#f-dong','d',v=>v+'동'],['#f-dir','dir',v=>v+'향'],['#f-cond','c',v=>v]]){
   uniq(key).sort((a,b)=>typeof a==='number'?a-b:String(a).localeCompare(b))
     .forEach(v=>$(sel).insertAdjacentHTML('beforeend','<option value="'+v+'">'+lab(v)+'</option>'));
@@ -273,9 +240,10 @@ function current(){
   const t=$('#f-trade').value,ty=$('#f-type').value,dg=$('#f-dong').value,
         dr=$('#f-dir').value,rm=$('#f-room').value,cd=$('#f-cond').value,
         q=$('#f-q').value.trim().toLowerCase();
+  const condOk = x => cd==='__noago' ? !AGO.includes(x.c) : (!cd||x.c===cd);
   return DATA.filter(x=>
     (!t||x.t===t)&&(!ty||x.y===ty)&&(!dg||x.d==dg)&&(!dr||x.dir===dr)&&
-    (!rm||x.r==rm)&&(!cd||x.c===cd)&&
+    (!rm||x.r==rm)&&condOk(x)&&
     (!q||(x.b+' '+x.m).toLowerCase().includes(q))
   ).sort((a,b)=>{
     const A=a[sortKey],B=b[sortKey];
@@ -288,9 +256,57 @@ function chips(x){
   if(x.c)h+='<span class="chip">'+x.c+'</span>';
   return h;
 }
+const BW=44,GAP=6,CH=150,PADB=26;
+function drawStats(rows){
+  const ps=rows.map(x=>x.p).sort((a,b)=>a-b);
+  const t=$('#f-trade').value;
+  $('#k0').textContent=(t||'전체')+' 매물';
+  if(!ps.length){
+    $('#v0').textContent='0건';
+    ['1','2','3'].forEach(i=>{$('#v'+i).textContent='–';$('#n'+i).textContent='';});
+    $('#chart').innerHTML='<p class="cap">표시할 매물이 없습니다.</p>';
+    $('#chartcap').textContent='0.2억 구간별 매물 수';
+    return;
+  }
+  const lo_=ps[0],hi_=ps[ps.length-1];
+  $('#v0').innerHTML=ps.length+'<span style="font-size:15px">건</span>';
+  $('#v1').textContent=fmt(lo_);
+  $('#n1').textContent=rows.find(x=>x.p===lo_).d+'동';
+  $('#v2').textContent=fmt(ps[Math.floor(ps.length/2)]);
+  $('#n2').textContent='현재 조건 기준';
+  $('#v3').textContent=fmt(hi_);
+  $('#n3').textContent='최저 대비 +'+fmt(hi_-lo_);
+  $('#chartcap').textContent='0.2억 구간별 매물 수 · 총 '+ps.length+'건';
+
+  const lo=Math.floor(lo_*5)/5, hi=Math.ceil(hi_*5)/5;
+  const bins=[];
+  for(let x=lo;x<hi-1e-9;x=+(x+0.2).toFixed(2)){
+    const to=+(x+0.2).toFixed(2), last=to>=hi-1e-9;
+    // 마지막 구간은 상한 포함 — 아니면 최고가 매물이 어느 막대에도 안 잡힌다
+    bins.push({from:x,to,n:ps.filter(p=>p>=x-1e-9&&(last?p<=to+1e-9:p<to-1e-9)).length});
+  }
+  if(bins.reduce((a,b)=>a+b.n,0)!==ps.length)console.error('히스토그램 합 불일치');
+  const maxN=Math.max(...bins.map(b=>b.n),1), W=bins.length*(BW+GAP)-GAP;
+  $('#chart').innerHTML='<svg width="'+W+'" height="'+CH+'" viewBox="0 0 '+W+' '+CH+'" role="img"'+
+    ' aria-label="호가 구간별 매물 수 분포. 아래 표에 매물 목록이 있습니다."><line x1="0" y1="'+(CH-PADB)+
+    '" x2="'+W+'" y2="'+(CH-PADB)+'" stroke="var(--axis)" stroke-width="1"/>'+
+    bins.map((b,i)=>{
+      const h=b.n===0?0:Math.max(4,Math.round(b.n/maxN*(CH-PADB-14)));
+      const x=i*(BW+GAP), y=CH-PADB-h;
+      return '<g class="bin" tabindex="0" data-label="'+b.from.toFixed(1)+'~'+b.to.toFixed(1)+'억" data-n="'+b.n+'">'+
+        '<rect class="hit" x="'+x+'" y="0" width="'+BW+'" height="'+CH+'"></rect>'+
+        (b.n?'<rect class="bar" x="'+x+'" y="'+y+'" width="'+BW+'" height="'+h+'" rx="4"></rect>':'')+
+        (b.n?'<text class="barval" x="'+(x+BW/2)+'" y="'+(y-5)+'">'+b.n+'</text>':'')+
+        '<text class="tick" x="'+(x+BW/2)+'" y="'+(CH-8)+'">'+b.from.toFixed(1)+'</text></g>';
+    }).join('')+'</svg>';
+  bindBins();
+}
 function draw(){
   const rows=current();
-  $('#count').textContent=rows.length+'건 표시 중 (전체 '+DATA.length+'건)';
+  drawStats(rows);
+  const hidden=DATA.filter(x=>(!$('#f-trade').value||x.t===$('#f-trade').value)&&AGO.includes(x.c)).length;
+  $('#count').textContent=rows.length+'건 표시 중 (전체 '+DATA.length+'건)'+
+    ($('#f-cond').value==='__noago'&&hidden?' · 전세·월세 안고 '+hidden+'건 숨김':'');
   $('#tb-body').innerHTML=rows.map(x=>
     '<tr><td class="price"><a href="'+x.u+'" target="_blank" rel="noopener">'+fmt(x.p)+'</a></td>'+
     '<td class="num">'+x.d+'동</td><td class="num">'+x.f+'</td><td>'+x.y+'</td>'+
@@ -323,12 +339,14 @@ function showTip(g,ev){
   tip.style.left=Math.min(x+12,innerWidth-tip.offsetWidth-8)+'px';
   tip.style.top=(y-tip.offsetHeight-10)+'px';
 }
-document.querySelectorAll('.bin').forEach(g=>{
-  g.addEventListener('mousemove',e=>showTip(g,e));
-  g.addEventListener('mouseleave',()=>tip.style.opacity=0);
-  g.addEventListener('focus',()=>showTip(g,null));
-  g.addEventListener('blur',()=>tip.style.opacity=0);
-});
+function bindBins(){
+  document.querySelectorAll('.bin').forEach(g=>{
+    g.addEventListener('mousemove',e=>showTip(g,e));
+    g.addEventListener('mouseleave',()=>tip.style.opacity=0);
+    g.addEventListener('focus',()=>showTip(g,null));
+    g.addEventListener('blur',()=>tip.style.opacity=0);
+  });
+}
 
 const root=document.documentElement;
 root.dataset.theme=localStorage.getItem('theme')||'';
