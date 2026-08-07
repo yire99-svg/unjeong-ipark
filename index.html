@@ -64,6 +64,18 @@
   select,input[type=search]{background:var(--surface-1);color:var(--ink);border:1px solid var(--ring);
     border-radius:8px;padding:8px 10px;font-size:13px;font-family:inherit}
   input[type=search]{flex:1;min-width:150px}
+  .chkrow{border:0;padding:0;margin:12px 0 0;display:flex;flex-wrap:wrap;gap:7px;align-items:center}
+  .chkrow legend{float:left;font-size:12px;color:var(--muted);padding:0 8px 0 2px;line-height:34px}
+  .chkrow #f-cond{display:contents}
+  .chk{display:inline-flex;align-items:center;gap:6px;background:var(--surface-1);
+    border:1px solid var(--ring);border-radius:999px;padding:7px 13px 7px 10px;
+    font-size:13px;color:var(--ink-2);cursor:pointer;user-select:none}
+  .chk:has(input:checked){border-color:var(--series-1);color:var(--ink)}
+  .chk:has(input:focus-visible){outline:2px solid var(--series-1);outline-offset:2px}
+  .chk input{accent-color:var(--series-1);margin:0;width:15px;height:15px}
+  .chk .cnt{font-variant-numeric:tabular-nums;color:var(--muted);font-size:12px}
+  .linkbtn{background:none;border:0;color:var(--series-1);font-size:12.5px;
+    cursor:pointer;font-family:inherit;padding:4px 2px;text-decoration:underline}
   .count{font-size:13px;color:var(--ink-2);margin:14px 0 8px}
   table{width:100%;border-collapse:collapse;font-size:13.5px}
   th{text-align:left;font-weight:600;font-size:12px;color:var(--muted);padding:8px 10px;
@@ -99,7 +111,7 @@
     <h1>운정신도시아이파크 · 34평 매물</h1>
     <p class="sub">전용 84㎡ · GTX-A 운정중앙역 직선 561m ·
       <a href="https://fin.land.naver.com/complexes/119854" target="_blank" rel="noopener">네이버 부동산 단지</a></p>
-    <p class="sub">갱신 2026. 8. 7. PM 1:19 · 출처 네이버페이 부동산</p>
+    <p class="sub">갱신 2026. 8. 7. PM 1:24 · 출처 네이버페이 부동산</p>
   </div>
   <button class="themebtn" id="tb">테마</button>
 </header>
@@ -119,16 +131,17 @@
 
 <div class="filters">
   <select id="f-trade"><option value="">거래 전체</option><option value="매매" selected>매매</option><option value="전세">전세</option></select>
-  <select id="f-cond">
-    <option value="__noago" selected>안고 제외</option>
-    <option value="">조건 전체</option>
-  </select>
   <select id="f-type"><option value="">타입 전체</option></select>
   <select id="f-dong"><option value="">동 전체</option></select>
   <select id="f-dir"><option value="">향 전체</option></select>
   <select id="f-room"><option value="">방 전체</option><option value="3">방3</option><option value="4">방4</option></select>
   <input type="search" id="f-q" placeholder="중개사·설명 검색">
 </div>
+<fieldset class="chkrow">
+  <legend>입주조건</legend>
+  <div id="f-cond"></div>
+  <button type="button" class="linkbtn" id="cond-all">전체 선택</button>
+</fieldset>
 
 <p class="count" id="count"></p>
 <table>
@@ -156,14 +169,14 @@ const DATA=[
 {p:6.95,t:"매매",d:106,f:"4/29",fs:4,a:84.95,y:"114C",dir:"동남",v:"집주인확인 2026-08-07",fee:"관리비 28만",b:"든든IPARK",r:4,c:"주인거주",o:["에어컨3","중문"],m:"GTX초인접동. 방4. 시에3. 중문외 옵션다수. 주인거주깨끗.",u:"https://fin.land.naver.com/articles/2642365218"},
 {p:6.95,t:"매매",d:117,f:"1/28",fs:1,a:84.91,y:"112A",dir:"남서",v:"집주인확인 2026-08-06",fee:"관리비 25만",b:"현대1등",r:4,c:"입주협의",o:[],m:"귀한로얄동1층방4개구조8월입주가능GTXA바로인접라인운정의최상의멋진아파트짱",u:"https://fin.land.naver.com/articles/2642119915"},
 {p:6.95,t:"매매",d:121,f:"저/29",fs:3,a:84.95,y:"114C",dir:"남서",v:"집주인확인 2026-07-31",fee:"관리비 25만",b:"화수분아이파크(9499-888)",r:null,c:"",o:["에어컨6"],m:"84C.강추.에어컨6대외 옵션多.조용한 정원뷰.컨디션최상",u:"https://fin.land.naver.com/articles/2641226391"},
-{p:7.1,t:"매매",d:101,f:"19/29",fs:19,a:84.95,y:"114C",dir:"남서",v:"집주인확인 2026-08-07",fee:"관리비 15만",b:"정성어린아이파크",r:4,c:"입주협의",o:["에어컨4"],m:"84C,정성추천, 방4, 에어컨4, 풀옵션가득, 생활편리,입주협의",u:"https://fin.land.naver.com/articles/2642303603"},
 {p:7.1,t:"매매",d:112,f:"11/29",fs:11,a:84.95,y:"114C",dir:"동남",v:"집주인확인 2026-08-07",fee:"관리비 25만",b:"든든IPARK",r:3,c:"",o:["에어컨4","중문"],m:"영구조망 뻥뷰. 방3. 알파룸확장. 시에4. 중문. 학교인접동",u:"https://fin.land.naver.com/articles/2642362487"},
+{p:7.1,t:"매매",d:101,f:"19/29",fs:19,a:84.95,y:"114C",dir:"남서",v:"집주인확인 2026-08-07",fee:"관리비 15만",b:"정성어린아이파크",r:4,c:"입주협의",o:["에어컨4"],m:"84C,정성추천, 방4, 에어컨4, 풀옵션가득, 생활편리,입주협의",u:"https://fin.land.naver.com/articles/2642303603"},
 {p:7.1,t:"매매",d:118,f:"저/28",fs:3,a:84.91,y:"112A",dir:"남",v:"집주인확인 2026-07-31",fee:"관리비 28만",b:"화수분아이파크(9499-888)",r:null,c:"입주협의",o:["팬트리"],m:"84A.강추.새집컨디션.시스템에어컨.거실 넓은 팬트리구조.12월입주협의",u:"https://fin.land.naver.com/articles/2641226502"},
 {p:7.18,t:"매매",d:115,f:"저/25",fs:3,a:84.96,y:"112B",dir:"남서",v:"집주인확인 2026-08-06",fee:"관리비 25만",b:"아이파크 꿀단지",r:null,c:"",o:["에어컨3","팬트리"],m:"꿀단지추천,시에3,더블팬트리,동패초근접,GTX도보권,예쁜정원뷰",u:"https://fin.land.naver.com/articles/2642262120"},
-{p:7.2,t:"매매",d:101,f:"7/29",fs:7,a:84.95,y:"114C",dir:"남서",v:"집주인확인 2026-08-07",fee:"관리비 28만",b:"GTX신화1",r:4,c:"",o:[],m:"84c 방4 대중교통 및 상가 이용 편리한 동",u:"https://fin.land.naver.com/articles/2642336172"},
+{p:7.2,t:"매매",d:108,f:"18/29",fs:18,a:84.95,y:"114C",dir:"동남",v:"집주인확인 2026-08-07",fee:"관리비 25만",b:"든든IPARK",r:4,c:"",o:[],m:"방4. 2in1에어컨. GTX가까운동. 인기로얄동. 채광굿",u:"https://fin.land.naver.com/articles/2642363786"},
 {p:7.2,t:"매매",d:109,f:"18/29",fs:18,a:84.95,y:"114C",dir:"동남",v:"집주인확인 2026-08-07",fee:"관리비 25만",b:"든든IPARK",r:3,c:"",o:["풀에어컨"],m:"GTX역 도보이용 가까운동. 방3. 풀에어컨. 주차넉넉한 동.",u:"https://fin.land.naver.com/articles/2642362010"},
 {p:7.2,t:"매매",d:108,f:"17/29",fs:17,a:84.95,y:"114C",dir:"동남",v:"집주인확인 2026-08-07",fee:"관리비 25만",b:"운정대지IPARK",r:3,c:"입주협의",o:["에어컨4"],m:"o 추천 84C 로얄동 방3 에어컨4 10월 입주가능 집깨끗 GTX인접",u:"https://fin.land.naver.com/articles/2642356125"},
-{p:7.2,t:"매매",d:108,f:"18/29",fs:18,a:84.95,y:"114C",dir:"동남",v:"집주인확인 2026-08-07",fee:"관리비 25만",b:"든든IPARK",r:4,c:"",o:[],m:"방4. 2in1에어컨. GTX가까운동. 인기로얄동. 채광굿",u:"https://fin.land.naver.com/articles/2642363786"},
+{p:7.2,t:"매매",d:101,f:"7/29",fs:7,a:84.95,y:"114C",dir:"남서",v:"집주인확인 2026-08-07",fee:"관리비 28만",b:"GTX신화1",r:4,c:"",o:[],m:"84c 방4 대중교통 및 상가 이용 편리한 동",u:"https://fin.land.naver.com/articles/2642336172"},
 {p:7.2,t:"매매",d:121,f:"1/29",fs:1,a:84.91,y:"112A",dir:"남서",v:"집주인확인 2026-08-06",fee:"관리비 17만",b:"대장IPARK",r:3,c:"",o:["에어컨5","중문"],m:"o방3. 에어컨5. 중문. 우물천장. 간접등. 도배새로.",u:"https://fin.land.naver.com/articles/2642258819"},
 {p:7.2,t:"매매",d:111,f:"저/29",fs:3,a:84.91,y:"112A",dir:"동남",v:"집주인확인 2026-08-07",fee:"관리비 25만",b:"GTX신화1",r:4,c:"",o:["에어컨4"],m:"방4 에어컨4 학교 가까운 동 입주하세요",u:"https://fin.land.naver.com/articles/2642345625"},
 {p:7.2,t:"매매",d:109,f:"22/29",fs:22,a:84.95,y:"114C",dir:"동남",v:"NDOC1 2026-07-27",fee:"관리비 25만",b:"아이파크(IPARK)단지내",r:4,c:"주인거주",o:["풀에어컨"],m:"추천, GTX코앞, 풀에어컨, 방4, 하루종일해잘드는집, 주인거주관리굿",u:"https://fin.land.naver.com/articles/2640272351"},
@@ -172,8 +185,8 @@ const DATA=[
 {p:7.3,t:"매매",d:121,f:"25/29",fs:25,a:84.95,y:"114C",dir:"남서",v:"집주인확인 2026-08-07",fee:"관리비 25만",b:"GTX신화1",r:null,c:"입주협의",o:[],m:"84C타입 전자계약가능 입주조율가능 고층이라 전망과 채광좋아요",u:"https://fin.land.naver.com/articles/2642359708"},
 {p:7.3,t:"매매",d:114,f:"3/25",fs:3,a:84.96,y:"112B",dir:"동남",v:"집주인확인 2026-08-07",fee:"관리비 25만",b:"GTX신화1",r:3,c:"",o:["에어컨5","중문","식세기"],m:"귀한 필로티 방3 에어컨5 중문 식세기 자녀분들 뛰어도 걱정없어요",u:"https://fin.land.naver.com/articles/2642349951"},
 {p:7.3,t:"매매",d:108,f:"13/29",fs:13,a:84.95,y:"114C",dir:"동남",v:"집주인확인 2026-08-07",fee:"관리비 25만",b:"든든IPARK",r:4,c:"전세안고",o:["식세기"],m:"GTX초인접동. 방4. 식세기외옵션다수. 주차넉넉한동. 전세안고",u:"https://fin.land.naver.com/articles/2642363895"},
-{p:7.3,t:"매매",d:125,f:"3/18",fs:3,a:84.96,y:"112B",dir:"남서",v:"집주인확인 2026-08-06",fee:"관리비 15만",b:"정성어린아이파크",r:3,c:"입주협의",o:["에어컨5","팬트리","판상형"],m:"84B판상형, 방3, 에어컨5대 ,넓은거실, 팬트리 ,입주협의",u:"https://fin.land.naver.com/articles/2642237571"},
 {p:7.3,t:"매매",d:109,f:"29/29",fs:29,a:84.91,y:"112A",dir:"동남",v:"집주인확인 2026-08-06",fee:"관리비 28만",b:"행복한IPARK",r:3,c:"월세안고",o:["풀에어컨"],m:"84A 월세안고. 방3. 풀에어컨 gtxa 이용편리",u:"https://fin.land.naver.com/articles/2642030640"},
+{p:7.3,t:"매매",d:125,f:"3/18",fs:3,a:84.96,y:"112B",dir:"남서",v:"집주인확인 2026-08-06",fee:"관리비 15만",b:"정성어린아이파크",r:3,c:"입주협의",o:["에어컨5","팬트리","판상형"],m:"84B판상형, 방3, 에어컨5대 ,넓은거실, 팬트리 ,입주협의",u:"https://fin.land.naver.com/articles/2642237571"},
 {p:7.3,t:"매매",d:102,f:"3/29",fs:3,a:84.91,y:"112A",dir:"남",v:"집주인확인 2026-08-06",fee:"관리비 20만",b:"경남시티운정1등 l",r:3,c:"입주협의",o:[],m:"84A.필로티.방3.초품아.GTX운정역도보가능.8월중순이후협의입주가능.",u:"https://fin.land.naver.com/articles/2642144876"},
 {p:7.3,t:"매매",d:110,f:"중/29",fs:12,a:84.95,y:"114C",dir:"동남",v:"집주인확인 2026-08-07",fee:"관리비 28만",b:"GTX신화1",r:4,c:"전세안고",o:["에어컨5"],m:"84C 방4, 에5, GTX가까운동, 세안고가능, 주차편리, 갭투",u:"https://fin.land.naver.com/articles/2642345242"},
 {p:7.3,t:"매매",d:107,f:"11/29",fs:11,a:84.95,y:"114C",dir:"동남",v:"집주인확인 2026-07-31",fee:"관리비 25만",b:"아이파크 꿀단지",r:4,c:"",o:["에어컨4"],m:"꿀단지추천,GTX근접동,에어컨4,시스템장,방4",u:"https://fin.land.naver.com/articles/2641232278"},
@@ -183,25 +196,25 @@ const DATA=[
 {p:7.3,t:"매매",d:102,f:"고/29",fs:22,a:84.95,y:"114C",dir:"남서",v:"집주인확인 2026-07-23",fee:"관리비 17만",b:"대장IPARK",r:null,c:"입주협의",o:["식세기","인덕션"],m:"o입주가. 식세기. 인덕션. 김치 냉장고. 채광 굿.",u:"https://fin.land.naver.com/articles/2639718985"},
 {p:7.3,t:"매매",d:110,f:"저/29",fs:3,a:84.91,y:"112A",dir:"남",v:"집주인확인 2026-07-16",fee:"관리비 20만",b:"GTX황금아이파크(944-8585)",r:3,c:"전세안고",o:["중문","팬트리"],m:"34A, 방3. 펜트리. 중문. 세안고, 주차편리, 트인뷰, 학교 가까움",u:"https://fin.land.naver.com/articles/2638417549"},
 {p:7.4,t:"매매",d:115,f:"11/25",fs:11,a:84.96,y:"112B",dir:"동남",v:"집주인확인 2026-08-06",fee:"관리비 17만",b:"대장IPARK",r:3,c:"전세안고",o:["에어컨2","중문","식세기"],m:"o 방3. 에어컨2. 중문. 식세기. 세안고. 뻥뷰. 로얄동.",u:"https://fin.land.naver.com/articles/2642258062"},
-{p:7.4,t:"매매",d:115,f:"10/25",fs:10,a:84.96,y:"112B",dir:"동남",v:"집주인확인 2026-08-07",fee:"관리비 25만",b:"GTX신화1",r:4,c:"월세안고",o:["에어컨4","판상형"],m:"월세안고 판상형 전망 좋은 라인 방4개 에어컨4대 관리상태굿",u:"https://fin.land.naver.com/articles/2642355593"},
-{p:7.4,t:"매매",d:104,f:"15/29",fs:15,a:84.95,y:"114C",dir:"동남",v:"집주인확인 2026-08-07",fee:"관리비 25만",b:"운정대지IPARK",r:null,c:"입주협의",o:["에어컨2"],m:"o 추천 GTX도보7분 주인거주 집상태깨끗 에어컨2 금액절충 입주협의",u:"https://fin.land.naver.com/articles/2642356797"},
 {p:7.4,t:"매매",d:116,f:"5/25",fs:5,a:84.96,y:"112B",dir:"동남",v:"NDOC1 2026-08-07",fee:"관리비 15만",b:"정성어린아이파크",r:3,c:"",o:["에어컨4","팬트리"],m:"84A, 정성추천,방3, 에어컨4,팬트리, GTX인접동,긴정상",u:"https://fin.land.naver.com/articles/2642248346"},
 {p:7.4,t:"매매",d:111,f:"2/29",fs:2,a:84.91,y:"112A",dir:"동남",v:"집주인확인 2026-08-07",fee:"관리비 15만",b:"정성어린아이파크",r:3,c:"전세안고",o:["팬트리"],m:"84B 방3, 팬트리, 막힘없는전망, 초등학교바로뒤 ,세안고매매",u:"https://fin.land.naver.com/articles/2642297972"},
-{p:7.4,t:"매매",d:104,f:"중/29",fs:12,a:84.95,y:"114C",dir:"동남",v:"집주인확인 2026-08-07",fee:"관리비 25만",b:"GTX신화1",r:4,c:"전세안고",o:["에어컨4","중문"],m:"84c 방4 에어컨4대 중문 세안고 매매해요 gtx운정중앙역 가까운 동",u:"https://fin.land.naver.com/articles/2642339604"},
+{p:7.4,t:"매매",d:115,f:"10/25",fs:10,a:84.96,y:"112B",dir:"동남",v:"집주인확인 2026-08-07",fee:"관리비 25만",b:"GTX신화1",r:4,c:"월세안고",o:["에어컨4","판상형"],m:"월세안고 판상형 전망 좋은 라인 방4개 에어컨4대 관리상태굿",u:"https://fin.land.naver.com/articles/2642355593"},
+{p:7.4,t:"매매",d:104,f:"15/29",fs:15,a:84.95,y:"114C",dir:"동남",v:"집주인확인 2026-08-07",fee:"관리비 25만",b:"운정대지IPARK",r:null,c:"입주협의",o:["에어컨2"],m:"o 추천 GTX도보7분 주인거주 집상태깨끗 에어컨2 금액절충 입주협의",u:"https://fin.land.naver.com/articles/2642356797"},
 {p:7.4,t:"매매",d:113,f:"저/25",fs:3,a:84.96,y:"112B",dir:"동남",v:"집주인확인 2026-08-07",fee:"관리비 25만",b:"GTX신화1",r:4,c:"전세안고",o:["에어컨4"],m:"방4개 에어컨4대 세안고 매매해요 학교 가깝고 조용한 라인",u:"https://fin.land.naver.com/articles/2642348630"},
 {p:7.4,t:"매매",d:104,f:"저/29",fs:3,a:84.95,y:"114C",dir:"동남",v:"집주인확인 2026-08-07",fee:"관리비 25만",b:"GTX신화1",r:null,c:"",o:["에어컨4"],m:"에어컨4대 84C타입 GTX운정중앙역 가까워요",u:"https://fin.land.naver.com/articles/2642339452"},
 {p:7.4,t:"매매",d:110,f:"중/29",fs:12,a:84.91,y:"112A",dir:"동남",v:"집주인확인 2026-08-07",fee:"관리비 25만",b:"GTX신화1",r:4,c:"전세안고",o:["에어컨4"],m:"84a 방4 에어컨4 세안고 매매해요 주차편리",u:"https://fin.land.naver.com/articles/2642345163"},
+{p:7.4,t:"매매",d:104,f:"중/29",fs:12,a:84.95,y:"114C",dir:"동남",v:"집주인확인 2026-08-07",fee:"관리비 25만",b:"GTX신화1",r:4,c:"전세안고",o:["에어컨4","중문"],m:"84c 방4 에어컨4대 중문 세안고 매매해요 gtx운정중앙역 가까운 동",u:"https://fin.land.naver.com/articles/2642339604"},
 {p:7.4,t:"매매",d:112,f:"3/29",fs:3,a:84.91,y:"112A",dir:"동남",v:"NDOC1 2026-07-31",fee:"관리비 25만",b:"아이파크(IPARK)단지내",r:3,c:"",o:["에어컨2","팬트리"],m:"o추천, GTX도보권, 방3개, 시스템에어컨2대, 싱글펜트리, 영구뻥뷰",u:"https://fin.land.naver.com/articles/2641175111"},
 {p:7.49,t:"매매",d:110,f:"5/29",fs:5,a:84.91,y:"112A",dir:"남서",v:"집주인확인 2026-08-07",fee:"관리비 25만",b:"GTX신화1",r:4,c:"전세안고",o:[],m:"세안고, 갭투 방4 주차편리한 동 남서향 햇살 및 전망 좋은 라인",u:"https://fin.land.naver.com/articles/2642345091"},
-{p:7.5,t:"매매",d:110,f:"21/29",fs:21,a:84.95,y:"114C",dir:"동남",v:"NDOC1 2026-08-07",fee:"관리비 25만",b:"든든IPARK",r:4,c:"전세안고",o:["에어컨4"],m:"방4. 시에4. 학교인접동. 주차넉넉동. 트인뷰. 전세안고",u:"https://fin.land.naver.com/articles/2642365902"},
-{p:7.5,t:"매매",d:105,f:"8/29",fs:8,a:84.95,y:"114C",dir:"동남",v:"집주인확인 2026-08-07",fee:"관리비 25만",b:"GTX신화1",r:null,c:"",o:["풀에어컨","중문","식세기","인덕션"],m:"84c 풀에어컨 냉장고 인덕션 식세기 중문등 옵션 빵빵 gtx완전가까움",u:"https://fin.land.naver.com/articles/2642341399"},
-{p:7.5,t:"매매",d:103,f:"14/29",fs:14,a:84.95,y:"114C",dir:"동남",v:"집주인확인 2026-08-07",fee:"관리비 25만",b:"GTX신화1",r:3,c:"",o:["에어컨5","인덕션"],m:"역세권,예쁜조경,분수뷰.84c 방3 에어컨5 인덕션. gtx가까운동",u:"https://fin.land.naver.com/articles/2642337678"},
-{p:7.5,t:"매매",d:101,f:"25/29",fs:25,a:84.95,y:"114C",dir:"남서",v:"집주인확인 2026-08-07",fee:"관리비 30만",b:"GTX신화1",r:4,c:"입주협의",o:["에어컨4","중문"],m:"84c 입주협의 방4 에어컨4 중문 전망 굿 대중교통이용 편리한 동",u:"https://fin.land.naver.com/articles/2642336090"},
 {p:7.5,t:"매매",d:102,f:"2/29",fs:2,a:84.91,y:"112A",dir:"남서",v:"NDOC1 2026-08-07",fee:"관리비 25만",b:"아이파크(IPARK)단지내",r:3,c:"주인거주",o:["에어컨3","판상형"],m:"추천, 판상형, 방3개, 시스템에어컨3대, 주인거주관리잘된집, 투자굿",u:"https://fin.land.naver.com/articles/2642336551"},
-{p:7.5,t:"매매",d:101,f:"저/29",fs:3,a:84.95,y:"114C",dir:"동남",v:"집주인확인 2026-08-07",fee:"관리비 20만",b:"GTX신화1",r:null,c:"",o:["풀에어컨"],m:"인테리어 예쁘게 된 집 풀에어컨 교통 및 상권이용 편리한 동",u:"https://fin.land.naver.com/articles/2642335394"},
-{p:7.5,t:"매매",d:119,f:"저/28",fs:3,a:84.91,y:"112A",dir:"동남",v:"집주인확인 2026-08-07",fee:"관리비 28만",b:"GTX신화1",r:3,c:"",o:["에어컨3","판상형"],m:"판상형, 가운데동 조용한동, 에3, 방3",u:"https://fin.land.naver.com/articles/2642357755"},
-{p:7.5,t:"매매",d:114,f:"저/25",fs:3,a:84.96,y:"112B",dir:"남서",v:"집주인확인 2026-08-07",fee:"관리비 28만",b:"GTX신화1",r:3,c:"입주협의",o:["팬트리"],m:"싱글팬트리 방3 전망굿 햇살 좋은 남서향 9월중순이후 하시 입주가능",u:"https://fin.land.naver.com/articles/2642349450"},
+{p:7.5,t:"매매",d:103,f:"14/29",fs:14,a:84.95,y:"114C",dir:"동남",v:"집주인확인 2026-08-07",fee:"관리비 25만",b:"GTX신화1",r:3,c:"",o:["에어컨5","인덕션"],m:"역세권,예쁜조경,분수뷰.84c 방3 에어컨5 인덕션. gtx가까운동",u:"https://fin.land.naver.com/articles/2642337678"},
+{p:7.5,t:"매매",d:110,f:"21/29",fs:21,a:84.95,y:"114C",dir:"동남",v:"NDOC1 2026-08-07",fee:"관리비 25만",b:"든든IPARK",r:4,c:"전세안고",o:["에어컨4"],m:"방4. 시에4. 학교인접동. 주차넉넉동. 트인뷰. 전세안고",u:"https://fin.land.naver.com/articles/2642365902"},
+{p:7.5,t:"매매",d:101,f:"25/29",fs:25,a:84.95,y:"114C",dir:"남서",v:"집주인확인 2026-08-07",fee:"관리비 30만",b:"GTX신화1",r:4,c:"입주협의",o:["에어컨4","중문"],m:"84c 입주협의 방4 에어컨4 중문 전망 굿 대중교통이용 편리한 동",u:"https://fin.land.naver.com/articles/2642336090"},
+{p:7.5,t:"매매",d:105,f:"8/29",fs:8,a:84.95,y:"114C",dir:"동남",v:"집주인확인 2026-08-07",fee:"관리비 25만",b:"GTX신화1",r:null,c:"",o:["풀에어컨","중문","식세기","인덕션"],m:"84c 풀에어컨 냉장고 인덕션 식세기 중문등 옵션 빵빵 gtx완전가까움",u:"https://fin.land.naver.com/articles/2642341399"},
 {p:7.5,t:"매매",d:105,f:"고/29",fs:22,a:84.95,y:"114C",dir:"동남",v:"집주인확인 2026-08-07",fee:"관리비 28만",b:"GTX신화1",r:4,c:"입주협의",o:[],m:"84C, 방4, 햇살좋고, GTX초 근접동, 입주가능항, 투자도 가능",u:"https://fin.land.naver.com/articles/2642341887"},
+{p:7.5,t:"매매",d:101,f:"저/29",fs:3,a:84.95,y:"114C",dir:"동남",v:"집주인확인 2026-08-07",fee:"관리비 20만",b:"GTX신화1",r:null,c:"",o:["풀에어컨"],m:"인테리어 예쁘게 된 집 풀에어컨 교통 및 상권이용 편리한 동",u:"https://fin.land.naver.com/articles/2642335394"},
+{p:7.5,t:"매매",d:114,f:"저/25",fs:3,a:84.96,y:"112B",dir:"남서",v:"집주인확인 2026-08-07",fee:"관리비 28만",b:"GTX신화1",r:3,c:"입주협의",o:["팬트리"],m:"싱글팬트리 방3 전망굿 햇살 좋은 남서향 9월중순이후 하시 입주가능",u:"https://fin.land.naver.com/articles/2642349450"},
+{p:7.5,t:"매매",d:119,f:"저/28",fs:3,a:84.91,y:"112A",dir:"동남",v:"집주인확인 2026-08-07",fee:"관리비 28만",b:"GTX신화1",r:3,c:"",o:["에어컨3","판상형"],m:"판상형, 가운데동 조용한동, 에3, 방3",u:"https://fin.land.naver.com/articles/2642357755"},
 {p:7.5,t:"매매",d:106,f:"7/29",fs:7,a:84.95,y:"114C",dir:"동남",v:"집주인확인 2026-07-31",fee:"관리비 20만",b:"아이파크 꿀단지",r:4,c:"입주협의",o:[],m:"GTX인접동, 방4, 84C, 입주협의가, 주차편리",u:"https://fin.land.naver.com/articles/2641232157"},
 {p:7.5,t:"매매",d:103,f:"중/29",fs:12,a:84.95,y:"114C",dir:"동남",v:"NDOC1 2026-07-28",fee:"관리비 15만",b:"IPARK태양(957-6700)",r:4,c:"입주협의",o:["에어컨4","중문"],m:"84C추천매물 방4 에어컨4 중문외 옵션다수 입주가능 절충가",u:"https://fin.land.naver.com/articles/2640582292"},
 {p:7.5,t:"매매",d:125,f:"고/18",fs:22,a:84.96,y:"112B",dir:"남",v:"집주인확인 2026-07-28",fee:"관리비 28만",b:"행복한IPARK",r:4,c:"",o:["팬트리"],m:"방4펜트리 , gtx도보, 남서향의 좋은라인,층, 상가와 교통편리",u:"https://fin.land.naver.com/articles/2640417161"},
@@ -209,25 +222,25 @@ const DATA=[
 {p:7.5,t:"매매",d:109,f:"저/29",fs:3,a:84.91,y:"112A",dir:"남서",v:"집주인확인 2026-07-21",fee:"관리비 29만",b:"행복한IPARK",r:3,c:"",o:["팬트리"],m:"방3. 팬트리. 넓은거실. 시원한조망",u:"https://fin.land.naver.com/articles/2639117165"},
 {p:7.5,t:"매매",d:112,f:"고/29",fs:22,a:84.95,y:"114C",dir:"남서",v:"집주인확인 2026-07-16",fee:"관리비 30만",b:"운정중흥탑",r:null,c:"입주협의",o:["에어컨4"],m:"GTX운정중앙역.84C.시에4대.전면동.파노라마뷰. 초품아. 입주가능매물",u:"https://fin.land.naver.com/articles/2638281793"},
 {p:7.5,t:"매매",d:101,f:"저/29",fs:3,a:84.91,y:"112A",dir:"남",v:"집주인확인 2026-07-10",fee:"관리비 28만",b:"화수분아이파크(9499-888)",r:null,c:"전세안고",o:["에어컨4"],m:"84A.5층이상.전세안고.에어컨4.아주깨끗.소나무정원뷰",u:"https://fin.land.naver.com/articles/2637242487"},
-{p:7.6,t:"매매",d:111,f:"15/29",fs:15,a:84.91,y:"112A",dir:"남서",v:"집주인확인 2026-08-07",fee:"관리비 25만",b:"GTX신화1",r:null,c:"전세안고",o:["팬트리","판상형"],m:"더블팬트리로 수납공간 넉넉해요 판상형 남서향 해잘들어요 .세안고",u:"https://fin.land.naver.com/articles/2642346203"},
 {p:7.6,t:"매매",d:106,f:"18/29",fs:18,a:84.95,y:"114C",dir:"동남",v:"집주인확인 2026-08-07",fee:"관리비 25만",b:"GTX신화1",r:null,c:"입주협의",o:["풀에어컨"],m:"84c 안방확장형 풀에어컨 입주협의가능 주차 넉넉한 동 gtx역 바로앞",u:"https://fin.land.naver.com/articles/2642342713"},
 {p:7.6,t:"매매",d:116,f:"8/25",fs:8,a:84.96,y:"112B",dir:"남서",v:"집주인확인 2026-08-07",fee:"관리비 25만",b:"아이파크 꿀단지",r:null,c:"전세안고",o:["에어컨4"],m:"꿀단지추천,시에4,폴리싱등,GTX도보,주인거주,컨디션최고,주세안고",u:"https://fin.land.naver.com/articles/2642386667"},
+{p:7.6,t:"매매",d:111,f:"15/29",fs:15,a:84.91,y:"112A",dir:"남서",v:"집주인확인 2026-08-07",fee:"관리비 25만",b:"GTX신화1",r:null,c:"전세안고",o:["팬트리","판상형"],m:"더블팬트리로 수납공간 넉넉해요 판상형 남서향 해잘들어요 .세안고",u:"https://fin.land.naver.com/articles/2642346203"},
 {p:7.6,t:"매매",d:109,f:"9/29",fs:9,a:84.95,y:"114C",dir:"동남",v:"집주인확인 2026-08-06",fee:"관리비 20만",b:"아이파크 꿀단지",r:null,c:"주인거주",o:["에어컨2"],m:"84C,빌트인냉장고,붙박이장,에어컨2,GTX도보권,주인거주로집관리잘된집",u:"https://fin.land.naver.com/articles/2642262305"},
 {p:7.6,t:"매매",d:114,f:"19/25",fs:19,a:84.96,y:"112B",dir:"동남",v:"집주인확인 2026-07-31",fee:"관리비 28만",b:"화수분아이파크(9499-888)",r:4,c:"전세안고",o:["에어컨3","인덕션"],m:"84B.전세안고.시에3.방4.주방상판.인덕션.조용하면서 확트인뷰.학교인접",u:"https://fin.land.naver.com/articles/2641226950"},
 {p:7.6,t:"매매",d:113,f:"저/25",fs:3,a:84.96,y:"112B",dir:"남서",v:"집주인확인 2026-07-31",fee:"관리비 17만",b:"대장IPARK",r:3,c:"입주협의",o:["에어컨2","리모델링"],m:"o방3. 예쁜 뷰. 채광 좋아요. 입주가. 리모델링. 8층이상. 에어컨2",u:"https://fin.land.naver.com/articles/2641230051"},
 {p:7.7,t:"매매",d:110,f:"25/29",fs:25,a:84.91,y:"112A",dir:"동남",v:"집주인확인 2026-07-28",fee:"관리비 17만",b:"대장IPARK",r:3,c:"전세안고",o:[],m:"o방3 .에어컨풀 .학교 근접동. 세안고.27. 1월만기",u:"https://fin.land.naver.com/articles/2640489026"},
 {p:7.7,t:"매매",d:104,f:"3/29",fs:3,a:84.91,y:"112A",dir:"남",v:"집주인확인 2026-08-07",fee:"관리비 25만",b:"GTX신화1",r:3,c:"입주협의",o:[],m:"입주협의가 매매해요 방3 클라우드파크뷰로 전망 이뻐요 전자계약가능",u:"https://fin.land.naver.com/articles/2642339217"},
-{p:7.7,t:"매매",d:111,f:"고/29",fs:22,a:84.91,y:"112A",dir:"동남",v:"집주인확인 2026-08-07",fee:"관리비 25만",b:"GTX신화1",r:4,c:"",o:[],m:"방4 엔지니어드스톤 학교 가까운 동 시원한 고층뷰",u:"https://fin.land.naver.com/articles/2642345747"},
 {p:7.7,t:"매매",d:110,f:"중/29",fs:12,a:84.91,y:"112A",dir:"동남",v:"집주인확인 2026-08-07",fee:"관리비 28만",b:"GTX신화1",r:3,c:"",o:["에어컨4","중문"],m:"84A. 방3알파룸미닫이로 되어있어요. 에4대. 중문",u:"https://fin.land.naver.com/articles/2642344461"},
+{p:7.7,t:"매매",d:111,f:"고/29",fs:22,a:84.91,y:"112A",dir:"동남",v:"집주인확인 2026-08-07",fee:"관리비 25만",b:"GTX신화1",r:4,c:"",o:[],m:"방4 엔지니어드스톤 학교 가까운 동 시원한 고층뷰",u:"https://fin.land.naver.com/articles/2642345747"},
 {p:7.7,t:"매매",d:121,f:"저/29",fs:3,a:84.91,y:"112A",dir:"동남",v:"집주인확인 2026-08-07",fee:"관리비 25만",b:"GTX신화1",r:4,c:"",o:["에어컨4"],m:"84A. 방4,에4,선호타입. 정류장 인접. 동간거리 넓어요. 마트인접",u:"https://fin.land.naver.com/articles/2642359609"},
 {p:7.7,t:"매매",d:113,f:"저/25",fs:3,a:84.96,y:"112B",dir:"동남",v:"집주인확인 2026-07-29",fee:"관리비 25만",b:"GTX황금아이파크(944-8585)",r:3,c:"주인거주",o:["중문","팬트리","식세기","인덕션"],m:"5층이상,34B.방3,펜트리,중문,주인거주,뻥뷰.,식세기,인덕션",u:"https://fin.land.naver.com/articles/2640769715"},
 {p:7.7,t:"매매",d:103,f:"고/29",fs:22,a:84.95,y:"114C",dir:"동남",v:"집주인확인 2026-07-09",fee:"관리비 25만",b:"화수분아이파크(9499-888)",r:3,c:"",o:[],m:"84C.주인.방3.드레스룸2.널찍한 동간거리와 막힘없는 뷰.GTX초역세권",u:"https://fin.land.naver.com/articles/2637029147"},
 {p:7.8,t:"매매",d:112,f:"4/29",fs:4,a:84.91,y:"112A",dir:"남",v:"집주인확인 2026-08-07",fee:"관리비 25만",b:"GTX신화1",r:null,c:"전세안고",o:["풀에어컨"],m:"세안고 매매해요 초중고 도보이용편리한동 풀에어컨 김치냉장고등 옵션 굿",u:"https://fin.land.naver.com/articles/2642347478"},
 {p:7.8,t:"매매",d:118,f:"5/28",fs:5,a:84.91,y:"112A",dir:"남서",v:"집주인확인 2026-08-07",fee:"관리비 28만",b:"GTX신화1",r:3,c:"",o:[],m:"갭투 방3 프리미엄동 현금2억8천만 GTX가까운동, 조용한동.",u:"https://fin.land.naver.com/articles/2642357262"},
-{p:7.8,t:"매매",d:114,f:"고/25",fs:22,a:84.96,y:"112B",dir:"동남",v:"집주인확인 2026-08-07",fee:"관리비 25만",b:"GTX신화1",r:3,c:"",o:[],m:"방3개 전망 완전 굿 관리상태 굿 초중고 가까워요 주세조건가능",u:"https://fin.land.naver.com/articles/2642349374"},
 {p:7.8,t:"매매",d:108,f:"고/29",fs:22,a:84.91,y:"112A",dir:"동남",v:"집주인확인 2026-08-07",fee:"관리비 15만",b:"정성어린아이파크",r:4,c:"입주협의",o:["에어컨4"],m:"84A ,정성추천 gtx초인접동, 방4, 에어컨4, 조망, 입주협의",u:"https://fin.land.naver.com/articles/2642323914"},
-{p:7.8,t:"매매",d:116,f:"저/25",fs:3,a:84.96,y:"112B",dir:"동남",v:"집주인확인 2026-07-31",fee:"관리비 28만",b:"화수분아이파크(9499-888)",r:4,c:"입주협의",o:[],m:"추천.선호동.7층이상.컨디션최고.입주가.귀한 방4개구조.GTX역도보10분",u:"https://fin.land.naver.com/articles/2641227040"},
+{p:7.8,t:"매매",d:114,f:"고/25",fs:22,a:84.96,y:"112B",dir:"동남",v:"집주인확인 2026-08-07",fee:"관리비 25만",b:"GTX신화1",r:3,c:"",o:[],m:"방3개 전망 완전 굿 관리상태 굿 초중고 가까워요 주세조건가능",u:"https://fin.land.naver.com/articles/2642349374"},
 {p:7.8,t:"매매",d:108,f:"저/29",fs:3,a:84.91,y:"112A",dir:"남서",v:"집주인확인 2026-07-31",fee:"관리비 28만",b:"화수분아이파크(9499-888)",r:3,c:"",o:["팬트리"],m:"84A.6층이상.방3.개방감있는팬트리구조.주인.컨디션최고.뻥뷰.GTX인접",u:"https://fin.land.naver.com/articles/2641226960"},
+{p:7.8,t:"매매",d:116,f:"저/25",fs:3,a:84.96,y:"112B",dir:"동남",v:"집주인확인 2026-07-31",fee:"관리비 28만",b:"화수분아이파크(9499-888)",r:4,c:"입주협의",o:[],m:"추천.선호동.7층이상.컨디션최고.입주가.귀한 방4개구조.GTX역도보10분",u:"https://fin.land.naver.com/articles/2641227040"},
 {p:7.8,t:"매매",d:115,f:"저/25",fs:3,a:84.96,y:"112B",dir:"남",v:"집주인확인 2026-07-30",fee:"관리비 25만",b:"대장IPARK",r:4,c:"입주협의",o:["에어컨2"],m:"o햇살가득. 방4. 에어컨2. 입주가. 컨디션 좋아요. 줄눈",u:"https://fin.land.naver.com/articles/2640996284"},
 {p:7.8,t:"매매",d:114,f:"7/25",fs:7,a:84.96,y:"112B",dir:"동남",v:"집주인확인 2026-07-24",fee:"관리비 25만",b:"삼부",r:null,c:"",o:[],m:"앞뒤전망 집안에서,초,중,고다보이는 가까운동,조용한로얄동완전깨끗함",u:"https://fin.land.naver.com/articles/2639895464"},
 {p:7.8,t:"매매",d:112,f:"4/29",fs:4,a:84.91,y:"112A",dir:"남",v:"집주인확인 2026-07-21",fee:"관리비 20만",b:"GTX황금아이파크(944-8585)",r:3,c:"전세안고",o:["에어컨5"],m:"84A, 방3, 에어컨5, 세안고, 옵션빵빵, 뻥뷰",u:"https://fin.land.naver.com/articles/2639178192"},
@@ -239,29 +252,30 @@ const DATA=[
 {p:7.9,t:"매매",d:107,f:"저/29",fs:3,a:84.91,y:"112A",dir:"동남",v:"집주인확인 2026-07-21",fee:"관리비 25만",b:"GTXA물향기탑(937-8924)",r:null,c:"",o:["풀에어컨"],m:"추.천.84A.GTX초역세권.풀에어컨.GTX근접동.예쁜단지정원뷰.알파룸",u:"https://fin.land.naver.com/articles/2639166261"},
 {p:8,t:"매매",d:105,f:"10/29",fs:10,a:84.91,y:"112A",dir:"남서",v:"집주인확인 2026-08-07",fee:"관리비 25만",b:"GTX신화1",r:4,c:"전세안고",o:["풀에어컨"],m:"gtx초인접동 남서향 전망 완전 굿 방4 풀에어컨 세안고",u:"https://fin.land.naver.com/articles/2642341310"},
 {p:8,t:"매매",d:102,f:"고/29",fs:22,a:84.91,y:"112A",dir:"남",v:"집주인확인 2026-07-31",fee:"관리비 20만",b:"GTX황금아이파크(944-8585)",r:3,c:"입주협의",o:["판상형"],m:"실입주가능, 84 인기 판상형, 방3, 트인뷰, 컨디션 굿",u:"https://fin.land.naver.com/articles/2641150119"},
-{p:8,t:"매매",d:105,f:"10/29",fs:10,a:84.91,y:"112A",dir:"동남",v:"집주인확인 2026-08-07",fee:"관리비 25만",b:"GTX신화1",r:4,c:"",o:["에어컨4"],m:"방4 에어컨4대 gtx도보이용 편리한 동 단지조경이뻐요",u:"https://fin.land.naver.com/articles/2642341968"},
 {p:8,t:"매매",d:121,f:"28/29",fs:28,a:84.91,y:"112A",dir:"동남",v:"집주인확인 2026-08-07",fee:"관리비 25만",b:"GTX신화1",r:null,c:"입주협의",o:[],m:"끝내주는 뷰 에어컨등 옵션 많아요 입주조율가능 전자계약 가능",u:"https://fin.land.naver.com/articles/2642359568"},
 {p:8,t:"매매",d:120,f:"23/29",fs:23,a:84.91,y:"112A",dir:"남서",v:"집주인확인 2026-08-07",fee:"관리비 25만",b:"GTX신화1",r:null,c:"",o:["인덕션"],m:"전자계약가능 에어컨 인덕션 김치냉장고등 풀옵션 전망 완전 굿",u:"https://fin.land.naver.com/articles/2642358719"},
+{p:8,t:"매매",d:105,f:"10/29",fs:10,a:84.91,y:"112A",dir:"동남",v:"집주인확인 2026-08-07",fee:"관리비 25만",b:"GTX신화1",r:4,c:"",o:["에어컨4"],m:"방4 에어컨4대 gtx도보이용 편리한 동 단지조경이뻐요",u:"https://fin.land.naver.com/articles/2642341968"},
+{p:8,t:"매매",d:102,f:"6/29",fs:6,a:84.91,y:"112A",dir:"동남",v:"집주인확인 2026-08-07",fee:"관리비 25만",b:"GTX신화1",r:4,c:"전세안고",o:["에어컨4"],m:"세안고 매매합니다 방4 에어컨4대 대중교통이용편리한 동",u:"https://fin.land.naver.com/articles/2642337435"},
+{p:8,t:"매매",d:106,f:"고/29",fs:22,a:84.91,y:"112A",dir:"남",v:"집주인확인 2026-08-07",fee:"관리비 29만",b:"행복한IPARK",r:3,c:"전세안고",o:["에어컨3","중문"],m:"84a gtx역앞 시원한조망 방3 에3 중문 김냉 식세 세안고",u:"https://fin.land.naver.com/articles/2642291308"},
+{p:8,t:"매매",d:116,f:"고/25",fs:22,a:84.96,y:"112B",dir:"남",v:"집주인확인 2026-08-07",fee:"관리비 29만",b:"행복한IPARK",r:4,c:"주인거주",o:[],m:"84B 방4. 단지중앙동. 주인거주로 상태최상.",u:"https://fin.land.naver.com/articles/2642292135"},
+{p:8,t:"매매",d:108,f:"저/29",fs:3,a:84.91,y:"112A",dir:"남",v:"집주인확인 2026-08-07",fee:"관리비 29만",b:"행복한IPARK",r:3,c:"",o:["풀에어컨","중문"],m:"84A. GTX근동. 방3. 풀에어컨.식세. 중문",u:"https://fin.land.naver.com/articles/2642290941"},
+{p:8,t:"매매",d:109,f:"중/29",fs:12,a:84.91,y:"112A",dir:"남서",v:"집주인확인 2026-08-07",fee:"관리비 25만",b:"GTX신화1",r:4,c:"전세안고",o:[],m:"방4 뻥 뚫린 전망 운정중앙역 도보이용 편리한 동 주차굿 세안고매매",u:"https://fin.land.naver.com/articles/2642343749"},
 {p:8,t:"매매",d:107,f:"저/29",fs:3,a:84.91,y:"112A",dir:"남",v:"집주인확인 2026-08-07",fee:"관리비 25만",b:"GTX신화1",r:4,c:"",o:["에어컨6","중문","인덕션"],m:"에어컨6대 인덕션 중문등 옵션 굿 방4개 단지조경뷰 이뻐요",u:"https://fin.land.naver.com/articles/2642343221"},
 {p:8,t:"매매",d:102,f:"고/29",fs:22,a:84.91,y:"112A",dir:"남서",v:"집주인확인 2026-08-07",fee:"관리비 25만",b:"GTX신화1",r:3,c:"주인거주",o:["팬트리"],m:"방3 팬트리 김냉 주인거주로 관리상태 좋아요 GTX역 및 대중교통이용 굿",u:"https://fin.land.naver.com/articles/2642337503"},
 {p:8,t:"매매",d:106,f:"고/29",fs:22,a:84.95,y:"114C",dir:"동남",v:"집주인확인 2026-08-07",fee:"관리비 28만",b:"GTX신화1",r:null,c:"입주협의",o:["에어컨4"],m:"84C GTX완전 초근접동 에어컨4대 입주협의",u:"https://fin.land.naver.com/articles/2642342635"},
-{p:8,t:"매매",d:109,f:"중/29",fs:12,a:84.91,y:"112A",dir:"남서",v:"집주인확인 2026-08-07",fee:"관리비 25만",b:"GTX신화1",r:4,c:"전세안고",o:[],m:"방4 뻥 뚫린 전망 운정중앙역 도보이용 편리한 동 주차굿 세안고매매",u:"https://fin.land.naver.com/articles/2642343749"},
 {p:8,t:"매매",d:116,f:"저/25",fs:3,a:84.96,y:"112B",dir:"동남",v:"집주인확인 2026-08-07",fee:"관리비 29만",b:"행복한IPARK",r:null,c:"입주협의",o:[],m:"84A . 완전풀옵션형. 고급인테리어. 시원한조망. 입주협의.",u:"https://fin.land.naver.com/articles/2642289111"},
-{p:8,t:"매매",d:109,f:"저/29",fs:3,a:84.91,y:"112A",dir:"동남",v:"집주인확인 2026-08-07",fee:"관리비 25만",b:"GTX신화1",r:3,c:"",o:["팬트리"],m:"84A 방3 더블팬트리 GTX가까운 동 주차편리 늦은입주. 천천히입주",u:"https://fin.land.naver.com/articles/2642343814"},
-{p:8,t:"매매",d:108,f:"저/29",fs:3,a:84.91,y:"112A",dir:"남",v:"집주인확인 2026-08-07",fee:"관리비 29만",b:"행복한IPARK",r:3,c:"",o:["풀에어컨","중문"],m:"84A. GTX근동. 방3. 풀에어컨.식세. 중문",u:"https://fin.land.naver.com/articles/2642290941"},
-{p:8,t:"매매",d:106,f:"고/29",fs:22,a:84.91,y:"112A",dir:"남",v:"집주인확인 2026-08-07",fee:"관리비 29만",b:"행복한IPARK",r:3,c:"전세안고",o:["에어컨3","중문"],m:"84a gtx역앞 시원한조망 방3 에3 중문 김냉 식세 세안고",u:"https://fin.land.naver.com/articles/2642291308"},
 {p:8,t:"매매",d:111,f:"고/29",fs:22,a:84.91,y:"112A",dir:"남서",v:"집주인확인 2026-08-07",fee:"관리비 25만",b:"GTX신화1",r:3,c:"입주협의",o:["풀에어컨","중문"],m:"풀에어컨 중문 방3개 햇살좋은 남서향 갭투 또는 실입주 가능해요",u:"https://fin.land.naver.com/articles/2642345671"},
-{p:8,t:"매매",d:116,f:"고/25",fs:22,a:84.96,y:"112B",dir:"남",v:"집주인확인 2026-08-07",fee:"관리비 29만",b:"행복한IPARK",r:4,c:"주인거주",o:[],m:"84B 방4. 단지중앙동. 주인거주로 상태최상.",u:"https://fin.land.naver.com/articles/2642292135"},
-{p:8,t:"매매",d:112,f:"저/29",fs:3,a:84.95,y:"114C",dir:"남",v:"집주인확인 2026-08-07",fee:"관리비 20만",b:"경남시티운정1등 l",r:null,c:"입주협의",o:["중문"],m:"84C. 중문. 주인거주깨끗. 초품아. GTX운정역도보.협의입주가능.",u:"https://fin.land.naver.com/articles/2642349362"},
+{p:8,t:"매매",d:109,f:"저/29",fs:3,a:84.91,y:"112A",dir:"동남",v:"집주인확인 2026-08-07",fee:"관리비 25만",b:"GTX신화1",r:3,c:"",o:["팬트리"],m:"84A 방3 더블팬트리 GTX가까운 동 주차편리 늦은입주. 천천히입주",u:"https://fin.land.naver.com/articles/2642343814"},
+{p:8,t:"매매",d:106,f:"저/29",fs:3,a:84.91,y:"112A",dir:"동남",v:"집주인확인 2026-08-06",fee:"관리비 28만",b:"든든IPARK",r:3,c:"주인거주",o:["에어컨4","중문","판상형"],m:"GTX초인접동. 판상형. 방3. 풀시에4. 중문. 주인거주 깨끗",u:"https://fin.land.naver.com/articles/2642236311"},
 {p:8,t:"매매",d:107,f:"고/29",fs:22,a:84.95,y:"114C",dir:"남",v:"집주인확인 2026-08-07",fee:"관리비 20만",b:"경남시티운정1등 l",r:4,c:"",o:["에어컨6","중문","식세기","인덕션"],m:"84C. 에어컨6. 중문. 인덕션. 식세기. 방4. 뻥뷰.",u:"https://fin.land.naver.com/articles/2642347512"},
 {p:8,t:"매매",d:107,f:"중/29",fs:12,a:84.91,y:"112A",dir:"동남",v:"집주인확인 2026-08-06",fee:"관리비 15만",b:"정성어린아이파크",r:3,c:"입주협의",o:["에어컨5"],m:"84A,정성추천, GTX인접로얄동,방3,에어컨5,옵션다수,입주협의",u:"https://fin.land.naver.com/articles/2642216955"},
-{p:8,t:"매매",d:119,f:"고/28",fs:22,a:84.91,y:"112A",dir:"남",v:"집주인확인 2026-08-06",fee:"관리비 28만",b:"행복한IPARK",r:4,c:"전세안고",o:["에어컨5"],m:"84A 전세안고. 방4. 에어컨5 조용한조망권.",u:"https://fin.land.naver.com/articles/2642032060"},
-{p:8,t:"매매",d:106,f:"저/29",fs:3,a:84.91,y:"112A",dir:"동남",v:"집주인확인 2026-08-06",fee:"관리비 28만",b:"든든IPARK",r:3,c:"주인거주",o:["에어컨4","중문","판상형"],m:"GTX초인접동. 판상형. 방3. 풀시에4. 중문. 주인거주 깨끗",u:"https://fin.land.naver.com/articles/2642236311"},
 {p:8,t:"매매",d:120,f:"고/29",fs:22,a:84.91,y:"112A",dir:"남서",v:"집주인확인 2026-08-06",fee:"관리비 25만",b:"아이파크 꿀단지",r:null,c:"",o:["에어컨4"],m:"84A,뷰최고,조용한동,GTX도보권,에어컨4,로얄층",u:"https://fin.land.naver.com/articles/2642261873"},
+{p:8,t:"매매",d:119,f:"고/28",fs:22,a:84.91,y:"112A",dir:"남",v:"집주인확인 2026-08-06",fee:"관리비 28만",b:"행복한IPARK",r:4,c:"전세안고",o:["에어컨5"],m:"84A 전세안고. 방4. 에어컨5 조용한조망권.",u:"https://fin.land.naver.com/articles/2642032060"},
+{p:8,t:"매매",d:112,f:"저/29",fs:3,a:84.95,y:"114C",dir:"남",v:"집주인확인 2026-08-07",fee:"관리비 20만",b:"경남시티운정1등 l",r:null,c:"입주협의",o:["중문"],m:"84C. 중문. 주인거주깨끗. 초품아. GTX운정역도보.협의입주가능.",u:"https://fin.land.naver.com/articles/2642349362"},
 {p:8,t:"매매",d:118,f:"저/28",fs:3,a:84.91,y:"112A",dir:"동남",v:"NDOC1 2026-08-06",fee:"관리비 25만",b:"운정으뜸하우스디",r:null,c:"",o:[],m:"GTX가까운 선호동, 막힘없는 뷰 , 괸리최상,",u:"https://fin.land.naver.com/articles/2642054213"},
-{p:8,t:"매매",d:109,f:"중/29",fs:12,a:84.91,y:"112A",dir:"동남",v:"집주인확인 2026-07-31",fee:"관리비 15만",b:"IPARK태양(957-6700)",r:3,c:"전세안고",o:["에어컨4"],m:"84A 방3 에어컨4 주차넉넉 전세안고 투자 물건",u:"https://fin.land.naver.com/articles/2641193412"},
 {p:8,t:"매매",d:118,f:"저/28",fs:3,a:84.91,y:"112A",dir:"남",v:"NDOC1 2026-07-31",fee:"관리비 15만",b:"IPARK태양(957-6700)",r:3,c:"입주협의",o:["에어컨3","팬트리"],m:"84A 방3 시에3 팬트리 입주협의해요",u:"https://fin.land.naver.com/articles/2641166374"},
 {p:8,t:"매매",d:115,f:"중/25",fs:12,a:84.96,y:"112B",dir:"동남",v:"집주인확인 2026-07-31",fee:"관리비 20만",b:"아이파크 꿀단지",r:4,c:"",o:["올수리"],m:"꿀단지추천,84B,방4,올인테리어,풀옵션,선호동",u:"https://fin.land.naver.com/articles/2641232599"},
+{p:8,t:"매매",d:109,f:"중/29",fs:12,a:84.91,y:"112A",dir:"동남",v:"집주인확인 2026-07-31",fee:"관리비 15만",b:"IPARK태양(957-6700)",r:3,c:"전세안고",o:["에어컨4"],m:"84A 방3 에어컨4 주차넉넉 전세안고 투자 물건",u:"https://fin.land.naver.com/articles/2641193412"},
 {p:8,t:"매매",d:118,f:"저/28",fs:3,a:84.91,y:"112A",dir:"남서",v:"집주인확인 2026-07-30",fee:"관리비 25만",b:"운정대지IPARK",r:null,c:"입주협의",o:["에어컨4"],m:"o추천 84A단지중앙 로얄동 에어컨4 집상태 완전깨끗 11월 입주협의",u:"https://fin.land.naver.com/articles/2640995137"},
 {p:8,t:"매매",d:111,f:"고/29",fs:22,a:84.91,y:"112A",dir:"남서",v:"집주인확인 2026-07-29",fee:"관리비 15만",b:"GTX황금아이파크(944-8585)",r:4,c:"주인거주",o:["에어컨4","중문"],m:"34A인기타입 방4 에어컨4 중문 주인거주 영구조망 컨디션 굿",u:"https://fin.land.naver.com/articles/2640770728"},
 {p:8,t:"매매",d:110,f:"고/29",fs:22,a:84.91,y:"112A",dir:"남",v:"집주인확인 2026-07-20",fee:"관리비 25만",b:"GTX황금아이파크(944-8585)",r:3,c:"주인거주",o:["중문","팬트리","인덕션"],m:"34A.방3,펜트리,중문,인덕션,주인거주,조망굿,이사협의",u:"https://fin.land.naver.com/articles/2638980755"},
@@ -278,8 +292,8 @@ const DATA=[
 {p:8.4,t:"매매",d:119,f:"고/28",fs:22,a:84.91,y:"112A",dir:"동남",v:"집주인확인 2026-08-07",fee:"관리비 30만",b:"모아",r:null,c:"입주협의",o:["에어컨4"],m:"확트인전망 시스템에어컨4 입주협의",u:"https://fin.land.naver.com/articles/2642298041"},
 {p:8.45,t:"매매",d:116,f:"23/25",fs:23,a:84.96,y:"112B",dir:"동남",v:"집주인확인 2026-08-06",fee:"관리비 29만",b:"행복한IPARK",r:3,c:"전세안고",o:["팬트리"],m:"84B 로얄매물. 방3. 팬트리형. 전세안고 조용한전망.",u:"https://fin.land.naver.com/articles/2642027899"},
 {p:8.5,t:"매매",d:105,f:"12/29",fs:12,a:84.91,y:"112A",dir:"동남",v:"NDOC1 2026-08-07",fee:"관리비 25만",b:"아이파크(IPARK)단지내",r:null,c:"주인거주",o:["에어컨5","팬트리"],m:"추천, 주인거주관리굿, GTX최근접동, 에5대, 투자추천매물, 팬트리",u:"https://fin.land.naver.com/articles/2642341946"},
-{p:8.5,t:"매매",d:102,f:"고/29",fs:22,a:84.91,y:"112A",dir:"동남",v:"집주인확인 2026-08-07",fee:"관리비 25만",b:"GTX신화1",r:3,c:"",o:["풀에어컨","팬트리"],m:"방3 팬트리있어 수납 빵빵 풀에어컨 전망굿 상권 및 교통이용 편리",u:"https://fin.land.naver.com/articles/2642336940"},
 {p:8.5,t:"매매",d:105,f:"저/29",fs:3,a:84.91,y:"112A",dir:"동남",v:"집주인확인 2026-08-07",fee:"관리비 25만",b:"GTX신화1",r:null,c:"",o:["풀에어컨","중문","인덕션"],m:"풀에어컨 인덕션 중문등 옵션 빵빵 gtx역 완전 가까운동 전자계약가능",u:"https://fin.land.naver.com/articles/2642340897"},
+{p:8.5,t:"매매",d:102,f:"고/29",fs:22,a:84.91,y:"112A",dir:"동남",v:"집주인확인 2026-08-07",fee:"관리비 25만",b:"GTX신화1",r:3,c:"",o:["풀에어컨","팬트리"],m:"방3 팬트리있어 수납 빵빵 풀에어컨 전망굿 상권 및 교통이용 편리",u:"https://fin.land.naver.com/articles/2642336940"},
 {p:8.5,t:"매매",d:112,f:"고/29",fs:22,a:84.91,y:"112A",dir:"동남",v:"집주인확인 2026-08-06",fee:"관리비 29만",b:"행복한IPARK",r:3,c:"",o:["에어컨5"],m:"84A GTX역세권 초중고학세권 시원한뷰맛집 방3 에어컨5",u:"https://fin.land.naver.com/articles/2642027445"},
 {p:8.5,t:"매매",d:119,f:"5/28",fs:5,a:84.91,y:"112A",dir:"남서",v:"집주인확인 2026-07-30",fee:"관리비 20만",b:"운정중앙역우리",r:null,c:"주인거주",o:[],m:"84a 운정중앙역gtx가까운동 주인거주 집깨끗 남서향이라 뷰가 잘나와요",u:"https://fin.land.naver.com/articles/2640815350"},
 {p:8.5,t:"매매",d:117,f:"중/28",fs:12,a:84.91,y:"112A",dir:"남서",v:"NDOC1 2026-07-30",fee:"관리비 15만",b:"정성어린아이파크",r:3,c:"주인거주",o:["에어컨3","중문"],m:"84A, GTX인접동, 방3,에어컨3 ,중문,옵션다수,주인거주상태최고",u:"https://fin.land.naver.com/articles/2640950512"},
@@ -301,21 +315,33 @@ const $=s=>document.querySelector(s);
 const fmt=n=>(Math.round(n*100)/100).toFixed(2).replace(/\.?0+$/,'')+'억';
 const uniq=(k,f)=>[...new Set(DATA.filter(f||(()=>1)).map(x=>x[k]).filter(v=>v!==''&&v!=null))];
 
-const AGO=['전세안고','월세안고'];   // 기본으로 숨기는 조건
-for(const [sel,key,lab] of [['#f-type','y',v=>v],['#f-dong','d',v=>v+'동'],['#f-dir','dir',v=>v+'향'],['#f-cond','c',v=>v]]){
+const AGO=['전세안고','월세안고'];   // 기본으로 체크 해제되는 조건
+for(const [sel,key,lab] of [['#f-type','y',v=>v],['#f-dong','d',v=>v+'동'],['#f-dir','dir',v=>v+'향']]){
   uniq(key).sort((a,b)=>typeof a==='number'?a-b:String(a).localeCompare(b))
     .forEach(v=>$(sel).insertAdjacentHTML('beforeend','<option value="'+v+'">'+lab(v)+'</option>'));
 }
 
+// 입주조건 체크박스 — 안고 2종은 기본 해제
+const CONDS=[...new Set(DATA.map(x=>x.c))]
+  .sort((a,b)=>(AGO.includes(a)-AGO.includes(b))||String(a).localeCompare(b,'ko'));
+const condLabel=c=>c||'미기재';
+$('#f-cond').innerHTML=CONDS.map((c,i)=>
+  '<label class="chk"><input type="checkbox" value="'+c+'" data-ci="'+i+'"'+
+  (AGO.includes(c)?'':' checked')+'> '+condLabel(c)+' <span class="cnt" data-cnt="'+i+'"></span></label>'
+).join('');
+const condBoxes=()=>[...document.querySelectorAll('#f-cond input')];
+const condOn=()=>condBoxes().filter(b=>b.checked).map(b=>b.value);
+
 let sortKey='p', sortAsc=true;
-function current(){
+// skip: 이 조건 하나만 빼고 필터 (체크박스 옆 건수 계산용)
+function current(skip){
   const t=$('#f-trade').value,ty=$('#f-type').value,dg=$('#f-dong').value,
-        dr=$('#f-dir').value,rm=$('#f-room').value,cd=$('#f-cond').value,
+        dr=$('#f-dir').value,rm=$('#f-room').value,
         q=$('#f-q').value.trim().toLowerCase();
-  const condOk = x => cd==='__noago' ? !AGO.includes(x.c) : (!cd||x.c===cd);
+  const on=condOn();
   return DATA.filter(x=>
     (!t||x.t===t)&&(!ty||x.y===ty)&&(!dg||x.d==dg)&&(!dr||x.dir===dr)&&
-    (!rm||x.r==rm)&&condOk(x)&&
+    (!rm||x.r==rm)&&(skip==='cond'||on.includes(x.c))&&
     (!q||(x.b+' '+x.m).toLowerCase().includes(q))
   ).sort((a,b)=>{
     const A=a[sortKey],B=b[sortKey];
@@ -376,9 +402,17 @@ function drawStats(rows){
 function draw(){
   const rows=current();
   drawStats(rows);
-  const hidden=DATA.filter(x=>(!$('#f-trade').value||x.t===$('#f-trade').value)&&AGO.includes(x.c)).length;
+
+  // 체크박스 옆 건수 — 조건 필터만 뺀 결과 기준
+  const pool=current('cond');
+  CONDS.forEach((c,i)=>{
+    const el=document.querySelector('[data-cnt="'+i+'"]');
+    if(el)el.textContent=pool.filter(x=>x.c===c).length;
+  });
+  const off=CONDS.filter(c=>!condOn().includes(c));
+  const hidden=pool.length-rows.length;
   $('#count').textContent=rows.length+'건 표시 중 (전체 '+DATA.length+'건)'+
-    ($('#f-cond').value==='__noago'&&hidden?' · 전세·월세 안고 '+hidden+'건 숨김':'');
+    (off.length&&hidden?' · '+off.map(condLabel).join('·')+' '+hidden+'건 숨김':'');
   $('#tb-body').innerHTML=rows.map(x=>
     '<tr><td class="price"><a href="'+x.u+'" target="_blank" rel="noopener">'+fmt(x.p)+'</a></td>'+
     '<td class="num">'+x.d+'동</td><td class="num">'+x.f+'</td><td>'+x.y+'</td>'+
@@ -401,6 +435,13 @@ document.querySelectorAll('th[data-s]').forEach(th=>th.addEventListener('click',
   draw();
 }));
 document.querySelectorAll('.filters select,.filters input').forEach(e=>e.addEventListener('input',draw));
+$('#f-cond').addEventListener('change',draw);
+$('#cond-all').addEventListener('click',()=>{
+  const allOn=condBoxes().every(b=>b.checked);
+  condBoxes().forEach(b=>{b.checked=allOn?!AGO.includes(b.value):true;});
+  $('#cond-all').textContent=allOn?'전체 선택':'안고 빼기';
+  draw();
+});
 
 const tip=$('#tip');
 function showTip(g,ev){

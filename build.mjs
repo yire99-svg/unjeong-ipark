@@ -136,6 +136,18 @@ function render(items, counts, stamp) {
   select,input[type=search]{background:var(--surface-1);color:var(--ink);border:1px solid var(--ring);
     border-radius:8px;padding:8px 10px;font-size:13px;font-family:inherit}
   input[type=search]{flex:1;min-width:150px}
+  .chkrow{border:0;padding:0;margin:12px 0 0;display:flex;flex-wrap:wrap;gap:7px;align-items:center}
+  .chkrow legend{float:left;font-size:12px;color:var(--muted);padding:0 8px 0 2px;line-height:34px}
+  .chkrow #f-cond{display:contents}
+  .chk{display:inline-flex;align-items:center;gap:6px;background:var(--surface-1);
+    border:1px solid var(--ring);border-radius:999px;padding:7px 13px 7px 10px;
+    font-size:13px;color:var(--ink-2);cursor:pointer;user-select:none}
+  .chk:has(input:checked){border-color:var(--series-1);color:var(--ink)}
+  .chk:has(input:focus-visible){outline:2px solid var(--series-1);outline-offset:2px}
+  .chk input{accent-color:var(--series-1);margin:0;width:15px;height:15px}
+  .chk .cnt{font-variant-numeric:tabular-nums;color:var(--muted);font-size:12px}
+  .linkbtn{background:none;border:0;color:var(--series-1);font-size:12.5px;
+    cursor:pointer;font-family:inherit;padding:4px 2px;text-decoration:underline}
   .count{font-size:13px;color:var(--ink-2);margin:14px 0 8px}
   table{width:100%;border-collapse:collapse;font-size:13.5px}
   th{text-align:left;font-weight:600;font-size:12px;color:var(--muted);padding:8px 10px;
@@ -191,16 +203,17 @@ function render(items, counts, stamp) {
 
 <div class="filters">
   <select id="f-trade"><option value="">거래 전체</option><option value="매매" selected>매매</option><option value="전세">전세</option></select>
-  <select id="f-cond">
-    <option value="__noago" selected>안고 제외</option>
-    <option value="">조건 전체</option>
-  </select>
   <select id="f-type"><option value="">타입 전체</option></select>
   <select id="f-dong"><option value="">동 전체</option></select>
   <select id="f-dir"><option value="">향 전체</option></select>
   <select id="f-room"><option value="">방 전체</option><option value="3">방3</option><option value="4">방4</option></select>
   <input type="search" id="f-q" placeholder="중개사·설명 검색">
 </div>
+<fieldset class="chkrow">
+  <legend>입주조건</legend>
+  <div id="f-cond"></div>
+  <button type="button" class="linkbtn" id="cond-all">전체 선택</button>
+</fieldset>
 
 <p class="count" id="count"></p>
 <table>
@@ -229,21 +242,33 @@ const $=s=>document.querySelector(s);
 const fmt=n=>(Math.round(n*100)/100).toFixed(2).replace(/\\.?0+$/,'')+'억';
 const uniq=(k,f)=>[...new Set(DATA.filter(f||(()=>1)).map(x=>x[k]).filter(v=>v!==''&&v!=null))];
 
-const AGO=['전세안고','월세안고'];   // 기본으로 숨기는 조건
-for(const [sel,key,lab] of [['#f-type','y',v=>v],['#f-dong','d',v=>v+'동'],['#f-dir','dir',v=>v+'향'],['#f-cond','c',v=>v]]){
+const AGO=['전세안고','월세안고'];   // 기본으로 체크 해제되는 조건
+for(const [sel,key,lab] of [['#f-type','y',v=>v],['#f-dong','d',v=>v+'동'],['#f-dir','dir',v=>v+'향']]){
   uniq(key).sort((a,b)=>typeof a==='number'?a-b:String(a).localeCompare(b))
     .forEach(v=>$(sel).insertAdjacentHTML('beforeend','<option value="'+v+'">'+lab(v)+'</option>'));
 }
 
+// 입주조건 체크박스 — 안고 2종은 기본 해제
+const CONDS=[...new Set(DATA.map(x=>x.c))]
+  .sort((a,b)=>(AGO.includes(a)-AGO.includes(b))||String(a).localeCompare(b,'ko'));
+const condLabel=c=>c||'미기재';
+$('#f-cond').innerHTML=CONDS.map((c,i)=>
+  '<label class="chk"><input type="checkbox" value="'+c+'" data-ci="'+i+'"'+
+  (AGO.includes(c)?'':' checked')+'> '+condLabel(c)+' <span class="cnt" data-cnt="'+i+'"></span></label>'
+).join('');
+const condBoxes=()=>[...document.querySelectorAll('#f-cond input')];
+const condOn=()=>condBoxes().filter(b=>b.checked).map(b=>b.value);
+
 let sortKey='p', sortAsc=true;
-function current(){
+// skip: 이 조건 하나만 빼고 필터 (체크박스 옆 건수 계산용)
+function current(skip){
   const t=$('#f-trade').value,ty=$('#f-type').value,dg=$('#f-dong').value,
-        dr=$('#f-dir').value,rm=$('#f-room').value,cd=$('#f-cond').value,
+        dr=$('#f-dir').value,rm=$('#f-room').value,
         q=$('#f-q').value.trim().toLowerCase();
-  const condOk = x => cd==='__noago' ? !AGO.includes(x.c) : (!cd||x.c===cd);
+  const on=condOn();
   return DATA.filter(x=>
     (!t||x.t===t)&&(!ty||x.y===ty)&&(!dg||x.d==dg)&&(!dr||x.dir===dr)&&
-    (!rm||x.r==rm)&&condOk(x)&&
+    (!rm||x.r==rm)&&(skip==='cond'||on.includes(x.c))&&
     (!q||(x.b+' '+x.m).toLowerCase().includes(q))
   ).sort((a,b)=>{
     const A=a[sortKey],B=b[sortKey];
@@ -304,9 +329,17 @@ function drawStats(rows){
 function draw(){
   const rows=current();
   drawStats(rows);
-  const hidden=DATA.filter(x=>(!$('#f-trade').value||x.t===$('#f-trade').value)&&AGO.includes(x.c)).length;
+
+  // 체크박스 옆 건수 — 조건 필터만 뺀 결과 기준
+  const pool=current('cond');
+  CONDS.forEach((c,i)=>{
+    const el=document.querySelector('[data-cnt="'+i+'"]');
+    if(el)el.textContent=pool.filter(x=>x.c===c).length;
+  });
+  const off=CONDS.filter(c=>!condOn().includes(c));
+  const hidden=pool.length-rows.length;
   $('#count').textContent=rows.length+'건 표시 중 (전체 '+DATA.length+'건)'+
-    ($('#f-cond').value==='__noago'&&hidden?' · 전세·월세 안고 '+hidden+'건 숨김':'');
+    (off.length&&hidden?' · '+off.map(condLabel).join('·')+' '+hidden+'건 숨김':'');
   $('#tb-body').innerHTML=rows.map(x=>
     '<tr><td class="price"><a href="'+x.u+'" target="_blank" rel="noopener">'+fmt(x.p)+'</a></td>'+
     '<td class="num">'+x.d+'동</td><td class="num">'+x.f+'</td><td>'+x.y+'</td>'+
@@ -329,6 +362,13 @@ document.querySelectorAll('th[data-s]').forEach(th=>th.addEventListener('click',
   draw();
 }));
 document.querySelectorAll('.filters select,.filters input').forEach(e=>e.addEventListener('input',draw));
+$('#f-cond').addEventListener('change',draw);
+$('#cond-all').addEventListener('click',()=>{
+  const allOn=condBoxes().every(b=>b.checked);
+  condBoxes().forEach(b=>{b.checked=allOn?!AGO.includes(b.value):true;});
+  $('#cond-all').textContent=allOn?'전체 선택':'안고 빼기';
+  draw();
+});
 
 const tip=$('#tip');
 function showTip(g,ev){
