@@ -87,6 +87,18 @@
     padding:1px 6px;font-size:11px;font-weight:600;margin-right:5px;white-space:nowrap}
   .brokers{color:var(--ink-2);font-size:12.5px;line-height:1.5}
   .brokers .rep{color:var(--ink);font-weight:600}
+  .star{background:none;border:0;cursor:pointer;font-size:18px;line-height:1;padding:2px 4px;
+    color:var(--axis);font-family:inherit}
+  .star:hover{color:#f0b400}
+  .star.on{color:#f0b400}
+  .starcol{width:28px}
+  td.starcell{padding-left:6px;padding-right:0;text-align:center}
+  .listtop{display:flex;align-items:center;gap:12px;margin:16px 0 8px;flex-wrap:wrap}
+  .listtop .count{margin:0}
+  .favbtn{background:var(--surface-1);border:1px solid var(--ring);color:var(--ink-2);
+    border-radius:8px;padding:8px 12px;font-size:13px;cursor:pointer;font-family:inherit;white-space:nowrap}
+  .favbtn:hover{border-color:#f0b400}
+  .favbtn.on{border-color:#f0b400;color:var(--ink);background:rgba(240,180,0,.10)}
   .chkrow{border:0;padding:0;margin:12px 0 0;display:flex;flex-wrap:wrap;gap:7px;align-items:center}
   .chkrow legend{float:left;font-size:12px;color:var(--muted);padding:0 8px 0 2px;line-height:34px}
   .chkrow #f-cond{display:contents}
@@ -154,9 +166,13 @@
 
 <div class="filters" id="filters"></div>
 
-<p class="count" id="count"></p>
+<div class="listtop">
+  <button type="button" class="favbtn" id="fav-only" aria-pressed="false">☆ 즐겨찾기만</button>
+  <p class="count" id="count"></p>
+</div>
 <table>
   <thead><tr>
+    <th class="starcol" aria-label="즐겨찾기"></th>
     <th data-s="p">호가 <span class="ar">▲</span></th>
     <th data-s="d">동</th><th data-s="fs">층</th><th data-s="y">타입</th>
     <th data-s="dir">향</th><th data-s="r">방</th><th>조건</th><th>옵션</th>
@@ -314,6 +330,14 @@ const $=s=>document.querySelector(s);
 const fmt=n=>(Math.round(n*100)/100).toFixed(2).replace(/\.?0+$/,'')+'억';
 const uniq=(k,f)=>[...new Set(DATA.filter(f||(()=>1)).map(x=>x[k]).filter(v=>v!==''&&v!=null))];
 
+// 즐겨찾기 — 매물 고유번호(네이버 article 번호)로 저장, 브라우저에 보관
+const fid=x=>String(x.u).split('/').pop();
+let favs; try{favs=new Set(JSON.parse(localStorage.getItem('unjeong-fav')||'[]'));}catch(e){favs=new Set();}
+let favOnly=false;
+const isFav=x=>favs.has(fid(x));
+const saveFav=()=>localStorage.setItem('unjeong-fav',JSON.stringify([...favs]));
+const starBtn=x=>'<button class="star'+(isFav(x)?' on':'')+'" data-id="'+fid(x)+'" title="즐겨찾기" aria-pressed="'+(isFav(x)?'true':'false')+'">'+(isFav(x)?'★':'☆')+'</button>';
+
 const AGO=['전세안고','월세안고'];   // 입주조건 중 기본 해제
 const NULLK=' none';            // 값 없음(방 미기재 등) 인코딩
 const enc=v=>(v===null||v===undefined)?NULLK:String(v);
@@ -377,7 +401,8 @@ function current(skip){
   FILTERS.forEach(f=>{ if(f.id!==skip) sels[f.id]=onSet(f.id); });
   const q=$('#f-q').value.trim().toLowerCase();
   return DATA.filter(x=>
-    FILTERS.every(f=> f.id===skip || sels[f.id].has(enc(x[f.key])))
+    (!favOnly||isFav(x))
+    && FILTERS.every(f=> f.id===skip || sels[f.id].has(enc(x[f.key])))
     && (!q||(x.b+' '+x.br.join(' ')+' '+x.m).toLowerCase().includes(q))
   ).sort((a,b)=>{
     const A=a[sortKey],B=b[sortKey];
@@ -416,7 +441,8 @@ function drawStats(rows){
   $('#n3').textContent='최저 대비 +'+fmt(hi_-lo_);
   $('#chartcap').textContent='0.2억 구간별 매물 수 · 총 '+ps.length+'건';
 
-  const lo=Math.floor(lo_*5)/5, hi=Math.ceil(hi_*5)/5;
+  const lo=Math.floor(lo_*5)/5; let hi=Math.ceil(hi_*5)/5;
+  if(hi<=lo+1e-9) hi=+(lo+0.2).toFixed(2);   // 매물 1건 등 폭이 0이면 최소 1구간 보장
   const bins=[];
   for(let x=lo;x<hi-1e-9;x=+(x+0.2).toFixed(2)){
     const to=+(x+0.2).toFixed(2), last=to>=hi-1e-9;
@@ -453,15 +479,19 @@ function draw(){
     updateBtn(f);
   });
   $('#count').textContent=rows.length+'건 표시 중 (전체 '+DATA.length+'건)';
+  const fb=$('#fav-only');
+  fb.classList.toggle('on',favOnly);
+  fb.setAttribute('aria-pressed',favOnly?'true':'false');
+  fb.textContent=(favOnly?'★':'☆')+' 즐겨찾기만'+(favs.size?' '+favs.size+'개':'');
   $('#tb-body').innerHTML=rows.map(x=>
-    '<tr><td class="price"><a href="'+x.u+'" target="_blank" rel="noopener">'+fmt(x.p)+'</a></td>'+
+    '<tr><td class="starcell">'+starBtn(x)+'</td><td class="price"><a href="'+x.u+'" target="_blank" rel="noopener">'+fmt(x.p)+'</a></td>'+
     '<td class="num">'+x.d+'동</td><td class="num">'+x.f+'</td><td>'+x.y+'</td>'+
     '<td>'+x.dir+'</td><td class="num">'+(x.r?'방'+x.r:'—')+'</td>'+
     '<td>'+(x.c?'<span class="chip">'+x.c+'</span>':'—')+'</td>'+
     '<td>'+(x.o.length?x.o.map(o=>'<span class="chip">'+o+'</span>').join(''):'—')+'</td>'+
     '<td>'+brokerCell(x)+'</td><td class="memo">'+x.m+'</td></tr>').join('');
   $('#mob').innerHTML=rows.map(x=>
-    '<div class="item"><div class="top"><span class="price"><a href="'+x.u+'" target="_blank" rel="noopener">'+fmt(x.p)+'</a></span>'+
+    '<div class="item"><div class="top"><span style="display:flex;align-items:center;gap:6px">'+starBtn(x)+'<span class="price"><a href="'+x.u+'" target="_blank" rel="noopener">'+fmt(x.p)+'</a></span></span>'+
     '<span class="num">'+x.d+'동 '+x.f+'층</span></div>'+
     '<div class="meta">'+x.y+' · '+x.dir+'향'+(x.r?' · 방'+x.r:'')+'</div>'+
     '<div>'+chips(x)+x.o.map(o=>'<span class="chip">'+o+'</span>').join('')+'</div>'+
@@ -492,6 +522,15 @@ $('#filters').addEventListener('click',e=>{
 function closeAllMenus(){ document.querySelectorAll('#filters .ms-panel').forEach(p=>{p.hidden=true;p.previousElementSibling.setAttribute('aria-expanded','false');}); }
 document.addEventListener('click',e=>{ if(!e.target.closest('.ms')) closeAllMenus(); });
 document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeAllMenus(); });
+
+// 즐겨찾기 별표 클릭(표·모바일 공통) — 토글 후 저장
+document.addEventListener('click',e=>{
+  const s=e.target.closest('.star'); if(!s) return;
+  const id=s.dataset.id;
+  if(favs.has(id)) favs.delete(id); else favs.add(id);
+  saveFav(); draw();
+});
+$('#fav-only').addEventListener('click',()=>{ favOnly=!favOnly; draw(); });
 
 const tip=$('#tip');
 function showTip(g,ev){
