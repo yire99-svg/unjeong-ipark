@@ -164,11 +164,12 @@ function render(items, counts, stamp) {
   .ms-btn[aria-expanded=true]{border-color:var(--series-1)}
   .ms-panel{position:absolute;z-index:10;top:calc(100% + 4px);left:0;background:var(--surface-1);
     border:1px solid var(--ring);border-radius:10px;padding:6px;box-shadow:0 8px 24px rgba(0,0,0,.18);
-    display:grid;grid-template-columns:repeat(2,minmax(96px,1fr));gap:1px;
-    min-width:210px;max-height:300px;overflow:auto}
+    display:grid;grid-template-columns:repeat(2,minmax(118px,1fr));gap:1px;
+    min-width:246px;max-height:300px;overflow:auto}
   .ms-panel[hidden]{display:none}
   .ms-opt{display:flex;align-items:center;gap:7px;padding:7px 9px;border-radius:7px;
-    font-size:13px;color:var(--ink-2);cursor:pointer;user-select:none}
+    font-size:13px;color:var(--ink-2);cursor:pointer;user-select:none;white-space:nowrap}
+  .ms-opt input{flex:none}
   .ms-opt:hover{background:var(--chip)}
   .ms-opt input{accent-color:var(--series-1);margin:0;width:15px;height:15px}
   .ms-opt .cnt{margin-left:auto;color:var(--muted);font-size:12px;font-variant-numeric:tabular-nums}
