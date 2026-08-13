@@ -183,12 +183,17 @@ function render(items, counts, stamp) {
     padding:1px 6px;font-size:11px;font-weight:600;margin-right:5px;white-space:nowrap}
   .brokers{color:var(--ink-2);font-size:12.5px;line-height:1.5}
   .brokers .rep{color:var(--ink);font-weight:600}
-  .star{background:none;border:0;cursor:pointer;font-size:18px;line-height:1;padding:2px 4px;
-    color:var(--axis);font-family:inherit}
+  .star{background:none;border:0;cursor:pointer;padding:2px 3px;color:var(--axis);line-height:0;vertical-align:middle}
+  .star svg{display:block}
   .star:hover{color:#f0b400}
-  .star.on{color:#f0b400}
-  .starcol{width:28px}
-  td.starcell{padding-left:6px;padding-right:0;text-align:center}
+  .starcol{width:48px;cursor:pointer}
+  th.starcol{font-size:11px;color:var(--muted);text-align:center}
+  td.starcell{padding:6px 0 6px 6px;text-align:center;white-space:nowrap}
+  .grip{display:none;color:var(--muted);cursor:grab;font-size:13px;margin-right:1px;vertical-align:middle}
+  #tb-body tr[draggable] .grip{display:inline}
+  #tb-body tr[draggable]{cursor:grab}
+  #tb-body tr.dragover td{border-top:2px solid var(--series-1)}
+  #tb-body tr.dragging{opacity:.4}
   .listtop{display:flex;align-items:center;gap:12px;margin:16px 0 8px;flex-wrap:wrap}
   .listtop .count{margin:0}
   .favbtn{background:var(--surface-1);border:1px solid var(--ring);color:var(--ink-2);
@@ -268,7 +273,7 @@ function render(items, counts, stamp) {
 </div>
 <table>
   <thead><tr>
-    <th class="starcol" aria-label="즐겨찾기"></th>
+    <th class="starcol" data-s="rank" title="순위순 정렬">순위</th>
     <th data-s="p">호가 <span class="ar">▲</span></th>
     <th data-s="d">동</th><th data-s="fs">층</th><th data-s="y">타입</th>
     <th data-s="dir">향</th><th data-s="r">방</th><th>조건</th><th>옵션</th>
@@ -293,13 +298,25 @@ const $=s=>document.querySelector(s);
 const fmt=n=>(Math.round(n*100)/100).toFixed(2).replace(/\\.?0+$/,'')+'억';
 const uniq=(k,f)=>[...new Set(DATA.filter(f||(()=>1)).map(x=>x[k]).filter(v=>v!==''&&v!=null))];
 
-// 즐겨찾기 — 매물 고유번호(네이버 article 번호)로 저장, 브라우저에 보관
+// 즐겨찾기·순위 — 매물 고유번호(네이버 article 번호)의 '순서 있는' 목록으로 저장
+// 배열 순서 = 순위(맨 앞이 1순위). 별을 누르면 맨 끝 순위로 추가된다.
 const fid=x=>String(x.u).split('/').pop();
-let favs; try{favs=new Set(JSON.parse(localStorage.getItem('unjeong-fav')||'[]'));}catch(e){favs=new Set();}
+let favs; try{favs=JSON.parse(localStorage.getItem('unjeong-fav')||'[]');}catch(e){favs=[];}
+if(!Array.isArray(favs)) favs=[...favs];   // 예전 저장형식(집합) 호환
 let favOnly=false;
-const isFav=x=>favs.has(fid(x));
-const saveFav=()=>localStorage.setItem('unjeong-fav',JSON.stringify([...favs]));
-const starBtn=x=>'<button class="star'+(isFav(x)?' on':'')+'" data-id="'+fid(x)+'" title="즐겨찾기" aria-pressed="'+(isFav(x)?'true':'false')+'">'+(isFav(x)?'★':'☆')+'</button>';
+const rankOf=x=>favs.indexOf(fid(x));       // 0-based, 없으면 -1
+const isFav=x=>rankOf(x)>=0;
+const saveFav=()=>localStorage.setItem('unjeong-fav',JSON.stringify(favs));
+const STAR="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z";
+function starBtn(x){
+  const id=fid(x), i=favs.indexOf(id);
+  if(i<0) return '<button class="star" data-id="'+id+'" title="즐겨찾기 추가" aria-label="즐겨찾기 추가">'+
+    '<svg viewBox="0 0 24 24" width="22" height="22"><path d="'+STAR+'" fill="none" stroke="currentColor" stroke-width="1.7"/></svg></button>';
+  const r=i+1, col=['#f0b400','#aab1b8','#cd7f32'][i]||'var(--series-1)', fs=r<10?11:8.5;
+  return '<button class="star on" data-id="'+id+'" title="'+r+'순위 · 클릭하면 해제" aria-label="'+r+'순위">'+
+    '<svg viewBox="0 0 24 24" width="22" height="22"><path d="'+STAR+'" fill="'+col+'"/>'+
+    '<text x="12" y="15.2" text-anchor="middle" font-size="'+fs+'" font-weight="800" fill="#fff">'+r+'</text></svg></button>';
+}
 
 const AGO=['전세안고','월세안고'];   // 입주조건 중 기본 해제
 const NULLK=' none';            // 값 없음(방 미기재 등) 인코딩
@@ -368,6 +385,12 @@ function current(skip){
     && FILTERS.every(f=> f.id===skip || sels[f.id].has(enc(x[f.key])))
     && (!q||(x.b+' '+x.br.join(' ')+' '+x.m).toLowerCase().includes(q))
   ).sort((a,b)=>{
+    if(sortKey==='rank'){   // 순위순: 즐겨찾기가 순위대로 위로, 나머지는 뒤에 호가순
+      const ra=rankOf(a), rb=rankOf(b);
+      const va=ra<0?1e9:ra, vb=rb<0?1e9:rb;
+      const c=va-vb||a.p-b.p;
+      return sortAsc?c:-c;
+    }
     const A=a[sortKey],B=b[sortKey];
     const c=typeof A==='number'&&typeof B==='number'?A-B:String(A).localeCompare(String(B),'ko');
     return sortAsc?c:-c;
@@ -445,9 +468,9 @@ function draw(){
   const fb=$('#fav-only');
   fb.classList.toggle('on',favOnly);
   fb.setAttribute('aria-pressed',favOnly?'true':'false');
-  fb.textContent=(favOnly?'★':'☆')+' 즐겨찾기만'+(favs.size?' '+favs.size+'개':'');
+  fb.textContent=(favOnly?'★':'☆')+' 즐겨찾기만'+(favs.length?' '+favs.length+'개':'');
   $('#tb-body').innerHTML=rows.map(x=>
-    '<tr><td class="starcell">'+starBtn(x)+'</td><td class="price"><a href="'+x.u+'" target="_blank" rel="noopener">'+fmt(x.p)+'</a></td>'+
+    '<tr data-id="'+fid(x)+'"'+(favOnly?' draggable="true"':'')+'><td class="starcell">'+(favOnly?'<span class="grip" aria-hidden="true">⠿</span>':'')+starBtn(x)+'</td><td class="price"><a href="'+x.u+'" target="_blank" rel="noopener">'+fmt(x.p)+'</a></td>'+
     '<td class="num">'+x.d+'동</td><td class="num">'+x.f+'</td><td>'+x.y+'</td>'+
     '<td>'+x.dir+'</td><td class="num">'+(x.r?'방'+x.r:'—')+'</td>'+
     '<td>'+(x.c?'<span class="chip">'+x.c+'</span>':'—')+'</td>'+
@@ -486,14 +509,48 @@ function closeAllMenus(){ document.querySelectorAll('#filters .ms-panel').forEac
 document.addEventListener('click',e=>{ if(!e.target.closest('.ms')) closeAllMenus(); });
 document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeAllMenus(); });
 
-// 즐겨찾기 별표 클릭(표·모바일 공통) — 토글 후 저장
+// 별 클릭(표·모바일 공통) — 있으면 해제, 없으면 맨 끝 순위로 추가
 document.addEventListener('click',e=>{
   const s=e.target.closest('.star'); if(!s) return;
-  const id=s.dataset.id;
-  if(favs.has(id)) favs.delete(id); else favs.add(id);
+  const id=s.dataset.id, i=favs.indexOf(id);
+  if(i>=0) favs.splice(i,1); else favs.push(id);
   saveFav(); draw();
 });
-$('#fav-only').addEventListener('click',()=>{ favOnly=!favOnly; draw(); });
+// 즐겨찾기만 보기 — 켜면 자동으로 순위순 정렬
+$('#fav-only').addEventListener('click',()=>{
+  favOnly=!favOnly;
+  if(favOnly){ sortKey='rank'; sortAsc=true; document.querySelectorAll('th .ar').forEach(a=>a.remove()); }
+  draw();
+});
+
+// 순위 드래그 재배치 (즐겨찾기만 보기에서만) — 배열 순서를 바꿔 순위 갱신
+let dragId=null;
+$('#tb-body').addEventListener('dragstart',e=>{
+  const tr=e.target.closest('tr'); if(!tr) return;
+  dragId=tr.dataset.id; tr.classList.add('dragging'); e.dataTransfer.effectAllowed='move';
+});
+$('#tb-body').addEventListener('dragend',e=>{
+  const tr=e.target.closest('tr'); if(tr) tr.classList.remove('dragging');
+  document.querySelectorAll('#tb-body tr.dragover').forEach(t=>t.classList.remove('dragover'));
+  dragId=null;
+});
+$('#tb-body').addEventListener('dragover',e=>{
+  if(!favOnly||!dragId) return; e.preventDefault();
+  const tr=e.target.closest('tr'); if(!tr||tr.dataset.id===dragId) return;
+  document.querySelectorAll('#tb-body tr.dragover').forEach(t=>t.classList.remove('dragover'));
+  tr.classList.add('dragover');
+});
+$('#tb-body').addEventListener('drop',e=>{
+  if(!favOnly||!dragId) return; e.preventDefault();
+  const tr=e.target.closest('tr'); if(!tr) return;
+  const targetId=tr.dataset.id;
+  if(targetId===dragId){ dragId=null; return; }
+  const from=favs.indexOf(dragId); if(from<0) return;
+  favs.splice(from,1);
+  const to=favs.indexOf(targetId);
+  favs.splice(to<0?favs.length:to,0,dragId);
+  saveFav(); dragId=null; draw();
+});
 
 const tip=$('#tip');
 function showTip(g,ev){
