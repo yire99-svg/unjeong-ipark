@@ -33,11 +33,14 @@ function parse(text, trade) {
   const cleanB = (s) => String(s).replace(/공인중개사사무소/g, "").replace(/부동산$/g, "").replace(/부동산/g, "").trim();
   for (const line of text.split("\n")) {
     if (!line.includes("fin.land.naver.com/articles/")) continue;
-    // 공동중개(같은 집 보유 중개사 목록)를 먼저 떼어낸다 — 나머지 파싱에 안 섞이도록
-    let work = line, brokers = [];
-    const bm = work.match(/ \| 보유중개사» ([^|]+)/);
-    if (bm) { brokers = bm[1].trim().split(" ; ").map((s) => cleanB(s)).filter(Boolean); work = work.replace(bm[0], ""); }
-    const parts = work.split(" | ").map((s) => s.trim());
+    const parts = line.split(" | ").map((s) => s.trim());
+    // 공동중개(같은 집 보유 중개사 목록) 칸을 통째로 떼어낸다 — URL 등 다른 칸이 안 깨지도록
+    let brokers = [];
+    const bi = parts.findIndex((p) => p.startsWith("보유중개사»"));
+    if (bi >= 0) {
+      brokers = parts[bi].replace("보유중개사»", "").split(" ; ").map((s) => cleanB(s)).filter(Boolean);
+      parts.splice(bi, 1);
+    }
     const url = parts[parts.length - 1];
     const id = url.split("/").pop();
     if (seen.has(id)) continue;
