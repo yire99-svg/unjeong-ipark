@@ -3,11 +3,25 @@
 import { Client } from "@modelcontextprotocol/sdk/client/index.js";
 import { StdioClientTransport } from "@modelcontextprotocol/sdk/client/stdio.js";
 import fs from "fs";
+import os from "os";
 import path from "path";
 import { fileURLToPath } from "url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const MCP_SERVER = process.env.MCP_REALESTATE || "/Users/riiid/mcp-realestate/index.js";
+
+// MCP 서버 위치: 환경변수 → 이 폴더 옆 → 홈 순으로 찾는다 (맥이 바뀌어도 동작하도록)
+const CANDIDATES = [
+  process.env.MCP_REALESTATE,
+  path.join(__dirname, "..", "mcp-realestate", "index.js"),
+  path.join(os.homedir(), "mcp-realestate", "index.js"),
+].filter(Boolean);
+const MCP_SERVER = CANDIDATES.find((p) => fs.existsSync(p));
+if (MCP_SERVER) console.log("MCP 서버:", MCP_SERVER);
+if (!MCP_SERVER) {
+  console.error("mcp-realestate 서버를 찾지 못했습니다. 찾아본 경로:\n  " + CANDIDATES.join("\n  ") +
+    "\n\n해결: MCP_REALESTATE=/경로/index.js node build.mjs");
+  process.exit(1);
+}
 const COMPLEX = { no: "119854", name: "운정신도시아이파크", station: "GTX-A 운정중앙역", distance: 561 };
 
 const DIR = { ES: "동남", WS: "남서", SS: "남", SE: "남동", EE: "동", WW: "서", NN: "북", NE: "북동", NW: "북서", SW: "남서" };

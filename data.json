@@ -1,8 +1,8 @@
 {
- "stamp": "2026. 8. 7. PM 1:24",
+ "stamp": "2026. 8. 13. PM 2:49",
  "counts": {
-  "deal": 225,
-  "lease": 15,
+  "deal": 217,
+  "lease": 12,
   "monthly": 10
  },
  "items": [
@@ -15,38 +15,37 @@
    "area": 84.91,
    "type": "112A",
    "dir": "동남",
-   "verify": "집주인확인 2026-08-06",
-   "fee": "관리비 15만",
-   "broker": "대장IPARK",
-   "room": null,
-   "cond": "",
+   "verify": "집주인확인 2026-08-12",
+   "fee": "관리비 25만",
+   "broker": "현대스마일",
+   "room": 4,
+   "cond": "주인거주",
    "opts": [
     "에어컨4",
-    "식세기",
-    "인덕션"
+    "중문"
    ],
-   "memo": "o 시스템 에어컨4. 학교 근접동. 인덕션. 식세기. 탄성. 깔끔.",
-   "url": "https://fin.land.naver.com/articles/2642258392"
+   "memo": "84a, 방4 ,에어컨4, 중문, 주인 거주로 깔끔. 조율 가",
+   "url": "https://fin.land.naver.com/articles/2643315309"
   },
   {
    "trade": "매매",
    "price": 6.9,
    "dong": 101,
-   "floor": "저/29",
-   "floorSort": 3,
+   "floor": "8/29",
+   "floorSort": 8,
    "area": 84.95,
    "type": "114C",
-   "dir": "동남",
+   "dir": "남서",
    "verify": "집주인확인 2026-08-07",
-   "fee": "관리비 30만",
-   "broker": "GTX신화1",
+   "fee": "관리비 25만",
+   "broker": "화수분아이파크(9499-888)",
    "room": 4,
-   "cond": "입주협의",
+   "cond": "",
    "opts": [
     "에어컨3"
    ],
-   "memo": "84c 에3 방4 상가 마트 및 대중교통 이용 편리 10월말입주협의",
-   "url": "https://fin.land.naver.com/articles/2642336755"
+   "memo": "84C.방4.시스템에어컨3.1026확정.조용한동.초록초록 정원뷰",
+   "url": "https://fin.land.naver.com/articles/2642469810"
   },
   {
    "trade": "매매",
@@ -57,17 +56,16 @@
    "area": 84.95,
    "type": "114C",
    "dir": "동남",
-   "verify": "집주인확인 2026-08-07",
-   "fee": "관리비 28만",
-   "broker": "든든IPARK",
+   "verify": "NDOC1 2026-08-13",
+   "fee": "관리비 15만",
+   "broker": "정성어린아이파크",
    "room": 4,
-   "cond": "주인거주",
+   "cond": "즉시입주",
    "opts": [
-    "에어컨3",
-    "중문"
+    "에어컨3"
    ],
-   "memo": "GTX초인접동. 방4. 시에3. 중문외 옵션다수. 주인거주깨끗.",
-   "url": "https://fin.land.naver.com/articles/2642365218"
+   "memo": "84C, 단지내 최고 로얄동, 에어컨3대, 방4, 주인거주상태굿,빠른입주",
+   "url": "https://fin.land.naver.com/articles/2643470718"
   },
   {
    "trade": "매매",
@@ -78,34 +76,14 @@
    "area": 84.91,
    "type": "112A",
    "dir": "남서",
-   "verify": "집주인확인 2026-08-06",
+   "verify": "집주인확인 2026-08-13",
    "fee": "관리비 25만",
    "broker": "현대1등",
    "room": 4,
    "cond": "입주협의",
    "opts": [],
    "memo": "귀한로얄동1층방4개구조8월입주가능GTXA바로인접라인운정의최상의멋진아파트짱",
-   "url": "https://fin.land.naver.com/articles/2642119915"
-  },
-  {
-   "trade": "매매",
-   "price": 6.95,
-   "dong": 121,
-   "floor": "저/29",
-   "floorSort": 3,
-   "area": 84.95,
-   "type": "114C",
-   "dir": "남서",
-   "verify": "집주인확인 2026-07-31",
-   "fee": "관리비 25만",
-   "broker": "화수분아이파크(9499-888)",
-   "room": null,
-   "cond": "",
-   "opts": [
-    "에어컨6"
-   ],
-   "memo": "84C.강추.에어컨6대외 옵션多.조용한 정원뷰.컨디션최상",
-   "url": "https://fin.land.naver.com/articles/2641226391"
+   "url": "https://fin.land.naver.com/articles/2643563683"
   },
   {
    "trade": "매매",
@@ -116,17 +94,17 @@
    "area": 84.95,
    "type": "114C",
    "dir": "동남",
-   "verify": "집주인확인 2026-08-07",
+   "verify": "집주인확인 2026-08-13",
    "fee": "관리비 25만",
-   "broker": "든든IPARK",
+   "broker": "다솜",
    "room": 3,
    "cond": "",
    "opts": [
     "에어컨4",
     "중문"
    ],
-   "memo": "영구조망 뻥뷰. 방3. 알파룸확장. 시에4. 중문. 학교인접동",
-   "url": "https://fin.land.naver.com/articles/2642362487"
+   "memo": "방3, 알파룸확장, 에어컨4, 중문, 확트인조망",
+   "url": "https://fin.land.naver.com/articles/2643593435"
   },
   {
    "trade": "매매",
@@ -137,7 +115,7 @@
    "area": 84.95,
    "type": "114C",
    "dir": "남서",
-   "verify": "집주인확인 2026-08-07",
+   "verify": "집주인확인 2026-08-13",
    "fee": "관리비 15만",
    "broker": "정성어린아이파크",
    "room": 4,
@@ -146,27 +124,7 @@
     "에어컨4"
    ],
    "memo": "84C,정성추천, 방4, 에어컨4, 풀옵션가득, 생활편리,입주협의",
-   "url": "https://fin.land.naver.com/articles/2642303603"
-  },
-  {
-   "trade": "매매",
-   "price": 7.1,
-   "dong": 118,
-   "floor": "저/28",
-   "floorSort": 3,
-   "area": 84.91,
-   "type": "112A",
-   "dir": "남",
-   "verify": "집주인확인 2026-07-31",
-   "fee": "관리비 28만",
-   "broker": "화수분아이파크(9499-888)",
-   "room": null,
-   "cond": "입주협의",
-   "opts": [
-    "팬트리"
-   ],
-   "memo": "84A.강추.새집컨디션.시스템에어컨.거실 넓은 팬트리구조.12월입주협의",
-   "url": "https://fin.land.naver.com/articles/2641226502"
+   "url": "https://fin.land.naver.com/articles/2643468051"
   },
   {
    "trade": "매매",
@@ -177,55 +135,38 @@
    "area": 84.96,
    "type": "112B",
    "dir": "남서",
-   "verify": "집주인확인 2026-08-06",
-   "fee": "관리비 25만",
-   "broker": "아이파크 꿀단지",
-   "room": null,
+   "verify": "집주인확인 2026-08-10",
+   "fee": "관리비 15만",
+   "broker": "정성어린아이파크",
+   "room": 3,
    "cond": "",
    "opts": [
     "에어컨3",
     "팬트리"
    ],
-   "memo": "꿀단지추천,시에3,더블팬트리,동패초근접,GTX도보권,예쁜정원뷰",
-   "url": "https://fin.land.naver.com/articles/2642262120"
+   "memo": "84B, 정성추천, 방3, 에어컨3, 더블팬트리, 하시볼수있음",
+   "url": "https://fin.land.naver.com/articles/2642712352"
   },
   {
    "trade": "매매",
    "price": 7.2,
-   "dong": 108,
-   "floor": "18/29",
-   "floorSort": 18,
-   "area": 84.95,
-   "type": "114C",
-   "dir": "동남",
-   "verify": "집주인확인 2026-08-07",
-   "fee": "관리비 25만",
-   "broker": "든든IPARK",
-   "room": 4,
-   "cond": "",
-   "opts": [],
-   "memo": "방4. 2in1에어컨. GTX가까운동. 인기로얄동. 채광굿",
-   "url": "https://fin.land.naver.com/articles/2642363786"
-  },
-  {
-   "trade": "매매",
-   "price": 7.2,
-   "dong": 109,
-   "floor": "18/29",
-   "floorSort": 18,
-   "area": 84.95,
-   "type": "114C",
-   "dir": "동남",
-   "verify": "집주인확인 2026-08-07",
-   "fee": "관리비 25만",
-   "broker": "든든IPARK",
-   "room": 3,
+   "dong": 121,
+   "floor": "1/29",
+   "floorSort": 1,
+   "area": 84.91,
+   "type": "112A",
+   "dir": "남서",
+   "verify": "집주인확인 2026-08-13",
+   "fee": "관리비 29만",
+   "broker": "원탑푸르지오",
+   "room": null,
    "cond": "",
    "opts": [
-    "풀에어컨"
+    "에어컨4",
+    "중문"
    ],
-   "memo": "GTX역 도보이용 가까운동. 방3. 풀에어컨. 주차넉넉한 동.",
-   "url": "https://fin.land.naver.com/articles/2642362010"
+   "memo": "84A,선호타입,넓은동간,시에4대,중문,우물천장,조명공사,줄는등상태최상",
+   "url": "https://fin.land.naver.com/articles/2643551249"
   },
   {
    "trade": "매매",
@@ -236,16 +177,55 @@
    "area": 84.95,
    "type": "114C",
    "dir": "동남",
-   "verify": "집주인확인 2026-08-07",
-   "fee": "관리비 25만",
-   "broker": "운정대지IPARK",
+   "verify": "집주인확인 2026-08-13",
+   "fee": "관리비 28만",
+   "broker": "GTX신화1",
    "room": 3,
+   "cond": "",
+   "opts": [
+    "에어컨4",
+    "팬트리"
+   ],
+   "memo": "84C 안방확장형, 방3, 에4, 더블팬트리 GTX인접동 더블팬트리",
+   "url": "https://fin.land.naver.com/articles/2643497248"
+  },
+  {
+   "trade": "매매",
+   "price": 7.2,
+   "dong": 109,
+   "floor": "18/29",
+   "floorSort": 18,
+   "area": 84.95,
+   "type": "114C",
+   "dir": "동남",
+   "verify": "집주인확인 2026-08-13",
+   "fee": "관리비 25만",
+   "broker": "GTX신화1",
+   "room": null,
    "cond": "입주협의",
    "opts": [
-    "에어컨4"
+    "풀에어컨"
    ],
-   "memo": "o 추천 84C 로얄동 방3 에어컨4 10월 입주가능 집깨끗 GTX인접",
-   "url": "https://fin.land.naver.com/articles/2642356125"
+   "memo": "84c타입 풀에어컨 운정중앙역 도보이용 편리해요 입주조율가능합니다",
+   "url": "https://fin.land.naver.com/articles/2643500443"
+  },
+  {
+   "trade": "매매",
+   "price": 7.2,
+   "dong": 108,
+   "floor": "18/29",
+   "floorSort": 18,
+   "area": 84.95,
+   "type": "114C",
+   "dir": "동남",
+   "verify": "집주인확인 2026-08-12",
+   "fee": "관리비 20만",
+   "broker": "아이파크 꿀단지",
+   "room": 4,
+   "cond": "",
+   "opts": [],
+   "memo": "꿀단지추천,84C,방4,2in1에어컨, GTX역세권",
+   "url": "https://fin.land.naver.com/articles/2643401552"
   },
   {
    "trade": "매매",
@@ -268,34 +248,13 @@
   {
    "trade": "매매",
    "price": 7.2,
-   "dong": 121,
-   "floor": "1/29",
-   "floorSort": 1,
-   "area": 84.91,
-   "type": "112A",
-   "dir": "남서",
-   "verify": "집주인확인 2026-08-06",
-   "fee": "관리비 17만",
-   "broker": "대장IPARK",
-   "room": 3,
-   "cond": "",
-   "opts": [
-    "에어컨5",
-    "중문"
-   ],
-   "memo": "o방3. 에어컨5. 중문. 우물천장. 간접등. 도배새로.",
-   "url": "https://fin.land.naver.com/articles/2642258819"
-  },
-  {
-   "trade": "매매",
-   "price": 7.2,
    "dong": 111,
    "floor": "저/29",
    "floorSort": 3,
    "area": 84.91,
    "type": "112A",
    "dir": "동남",
-   "verify": "집주인확인 2026-08-07",
+   "verify": "집주인확인 2026-08-13",
    "fee": "관리비 25만",
    "broker": "GTX신화1",
    "room": 4,
@@ -304,7 +263,7 @@
     "에어컨4"
    ],
    "memo": "방4 에어컨4 학교 가까운 동 입주하세요",
-   "url": "https://fin.land.naver.com/articles/2642345625"
+   "url": "https://fin.land.naver.com/articles/2643525468"
   },
   {
    "trade": "매매",
@@ -353,18 +312,18 @@
    "area": 84.96,
    "type": "112B",
    "dir": "남서",
-   "verify": "집주인확인 2026-08-07",
-   "fee": "관리비 25만",
-   "broker": "운정대지IPARK",
+   "verify": "집주인확인 2026-08-13",
+   "fee": "관리비 20만",
+   "broker": "현대1등",
    "room": 4,
-   "cond": "입주협의",
+   "cond": "주인거주",
    "opts": [
     "중문",
     "식세기",
     "인덕션"
    ],
-   "memo": "추천o 84A 방4 중문 인덕션 식세기 학교앞 주인거주 입주가능",
-   "url": "https://fin.land.naver.com/articles/2642362478"
+   "memo": "방4개주인거주최상의매물식세기인덕션중문전자계약예쁜라인햇살풍부참멋져요행복솔솔",
+   "url": "https://fin.land.naver.com/articles/2643563941"
   },
   {
    "trade": "매매",
@@ -374,15 +333,39 @@
    "floorSort": 25,
    "area": 84.95,
    "type": "114C",
+   "dir": "동남",
+   "verify": "집주인확인 2026-08-13",
+   "fee": "관리비 28만",
+   "broker": "행복한IPARK",
+   "room": 4,
+   "cond": "",
+   "opts": [
+    "에어컨2"
+   ],
+   "memo": "전자계약ok,방4, 에어컨2대. 조망권확보,대중교통 이용 편리.",
+   "url": "https://fin.land.naver.com/articles/2643442480"
+  },
+  {
+   "trade": "매매",
+   "price": 7.3,
+   "dong": 125,
+   "floor": "3/18",
+   "floorSort": 3,
+   "area": 84.96,
+   "type": "112B",
    "dir": "남서",
-   "verify": "집주인확인 2026-08-07",
-   "fee": "관리비 25만",
-   "broker": "GTX신화1",
-   "room": null,
+   "verify": "집주인확인 2026-08-13",
+   "fee": "관리비 15만",
+   "broker": "정성어린아이파크",
+   "room": 3,
    "cond": "입주협의",
-   "opts": [],
-   "memo": "84C타입 전자계약가능 입주조율가능 고층이라 전망과 채광좋아요",
-   "url": "https://fin.land.naver.com/articles/2642359708"
+   "opts": [
+    "에어컨5",
+    "팬트리",
+    "판상형"
+   ],
+   "memo": "84B판상형, 방3, 에어컨5대 ,넓은거실, 팬트리 ,입주협의",
+   "url": "https://fin.land.naver.com/articles/2643470382"
   },
   {
    "trade": "매매",
@@ -393,18 +376,56 @@
    "area": 84.96,
    "type": "112B",
    "dir": "동남",
-   "verify": "집주인확인 2026-08-07",
+   "verify": "집주인확인 2026-08-12",
    "fee": "관리비 25만",
-   "broker": "GTX신화1",
-   "room": 3,
+   "broker": "아이파크 꿀단지",
+   "room": null,
    "cond": "",
    "opts": [
-    "에어컨5",
-    "중문",
-    "식세기"
+    "에어컨5"
    ],
-   "memo": "귀한 필로티 방3 에어컨5 중문 식세기 자녀분들 뛰어도 걱정없어요",
-   "url": "https://fin.land.naver.com/articles/2642349951"
+   "memo": "꿀단지추천,귀한필로티,동패초근접,에어컨5",
+   "url": "https://fin.land.naver.com/articles/2643401211"
+  },
+  {
+   "trade": "매매",
+   "price": 7.3,
+   "dong": 119,
+   "floor": "2/28",
+   "floorSort": 2,
+   "area": 84.91,
+   "type": "112A",
+   "dir": "동남",
+   "verify": "NDOC1 2026-08-12",
+   "fee": "관리비 20만",
+   "broker": "물향기자이석사(946-9009)",
+   "room": null,
+   "cond": "",
+   "opts": [
+    "팬트리"
+   ],
+   "memo": "에어컨,팬트리,아일랜드,드레스룸,붙박이,오븐",
+   "url": "https://fin.land.naver.com/articles/2643348070"
+  },
+  {
+   "trade": "매매",
+   "price": 7.3,
+   "dong": 110,
+   "floor": "17/29",
+   "floorSort": 17,
+   "area": 84.95,
+   "type": "114C",
+   "dir": "동남",
+   "verify": "집주인확인 2026-08-11",
+   "fee": "관리비 29만",
+   "broker": "행복한IPARK",
+   "room": 4,
+   "cond": "전세안고",
+   "opts": [
+    "에어컨5"
+   ],
+   "memo": "84C. GTX도보8분. 방4. 에어컨5대. 전세안고",
+   "url": "https://fin.land.naver.com/articles/2642999479"
   },
   {
    "trade": "매매",
@@ -416,15 +437,16 @@
    "type": "114C",
    "dir": "동남",
    "verify": "집주인확인 2026-08-07",
-   "fee": "관리비 25만",
-   "broker": "든든IPARK",
+   "fee": "관리비 15만",
+   "broker": "대장IPARK",
    "room": 4,
    "cond": "전세안고",
    "opts": [
-    "식세기"
+    "식세기",
+    "인덕션"
    ],
-   "memo": "GTX초인접동. 방4. 식세기외옵션다수. 주차넉넉한동. 전세안고",
-   "url": "https://fin.land.naver.com/articles/2642363895"
+   "memo": "o 방4. 인덕션. 식세기. 세안고. 채광 좋아요.",
+   "url": "https://fin.land.naver.com/articles/2642476847"
   },
   {
    "trade": "매매",
@@ -434,97 +456,58 @@
    "floorSort": 29,
    "area": 84.91,
    "type": "112A",
-   "dir": "동남",
-   "verify": "집주인확인 2026-08-06",
+   "dir": "남",
+   "verify": "집주인확인 2026-08-07",
    "fee": "관리비 28만",
-   "broker": "행복한IPARK",
-   "room": 3,
+   "broker": "화수분아이파크(9499-888)",
+   "room": null,
    "cond": "월세안고",
    "opts": [
-    "풀에어컨"
+    "에어컨5",
+    "팬트리"
    ],
-   "memo": "84A 월세안고. 방3. 풀에어컨 gtxa 이용편리",
-   "url": "https://fin.land.naver.com/articles/2642030640"
+   "memo": "84A.추천.귀한탑층.에5.개방감 있는 팬트리구조.밝고깨끗.월세안고",
+   "url": "https://fin.land.naver.com/articles/2642468593"
   },
   {
    "trade": "매매",
    "price": 7.3,
-   "dong": 125,
-   "floor": "3/18",
-   "floorSort": 3,
-   "area": 84.96,
-   "type": "112B",
-   "dir": "남서",
-   "verify": "집주인확인 2026-08-06",
-   "fee": "관리비 15만",
-   "broker": "정성어린아이파크",
-   "room": 3,
-   "cond": "입주협의",
+   "dong": 101,
+   "floor": "25/29",
+   "floorSort": 25,
+   "area": 84.95,
+   "type": "114C",
+   "dir": "동남",
+   "verify": "집주인확인 2026-08-07",
+   "fee": "관리비 25만",
+   "broker": "대장IPARK",
+   "room": 4,
+   "cond": "즉시입주",
    "opts": [
-    "에어컨5",
-    "팬트리",
-    "판상형"
+    "에어컨4"
    ],
-   "memo": "84B판상형, 방3, 에어컨5대 ,넓은거실, 팬트리 ,입주협의",
-   "url": "https://fin.land.naver.com/articles/2642237571"
+   "memo": "o. 에어컨4. 빠른입주 ok. 방4. 예쁜정원뷰. 깔끔",
+   "url": "https://fin.land.naver.com/articles/2642475071"
   },
   {
    "trade": "매매",
    "price": 7.3,
    "dong": 102,
-   "floor": "3/29",
-   "floorSort": 3,
-   "area": 84.91,
-   "type": "112A",
-   "dir": "남",
-   "verify": "집주인확인 2026-08-06",
-   "fee": "관리비 20만",
-   "broker": "경남시티운정1등 l",
-   "room": 3,
-   "cond": "입주협의",
-   "opts": [],
-   "memo": "84A.필로티.방3.초품아.GTX운정역도보가능.8월중순이후협의입주가능.",
-   "url": "https://fin.land.naver.com/articles/2642144876"
-  },
-  {
-   "trade": "매매",
-   "price": 7.3,
-   "dong": 110,
-   "floor": "중/29",
-   "floorSort": 12,
+   "floor": "고/29",
+   "floorSort": 22,
    "area": 84.95,
    "type": "114C",
    "dir": "동남",
-   "verify": "집주인확인 2026-08-07",
-   "fee": "관리비 28만",
-   "broker": "GTX신화1",
-   "room": 4,
-   "cond": "전세안고",
-   "opts": [
-    "에어컨5"
-   ],
-   "memo": "84C 방4, 에5, GTX가까운동, 세안고가능, 주차편리, 갭투",
-   "url": "https://fin.land.naver.com/articles/2642345242"
-  },
-  {
-   "trade": "매매",
-   "price": 7.3,
-   "dong": 107,
-   "floor": "11/29",
-   "floorSort": 11,
-   "area": 84.95,
-   "type": "114C",
-   "dir": "동남",
-   "verify": "집주인확인 2026-07-31",
-   "fee": "관리비 25만",
-   "broker": "아이파크 꿀단지",
-   "room": 4,
+   "verify": "집주인확인 2026-08-13",
+   "fee": "관리비 27만",
+   "broker": "행복한IPARK",
+   "room": null,
    "cond": "",
    "opts": [
-    "에어컨4"
+    "인덕션"
    ],
-   "memo": "꿀단지추천,GTX근접동,에어컨4,시스템장,방4",
-   "url": "https://fin.land.naver.com/articles/2641232278"
+   "memo": "84C 완전뻥뷰. 광폭거실. 김냉 식세 인덕션 전자계약ok",
+   "url": "https://fin.land.naver.com/articles/2643443704"
   },
   {
    "trade": "매매",
@@ -585,27 +568,6 @@
   {
    "trade": "매매",
    "price": 7.3,
-   "dong": 102,
-   "floor": "고/29",
-   "floorSort": 22,
-   "area": 84.95,
-   "type": "114C",
-   "dir": "남서",
-   "verify": "집주인확인 2026-07-23",
-   "fee": "관리비 17만",
-   "broker": "대장IPARK",
-   "room": null,
-   "cond": "입주협의",
-   "opts": [
-    "식세기",
-    "인덕션"
-   ],
-   "memo": "o입주가. 식세기. 인덕션. 김치 냉장고. 채광 굿.",
-   "url": "https://fin.land.naver.com/articles/2639718985"
-  },
-  {
-   "trade": "매매",
-   "price": 7.3,
    "dong": 110,
    "floor": "저/29",
    "floorSort": 3,
@@ -633,59 +595,18 @@
    "area": 84.96,
    "type": "112B",
    "dir": "동남",
-   "verify": "집주인확인 2026-08-06",
-   "fee": "관리비 17만",
-   "broker": "대장IPARK",
-   "room": 3,
-   "cond": "전세안고",
+   "verify": "집주인확인 2026-08-12",
+   "fee": "관리비 20만",
+   "broker": "GTX황금아이파크(944-8585)",
+   "room": null,
+   "cond": "월세안고",
    "opts": [
-    "에어컨2",
     "중문",
-    "식세기"
+    "식세기",
+    "인덕션"
    ],
-   "memo": "o 방3. 에어컨2. 중문. 식세기. 세안고. 뻥뷰. 로얄동.",
-   "url": "https://fin.land.naver.com/articles/2642258062"
-  },
-  {
-   "trade": "매매",
-   "price": 7.4,
-   "dong": 116,
-   "floor": "5/25",
-   "floorSort": 5,
-   "area": 84.96,
-   "type": "112B",
-   "dir": "동남",
-   "verify": "NDOC1 2026-08-07",
-   "fee": "관리비 15만",
-   "broker": "정성어린아이파크",
-   "room": 3,
-   "cond": "",
-   "opts": [
-    "에어컨4",
-    "팬트리"
-   ],
-   "memo": "84A, 정성추천,방3, 에어컨4,팬트리, GTX인접동,긴정상",
-   "url": "https://fin.land.naver.com/articles/2642248346"
-  },
-  {
-   "trade": "매매",
-   "price": 7.4,
-   "dong": 111,
-   "floor": "2/29",
-   "floorSort": 2,
-   "area": 84.91,
-   "type": "112A",
-   "dir": "동남",
-   "verify": "집주인확인 2026-08-07",
-   "fee": "관리비 15만",
-   "broker": "정성어린아이파크",
-   "room": 3,
-   "cond": "전세안고",
-   "opts": [
-    "팬트리"
-   ],
-   "memo": "84B 방3, 팬트리, 막힘없는전망, 초등학교바로뒤 ,세안고매매",
-   "url": "https://fin.land.naver.com/articles/2642297972"
+   "memo": "저렴, 34B, 월세안고, 27년 7월만기, 에어컨, 중문, 식세기인덕션",
+   "url": "https://fin.land.naver.com/articles/2643325604"
   },
   {
    "trade": "매매",
@@ -696,7 +617,7 @@
    "area": 84.96,
    "type": "112B",
    "dir": "동남",
-   "verify": "집주인확인 2026-08-07",
+   "verify": "집주인확인 2026-08-13",
    "fee": "관리비 25만",
    "broker": "GTX신화1",
    "room": 4,
@@ -706,7 +627,27 @@
     "판상형"
    ],
    "memo": "월세안고 판상형 전망 좋은 라인 방4개 에어컨4대 관리상태굿",
-   "url": "https://fin.land.naver.com/articles/2642355593"
+   "url": "https://fin.land.naver.com/articles/2643530450"
+  },
+  {
+   "trade": "매매",
+   "price": 7.4,
+   "dong": 111,
+   "floor": "2/29",
+   "floorSort": 2,
+   "area": 84.91,
+   "type": "112A",
+   "dir": "동남",
+   "verify": "집주인확인 2026-08-13",
+   "fee": "관리비 25만",
+   "broker": "현대1등",
+   "room": 3,
+   "cond": "",
+   "opts": [
+    "팬트리"
+   ],
+   "memo": "강추드림 전자계약우대금리 방3개AC4대 더불팬트리 거주짱 행복이솔솔",
+   "url": "https://fin.land.naver.com/articles/2643564266"
   },
   {
    "trade": "매매",
@@ -716,37 +657,79 @@
    "floorSort": 15,
    "area": 84.95,
    "type": "114C",
-   "dir": "동남",
-   "verify": "집주인확인 2026-08-07",
-   "fee": "관리비 25만",
-   "broker": "운정대지IPARK",
-   "room": null,
-   "cond": "입주협의",
+   "dir": "남",
+   "verify": "집주인확인 2026-08-13",
+   "fee": "관리비 29만",
+   "broker": "행복한IPARK",
+   "room": 4,
+   "cond": "",
    "opts": [
     "에어컨2"
    ],
-   "memo": "o 추천 GTX도보7분 주인거주 집상태깨끗 에어컨2 금액절충 입주협의",
-   "url": "https://fin.land.naver.com/articles/2642356797"
+   "memo": "84C GTX초역세권 ＆ 방4 에어컨2. 주인협의",
+   "url": "https://fin.land.naver.com/articles/2643435086"
   },
   {
    "trade": "매매",
    "price": 7.4,
-   "dong": 113,
-   "floor": "저/25",
+   "dong": 112,
+   "floor": "3/29",
    "floorSort": 3,
-   "area": 84.96,
-   "type": "112B",
-   "dir": "동남",
-   "verify": "집주인확인 2026-08-07",
+   "area": 84.91,
+   "type": "112A",
+   "dir": "남",
+   "verify": "집주인확인 2026-08-11",
    "fee": "관리비 25만",
-   "broker": "GTX신화1",
+   "broker": "GTX아이파크탑",
+   "room": 3,
+   "cond": "주인거주",
+   "opts": [
+    "에어컨3",
+    "인덕션"
+   ],
+   "memo": "84A 추천 방3 에3 인덕션 주인거주 관리최고 초품아 멋진단지뷰",
+   "url": "https://fin.land.naver.com/articles/2642975478"
+  },
+  {
+   "trade": "매매",
+   "price": 7.4,
+   "dong": 103,
+   "floor": "중/29",
+   "floorSort": 12,
+   "area": 84.95,
+   "type": "114C",
+   "dir": "동남",
+   "verify": "NDOC1 2026-08-12",
+   "fee": "관리비 15만",
+   "broker": "IPARK태양(957-6700)",
+   "room": 4,
+   "cond": "입주협의",
+   "opts": [
+    "에어컨4",
+    "중문"
+   ],
+   "memo": "84C추천매물 방4 에어컨4 중문외 옵션다수 입주협의해요",
+   "url": "https://fin.land.naver.com/articles/2643250725"
+  },
+  {
+   "trade": "매매",
+   "price": 7.4,
+   "dong": 104,
+   "floor": "중/29",
+   "floorSort": 12,
+   "area": 84.95,
+   "type": "114C",
+   "dir": "동남",
+   "verify": "집주인확인 2026-08-10",
+   "fee": "관리비 31만",
+   "broker": "행복한IPARK",
    "room": 4,
    "cond": "전세안고",
    "opts": [
     "에어컨4"
    ],
-   "memo": "방4개 에어컨4대 세안고 매매해요 학교 가깝고 조용한 라인",
-   "url": "https://fin.land.naver.com/articles/2642348630"
+   "memo": "84C. GTX바로앞 방4 에어컨4 서울역20분대. 전세안고하세요",
+   "url": "https://fin.land.naver.com/articles/2642685595"
   },
   {
    "trade": "매매",
@@ -757,16 +740,36 @@
    "area": 84.95,
    "type": "114C",
    "dir": "동남",
-   "verify": "집주인확인 2026-08-07",
-   "fee": "관리비 25만",
-   "broker": "GTX신화1",
-   "room": null,
+   "verify": "집주인확인 2026-08-10",
+   "fee": "관리비 28만",
+   "broker": "푸르지오최고",
+   "room": 4,
    "cond": "",
    "opts": [
     "에어컨4"
    ],
-   "memo": "에어컨4대 84C타입 GTX운정중앙역 가까워요",
-   "url": "https://fin.land.naver.com/articles/2642339452"
+   "memo": "84C. 시스템에어컨 4대, 방4. GTX근접동.",
+   "url": "https://fin.land.naver.com/articles/2642799148"
+  },
+  {
+   "trade": "매매",
+   "price": 7.4,
+   "dong": 113,
+   "floor": "저/25",
+   "floorSort": 3,
+   "area": 84.96,
+   "type": "112B",
+   "dir": "남",
+   "verify": "집주인확인 2026-08-07",
+   "fee": "관리비 28만",
+   "broker": "화수분아이파크(9499-888)",
+   "room": 4,
+   "cond": "전세안고",
+   "opts": [
+    "에어컨4"
+   ],
+   "memo": "84B.전세안고.방4.에어컨4.초중고인접.조용하고 막힘없는 뷰",
+   "url": "https://fin.land.naver.com/articles/2642468569"
   },
   {
    "trade": "매매",
@@ -790,48 +793,6 @@
   },
   {
    "trade": "매매",
-   "price": 7.4,
-   "dong": 104,
-   "floor": "중/29",
-   "floorSort": 12,
-   "area": 84.95,
-   "type": "114C",
-   "dir": "동남",
-   "verify": "집주인확인 2026-08-07",
-   "fee": "관리비 25만",
-   "broker": "GTX신화1",
-   "room": 4,
-   "cond": "전세안고",
-   "opts": [
-    "에어컨4",
-    "중문"
-   ],
-   "memo": "84c 방4 에어컨4대 중문 세안고 매매해요 gtx운정중앙역 가까운 동",
-   "url": "https://fin.land.naver.com/articles/2642339604"
-  },
-  {
-   "trade": "매매",
-   "price": 7.4,
-   "dong": 112,
-   "floor": "3/29",
-   "floorSort": 3,
-   "area": 84.91,
-   "type": "112A",
-   "dir": "동남",
-   "verify": "NDOC1 2026-07-31",
-   "fee": "관리비 25만",
-   "broker": "아이파크(IPARK)단지내",
-   "room": 3,
-   "cond": "",
-   "opts": [
-    "에어컨2",
-    "팬트리"
-   ],
-   "memo": "o추천, GTX도보권, 방3개, 시스템에어컨2대, 싱글펜트리, 영구뻥뷰",
-   "url": "https://fin.land.naver.com/articles/2641175111"
-  },
-  {
-   "trade": "매매",
    "price": 7.49,
    "dong": 110,
    "floor": "5/29",
@@ -839,14 +800,77 @@
    "area": 84.91,
    "type": "112A",
    "dir": "남서",
-   "verify": "집주인확인 2026-08-07",
+   "verify": "집주인확인 2026-08-13",
    "fee": "관리비 25만",
    "broker": "GTX신화1",
    "room": 4,
    "cond": "전세안고",
    "opts": [],
    "memo": "세안고, 갭투 방4 주차편리한 동 남서향 햇살 및 전망 좋은 라인",
-   "url": "https://fin.land.naver.com/articles/2642345091"
+   "url": "https://fin.land.naver.com/articles/2643500470"
+  },
+  {
+   "trade": "매매",
+   "price": 7.5,
+   "dong": 106,
+   "floor": "7/29",
+   "floorSort": 7,
+   "area": 84.95,
+   "type": "114C",
+   "dir": "동남",
+   "verify": "집주인확인 2026-08-13",
+   "fee": "관리비 29만",
+   "broker": "행복한IPARK",
+   "room": 4,
+   "cond": "즉시입주",
+   "opts": [
+    "에어컨2"
+   ],
+   "memo": "84c gtx도보6분 방4 시에2 즉시입주",
+   "url": "https://fin.land.naver.com/articles/2643435939"
+  },
+  {
+   "trade": "매매",
+   "price": 7.5,
+   "dong": 105,
+   "floor": "8/29",
+   "floorSort": 8,
+   "area": 84.95,
+   "type": "114C",
+   "dir": "남",
+   "verify": "집주인확인 2026-08-13",
+   "fee": "관리비 25만",
+   "broker": "행복한IPARK",
+   "room": null,
+   "cond": "",
+   "opts": [
+    "에어컨6",
+    "중문",
+    "식세기",
+    "인덕션"
+   ],
+   "memo": "84C. 에어컨6대. 풀풀옵션.냉장고 인덕션식세기중문등.주인",
+   "url": "https://fin.land.naver.com/articles/2643436415"
+  },
+  {
+   "trade": "매매",
+   "price": 7.5,
+   "dong": 110,
+   "floor": "21/29",
+   "floorSort": 21,
+   "area": 84.95,
+   "type": "114C",
+   "dir": "동남",
+   "verify": "집주인확인 2026-08-13",
+   "fee": "관리비 28만",
+   "broker": "화수분아이파크(9499-888)",
+   "room": 4,
+   "cond": "전세안고",
+   "opts": [
+    "에어컨4"
+   ],
+   "memo": "84C.세안고.에어컨4.방4.확트인전망.GTX역 도보10분",
+   "url": "https://fin.land.naver.com/articles/2643478104"
   },
   {
    "trade": "매매",
@@ -857,17 +881,16 @@
    "area": 84.91,
    "type": "112A",
    "dir": "남서",
-   "verify": "NDOC1 2026-08-07",
+   "verify": "집주인확인 2026-08-12",
    "fee": "관리비 25만",
-   "broker": "아이파크(IPARK)단지내",
+   "broker": "GTX황금아이파크(944-8585)",
    "room": 3,
-   "cond": "주인거주",
+   "cond": "입주협의",
    "opts": [
-    "에어컨3",
-    "판상형"
+    "에어컨4"
    ],
-   "memo": "추천, 판상형, 방3개, 시스템에어컨3대, 주인거주관리잘된집, 투자굿",
-   "url": "https://fin.land.naver.com/articles/2642336551"
+   "memo": "34A,방3,에4,엔지니어스톤,주인거주,상태좋음,입주협의,조망나오는2층",
+   "url": "https://fin.land.naver.com/articles/2643380040"
   },
   {
    "trade": "매매",
@@ -879,98 +902,75 @@
    "type": "114C",
    "dir": "동남",
    "verify": "집주인확인 2026-08-07",
-   "fee": "관리비 25만",
-   "broker": "GTX신화1",
-   "room": 3,
-   "cond": "",
+   "fee": "관리비 17만",
+   "broker": "대장IPARK",
+   "room": null,
+   "cond": "입주협의",
    "opts": [
-    "에어컨5",
-    "인덕션"
+    "에어컨5"
    ],
-   "memo": "역세권,예쁜조경,분수뷰.84c 방3 에어컨5 인덕션. gtx가까운동",
-   "url": "https://fin.land.naver.com/articles/2642337678"
+   "memo": "o입주가. 시스템 에어컨5. 예쁜 분수뷰. 드레스룸2.엔지니어스톤.84C",
+   "url": "https://fin.land.naver.com/articles/2642477529"
   },
   {
    "trade": "매매",
    "price": 7.5,
-   "dong": 110,
-   "floor": "21/29",
-   "floorSort": 21,
-   "area": 84.95,
-   "type": "114C",
-   "dir": "동남",
-   "verify": "NDOC1 2026-08-07",
-   "fee": "관리비 25만",
-   "broker": "든든IPARK",
-   "room": 4,
-   "cond": "전세안고",
+   "dong": 114,
+   "floor": "저/25",
+   "floorSort": 3,
+   "area": 84.96,
+   "type": "112B",
+   "dir": "남서",
+   "verify": "집주인확인 2026-08-13",
+   "fee": "관리비 28만",
+   "broker": "GTX신화1",
+   "room": 3,
+   "cond": "입주협의",
    "opts": [
-    "에어컨4"
+    "팬트리"
    ],
-   "memo": "방4. 시에4. 학교인접동. 주차넉넉동. 트인뷰. 전세안고",
-   "url": "https://fin.land.naver.com/articles/2642365902"
+   "memo": "싱글팬트리 방3 전망굿 햇살 좋은 남서향 9월중순이후 하시 입주가능",
+   "url": "https://fin.land.naver.com/articles/2643526734"
   },
   {
    "trade": "매매",
    "price": 7.5,
    "dong": 101,
-   "floor": "25/29",
-   "floorSort": 25,
-   "area": 84.95,
-   "type": "114C",
-   "dir": "남서",
-   "verify": "집주인확인 2026-08-07",
-   "fee": "관리비 30만",
-   "broker": "GTX신화1",
+   "floor": "중/29",
+   "floorSort": 12,
+   "area": 84.91,
+   "type": "112A",
+   "dir": "남",
+   "verify": "NDOC1 2026-08-13",
+   "fee": "관리비 25만",
+   "broker": "아이파크(IPARK)단지내",
    "room": 4,
-   "cond": "입주협의",
+   "cond": "전세안고",
    "opts": [
-    "에어컨4",
-    "중문"
+    "에어컨4"
    ],
-   "memo": "84c 입주협의 방4 에어컨4 중문 전망 굿 대중교통이용 편리한 동",
-   "url": "https://fin.land.naver.com/articles/2642336090"
+   "memo": "GTX코앞 l 방4개 I 에어컨4대 I 세안고 I 전망굿 I 투자굿",
+   "url": "https://fin.land.naver.com/articles/2643465826"
   },
   {
    "trade": "매매",
    "price": 7.5,
-   "dong": 105,
-   "floor": "8/29",
-   "floorSort": 8,
-   "area": 84.95,
-   "type": "114C",
-   "dir": "동남",
-   "verify": "집주인확인 2026-08-07",
-   "fee": "관리비 25만",
-   "broker": "GTX신화1",
-   "room": null,
+   "dong": 125,
+   "floor": "고/18",
+   "floorSort": 22,
+   "area": 84.96,
+   "type": "112B",
+   "dir": "남",
+   "verify": "집주인확인 2026-08-11",
+   "fee": "관리비 28만",
+   "broker": "행복한IPARK",
+   "room": 4,
    "cond": "",
    "opts": [
-    "풀에어컨",
-    "중문",
-    "식세기",
-    "인덕션"
+    "팬트리"
    ],
-   "memo": "84c 풀에어컨 냉장고 인덕션 식세기 중문등 옵션 빵빵 gtx완전가까움",
-   "url": "https://fin.land.naver.com/articles/2642341399"
-  },
-  {
-   "trade": "매매",
-   "price": 7.5,
-   "dong": 105,
-   "floor": "고/29",
-   "floorSort": 22,
-   "area": 84.95,
-   "type": "114C",
-   "dir": "동남",
-   "verify": "집주인확인 2026-08-07",
-   "fee": "관리비 28만",
-   "broker": "GTX신화1",
-   "room": 4,
-   "cond": "입주협의",
-   "opts": [],
-   "memo": "84C, 방4, 햇살좋고, GTX초 근접동, 입주가능항, 투자도 가능",
-   "url": "https://fin.land.naver.com/articles/2642341887"
+   "memo": "방4펜트리 , gtx도보, 남서향의 좋은라인,층, 상가와 교통편리",
+   "url": "https://fin.land.naver.com/articles/2643001199"
   },
   {
    "trade": "매매",
@@ -995,122 +995,61 @@
   {
    "trade": "매매",
    "price": 7.5,
-   "dong": 114,
+   "dong": 113,
    "floor": "저/25",
    "floorSort": 3,
    "area": 84.96,
    "type": "112B",
    "dir": "남서",
    "verify": "집주인확인 2026-08-07",
-   "fee": "관리비 28만",
-   "broker": "GTX신화1",
+   "fee": "관리비 17만",
+   "broker": "대장IPARK",
    "room": 3,
    "cond": "입주협의",
    "opts": [
-    "팬트리"
+    "에어컨2",
+    "리모델링"
    ],
-   "memo": "싱글팬트리 방3 전망굿 햇살 좋은 남서향 9월중순이후 하시 입주가능",
-   "url": "https://fin.land.naver.com/articles/2642349450"
-  },
-  {
-   "trade": "매매",
-   "price": 7.5,
-   "dong": 119,
-   "floor": "저/28",
-   "floorSort": 3,
-   "area": 84.91,
-   "type": "112A",
-   "dir": "동남",
-   "verify": "집주인확인 2026-08-07",
-   "fee": "관리비 28만",
-   "broker": "GTX신화1",
-   "room": 3,
-   "cond": "",
-   "opts": [
-    "에어컨3",
-    "판상형"
-   ],
-   "memo": "판상형, 가운데동 조용한동, 에3, 방3",
-   "url": "https://fin.land.naver.com/articles/2642357755"
-  },
-  {
-   "trade": "매매",
-   "price": 7.5,
-   "dong": 106,
-   "floor": "7/29",
-   "floorSort": 7,
-   "area": 84.95,
-   "type": "114C",
-   "dir": "동남",
-   "verify": "집주인확인 2026-07-31",
-   "fee": "관리비 20만",
-   "broker": "아이파크 꿀단지",
-   "room": 4,
-   "cond": "입주협의",
-   "opts": [],
-   "memo": "GTX인접동, 방4, 84C, 입주협의가, 주차편리",
-   "url": "https://fin.land.naver.com/articles/2641232157"
-  },
-  {
-   "trade": "매매",
-   "price": 7.5,
-   "dong": 103,
-   "floor": "중/29",
-   "floorSort": 12,
-   "area": 84.95,
-   "type": "114C",
-   "dir": "동남",
-   "verify": "NDOC1 2026-07-28",
-   "fee": "관리비 15만",
-   "broker": "IPARK태양(957-6700)",
-   "room": 4,
-   "cond": "입주협의",
-   "opts": [
-    "에어컨4",
-    "중문"
-   ],
-   "memo": "84C추천매물 방4 에어컨4 중문외 옵션다수 입주가능 절충가",
-   "url": "https://fin.land.naver.com/articles/2640582292"
-  },
-  {
-   "trade": "매매",
-   "price": 7.5,
-   "dong": 125,
-   "floor": "고/18",
-   "floorSort": 22,
-   "area": 84.96,
-   "type": "112B",
-   "dir": "남",
-   "verify": "집주인확인 2026-07-28",
-   "fee": "관리비 28만",
-   "broker": "행복한IPARK",
-   "room": 4,
-   "cond": "",
-   "opts": [
-    "팬트리"
-   ],
-   "memo": "방4펜트리 , gtx도보, 남서향의 좋은라인,층, 상가와 교통편리",
-   "url": "https://fin.land.naver.com/articles/2640417161"
+   "memo": "o방3. 예쁜 뷰. 채광 좋아요. 입주가. 리모델링. 8층이상. 에어컨2",
+   "url": "https://fin.land.naver.com/articles/2642478897"
   },
   {
    "trade": "매매",
    "price": 7.5,
    "dong": 101,
-   "floor": "중/29",
-   "floorSort": 12,
+   "floor": "저/29",
+   "floorSort": 3,
    "area": 84.91,
    "type": "112A",
    "dir": "남",
-   "verify": "NDOC1 2026-07-24",
-   "fee": "관리비 25만",
-   "broker": "아이파크(IPARK)단지내",
-   "room": 4,
+   "verify": "집주인확인 2026-08-07",
+   "fee": "관리비 28만",
+   "broker": "화수분아이파크(9499-888)",
+   "room": null,
    "cond": "전세안고",
    "opts": [
     "에어컨4"
    ],
-   "memo": "GTX코앞 l 방4개 I 에어컨4대 I 세안고 I 전망굿 I 투자굿",
-   "url": "https://fin.land.naver.com/articles/2639911329"
+   "memo": "84A.5층이상.전세안고.에어컨4.아주깨끗.소나무정원뷰",
+   "url": "https://fin.land.naver.com/articles/2642450876"
+  },
+  {
+   "trade": "매매",
+   "price": 7.5,
+   "dong": 105,
+   "floor": "고/29",
+   "floorSort": 22,
+   "area": 84.95,
+   "type": "114C",
+   "dir": "동남",
+   "verify": "집주인확인 2026-08-07",
+   "fee": "관리비 25만",
+   "broker": "화수분아이파크(9499-888)",
+   "room": 4,
+   "cond": "입주협의",
+   "opts": [],
+   "memo": "84C.GTX초초역세권동.방4.관리잘된집.입주협의",
+   "url": "https://fin.land.naver.com/articles/2642450576"
   },
   {
    "trade": "매매",
@@ -1154,23 +1093,66 @@
   },
   {
    "trade": "매매",
-   "price": 7.5,
-   "dong": 101,
-   "floor": "저/29",
-   "floorSort": 3,
+   "price": 7.6,
+   "dong": 111,
+   "floor": "15/29",
+   "floorSort": 15,
    "area": 84.91,
    "type": "112A",
-   "dir": "남",
-   "verify": "집주인확인 2026-07-10",
-   "fee": "관리비 28만",
-   "broker": "화수분아이파크(9499-888)",
+   "dir": "남서",
+   "verify": "집주인확인 2026-08-13",
+   "fee": "관리비 25만",
+   "broker": "GTX신화1",
    "room": null,
    "cond": "전세안고",
    "opts": [
-    "에어컨4"
+    "팬트리",
+    "판상형"
    ],
-   "memo": "84A.5층이상.전세안고.에어컨4.아주깨끗.소나무정원뷰",
-   "url": "https://fin.land.naver.com/articles/2637242487"
+   "memo": "더블팬트리로 수납공간 넉넉해요 판상형 남서향 해잘들어요 .세안고",
+   "url": "https://fin.land.naver.com/articles/2643525396"
+  },
+  {
+   "trade": "매매",
+   "price": 7.6,
+   "dong": 116,
+   "floor": "8/25",
+   "floorSort": 8,
+   "area": 84.96,
+   "type": "112B",
+   "dir": "남서",
+   "verify": "집주인확인 2026-08-13",
+   "fee": "관리비 28만",
+   "broker": "GTX신화1",
+   "room": null,
+   "cond": "전세안고",
+   "opts": [
+    "풀에어컨",
+    "중문",
+    "인덕션"
+   ],
+   "memo": "풀에어컨 웨인스코팅 중문 인덕션등 완전 풀옵션 깨끗 세안고 갭투 가능",
+   "url": "https://fin.land.naver.com/articles/2643530601"
+  },
+  {
+   "trade": "매매",
+   "price": 7.6,
+   "dong": 109,
+   "floor": "9/29",
+   "floorSort": 9,
+   "area": 84.95,
+   "type": "114C",
+   "dir": "동남",
+   "verify": "집주인확인 2026-08-13",
+   "fee": "관리비 28만",
+   "broker": "화수분아이파크(9499-888)",
+   "room": null,
+   "cond": "즉시입주",
+   "opts": [
+    "올수리"
+   ],
+   "memo": "84C.빠른입주가.올인테리어.안방확장.에어컨.김냉.방마다 붙박이장설치",
+   "url": "https://fin.land.naver.com/articles/2643458597"
   },
   {
    "trade": "매매",
@@ -1195,74 +1177,13 @@
   {
    "trade": "매매",
    "price": 7.6,
-   "dong": 116,
-   "floor": "8/25",
-   "floorSort": 8,
-   "area": 84.96,
-   "type": "112B",
-   "dir": "남서",
-   "verify": "집주인확인 2026-08-07",
-   "fee": "관리비 25만",
-   "broker": "아이파크 꿀단지",
-   "room": null,
-   "cond": "전세안고",
-   "opts": [
-    "에어컨4"
-   ],
-   "memo": "꿀단지추천,시에4,폴리싱등,GTX도보,주인거주,컨디션최고,주세안고",
-   "url": "https://fin.land.naver.com/articles/2642386667"
-  },
-  {
-   "trade": "매매",
-   "price": 7.6,
-   "dong": 111,
-   "floor": "15/29",
-   "floorSort": 15,
-   "area": 84.91,
-   "type": "112A",
-   "dir": "남서",
-   "verify": "집주인확인 2026-08-07",
-   "fee": "관리비 25만",
-   "broker": "GTX신화1",
-   "room": null,
-   "cond": "전세안고",
-   "opts": [
-    "팬트리",
-    "판상형"
-   ],
-   "memo": "더블팬트리로 수납공간 넉넉해요 판상형 남서향 해잘들어요 .세안고",
-   "url": "https://fin.land.naver.com/articles/2642346203"
-  },
-  {
-   "trade": "매매",
-   "price": 7.6,
-   "dong": 109,
-   "floor": "9/29",
-   "floorSort": 9,
-   "area": 84.95,
-   "type": "114C",
-   "dir": "동남",
-   "verify": "집주인확인 2026-08-06",
-   "fee": "관리비 20만",
-   "broker": "아이파크 꿀단지",
-   "room": null,
-   "cond": "주인거주",
-   "opts": [
-    "에어컨2"
-   ],
-   "memo": "84C,빌트인냉장고,붙박이장,에어컨2,GTX도보권,주인거주로집관리잘된집",
-   "url": "https://fin.land.naver.com/articles/2642262305"
-  },
-  {
-   "trade": "매매",
-   "price": 7.6,
    "dong": 114,
    "floor": "19/25",
    "floorSort": 19,
    "area": 84.96,
    "type": "112B",
    "dir": "동남",
-   "verify": "집주인확인 2026-07-31",
+   "verify": "집주인확인 2026-08-07",
    "fee": "관리비 28만",
    "broker": "화수분아이파크(9499-888)",
    "room": 4,
@@ -1272,46 +1193,7 @@
     "인덕션"
    ],
    "memo": "84B.전세안고.시에3.방4.주방상판.인덕션.조용하면서 확트인뷰.학교인접",
-   "url": "https://fin.land.naver.com/articles/2641226950"
-  },
-  {
-   "trade": "매매",
-   "price": 7.6,
-   "dong": 113,
-   "floor": "저/25",
-   "floorSort": 3,
-   "area": 84.96,
-   "type": "112B",
-   "dir": "남서",
-   "verify": "집주인확인 2026-07-31",
-   "fee": "관리비 17만",
-   "broker": "대장IPARK",
-   "room": 3,
-   "cond": "입주협의",
-   "opts": [
-    "에어컨2",
-    "리모델링"
-   ],
-   "memo": "o방3. 예쁜 뷰. 채광 좋아요. 입주가. 리모델링. 8층이상. 에어컨2",
-   "url": "https://fin.land.naver.com/articles/2641230051"
-  },
-  {
-   "trade": "매매",
-   "price": 7.7,
-   "dong": 110,
-   "floor": "25/29",
-   "floorSort": 25,
-   "area": 84.91,
-   "type": "112A",
-   "dir": "동남",
-   "verify": "집주인확인 2026-07-28",
-   "fee": "관리비 17만",
-   "broker": "대장IPARK",
-   "room": 3,
-   "cond": "전세안고",
-   "opts": [],
-   "memo": "o방3 .에어컨풀 .학교 근접동. 세안고.27. 1월만기",
-   "url": "https://fin.land.naver.com/articles/2640489026"
+   "url": "https://fin.land.naver.com/articles/2642450544"
   },
   {
    "trade": "매매",
@@ -1321,15 +1203,37 @@
    "floorSort": 3,
    "area": 84.91,
    "type": "112A",
-   "dir": "남",
-   "verify": "집주인확인 2026-08-07",
-   "fee": "관리비 25만",
-   "broker": "GTX신화1",
+   "dir": "남서",
+   "verify": "집주인확인 2026-08-13",
+   "fee": "관리비 28만",
+   "broker": "화수분아이파크(9499-888)",
    "room": 3,
-   "cond": "입주협의",
-   "opts": [],
-   "memo": "입주협의가 매매해요 방3 클라우드파크뷰로 전망 이뻐요 전자계약가능",
-   "url": "https://fin.land.naver.com/articles/2642339217"
+   "cond": "전세안고",
+   "opts": [
+    "팬트리"
+   ],
+   "memo": "84A.방3.팬트리.GTX인접동.세안고",
+   "url": "https://fin.land.naver.com/articles/2643463727"
+  },
+  {
+   "trade": "매매",
+   "price": 7.7,
+   "dong": 121,
+   "floor": "저/29",
+   "floorSort": 3,
+   "area": 84.91,
+   "type": "112A",
+   "dir": "남",
+   "verify": "집주인확인 2026-08-13",
+   "fee": "관리비 28만",
+   "broker": "화수분아이파크(9499-888)",
+   "room": 4,
+   "cond": "",
+   "opts": [
+    "에어컨4"
+   ],
+   "memo": "84A.에어컨4.방4.정류장 상가 이용편리.주인.컨디션 아주 좋아요",
+   "url": "https://fin.land.naver.com/articles/2643475606"
   },
   {
    "trade": "매매",
@@ -1340,7 +1244,7 @@
    "area": 84.91,
    "type": "112A",
    "dir": "동남",
-   "verify": "집주인확인 2026-08-07",
+   "verify": "집주인확인 2026-08-13",
    "fee": "관리비 28만",
    "broker": "GTX신화1",
    "room": 3,
@@ -1350,7 +1254,46 @@
     "중문"
    ],
    "memo": "84A. 방3알파룸미닫이로 되어있어요. 에4대. 중문",
-   "url": "https://fin.land.naver.com/articles/2642344461"
+   "url": "https://fin.land.naver.com/articles/2643500572"
+  },
+  {
+   "trade": "매매",
+   "price": 7.7,
+   "dong": 103,
+   "floor": "고/29",
+   "floorSort": 22,
+   "area": 84.95,
+   "type": "114C",
+   "dir": "동남",
+   "verify": "집주인확인 2026-08-13",
+   "fee": "관리비 25만",
+   "broker": "화수분아이파크(9499-888)",
+   "room": 3,
+   "cond": "",
+   "opts": [],
+   "memo": "84C.주인.방3.드레스룸2.널찍한 동간거리와 막힘없는 뷰.GTX초역세권",
+   "url": "https://fin.land.naver.com/articles/2643470636"
+  },
+  {
+   "trade": "매매",
+   "price": 7.7,
+   "dong": 109,
+   "floor": "중/29",
+   "floorSort": 12,
+   "area": 84.91,
+   "type": "112A",
+   "dir": "남",
+   "verify": "NDOC1 2026-08-12",
+   "fee": "관리비 25만",
+   "broker": "아이파크(IPARK)단지내",
+   "room": 3,
+   "cond": "주인거주",
+   "opts": [
+    "에어컨4",
+    "팬트리"
+   ],
+   "memo": "단지내추천 l GTX 코앞 l 방3 l 시.에4 l 싱글펜트리I주인거주중",
+   "url": "https://fin.land.naver.com/articles/2643361637"
   },
   {
    "trade": "매매",
@@ -1361,34 +1304,14 @@
    "area": 84.91,
    "type": "112A",
    "dir": "동남",
-   "verify": "집주인확인 2026-08-07",
-   "fee": "관리비 25만",
-   "broker": "GTX신화1",
+   "verify": "집주인확인 2026-08-10",
+   "fee": "관리비 15만",
+   "broker": "정성어린아이파크",
    "room": 4,
-   "cond": "",
+   "cond": "주인거주",
    "opts": [],
-   "memo": "방4 엔지니어드스톤 학교 가까운 동 시원한 고층뷰",
-   "url": "https://fin.land.naver.com/articles/2642345747"
-  },
-  {
-   "trade": "매매",
-   "price": 7.7,
-   "dong": 121,
-   "floor": "저/29",
-   "floorSort": 3,
-   "area": 84.91,
-   "type": "112A",
-   "dir": "동남",
-   "verify": "집주인확인 2026-08-07",
-   "fee": "관리비 25만",
-   "broker": "GTX신화1",
-   "room": 4,
-   "cond": "",
-   "opts": [
-    "에어컨4"
-   ],
-   "memo": "84A. 방4,에4,선호타입. 정류장 인접. 동간거리 넓어요. 마트인접",
-   "url": "https://fin.land.naver.com/articles/2642359609"
+   "memo": "84A,방4, 화이트톤인테리어, 주인거주 상태굿",
+   "url": "https://fin.land.naver.com/articles/2642709733"
   },
   {
    "trade": "매매",
@@ -1415,21 +1338,21 @@
   },
   {
    "trade": "매매",
-   "price": 7.7,
-   "dong": 103,
-   "floor": "고/29",
-   "floorSort": 22,
-   "area": 84.95,
-   "type": "114C",
-   "dir": "동남",
-   "verify": "집주인확인 2026-07-09",
-   "fee": "관리비 25만",
-   "broker": "화수분아이파크(9499-888)",
+   "price": 7.8,
+   "dong": 118,
+   "floor": "5/28",
+   "floorSort": 5,
+   "area": 84.91,
+   "type": "112A",
+   "dir": "남서",
+   "verify": "집주인확인 2026-08-13",
+   "fee": "관리비 28만",
+   "broker": "GTX신화1",
    "room": 3,
    "cond": "",
    "opts": [],
-   "memo": "84C.주인.방3.드레스룸2.널찍한 동간거리와 막힘없는 뷰.GTX초역세권",
-   "url": "https://fin.land.naver.com/articles/2637029147"
+   "memo": "갭투 방3 프리미엄동 현금2억8천만 GTX가까운동, 조용한동.",
+   "url": "https://fin.land.naver.com/articles/2643484193"
   },
   {
    "trade": "매매",
@@ -1441,33 +1364,56 @@
    "type": "112A",
    "dir": "남",
    "verify": "집주인확인 2026-08-07",
-   "fee": "관리비 25만",
-   "broker": "GTX신화1",
+   "fee": "관리비 28만",
+   "broker": "화수분아이파크(9499-888)",
    "room": null,
    "cond": "전세안고",
    "opts": [
-    "풀에어컨"
+    "에어컨5",
+    "팬트리",
+    "식세기",
+    "인덕션"
    ],
-   "memo": "세안고 매매해요 초중고 도보이용편리한동 풀에어컨 김치냉장고등 옵션 굿",
-   "url": "https://fin.land.naver.com/articles/2642347478"
+   "memo": "84A.에어컨5.팬트리.식세기.인덕션.주방상판.세안고. 뻥뷰",
+   "url": "https://fin.land.naver.com/articles/2642478571"
   },
   {
    "trade": "매매",
    "price": 7.8,
-   "dong": 118,
-   "floor": "5/28",
-   "floorSort": 5,
+   "dong": 103,
+   "floor": "저/29",
+   "floorSort": 3,
    "area": 84.91,
    "type": "112A",
-   "dir": "남서",
-   "verify": "집주인확인 2026-08-07",
-   "fee": "관리비 28만",
-   "broker": "GTX신화1",
-   "room": 3,
+   "dir": "동남",
+   "verify": "집주인확인 2026-08-13",
+   "fee": "관리비 20만",
+   "broker": "현대1등",
+   "room": null,
    "cond": "",
    "opts": [],
-   "memo": "갭투 방3 프리미엄동 현금2억8천만 GTX가까운동, 조용한동.",
-   "url": "https://fin.land.naver.com/articles/2642357262"
+   "memo": "급가격조정가능AC3대GTXA역바로거실앞참예쁜뷰행복이솔솔노블랜드상권등인근",
+   "url": "https://fin.land.naver.com/articles/2643564518"
+  },
+  {
+   "trade": "매매",
+   "price": 7.8,
+   "dong": 104,
+   "floor": "중/29",
+   "floorSort": 12,
+   "area": 84.95,
+   "type": "114C",
+   "dir": "동남",
+   "verify": "NDOC1 2026-08-13",
+   "fee": "관리비 15만",
+   "broker": "정성어린아이파크",
+   "room": 3,
+   "cond": "주인거주",
+   "opts": [
+    "에어컨5"
+   ],
+   "memo": "84C, GTX 초인접 로얄동, 방3, 알파룸확장, 에어컨5 ,주인거주",
+   "url": "https://fin.land.naver.com/articles/2643464806"
   },
   {
    "trade": "매매",
@@ -1478,7 +1424,7 @@
    "area": 84.91,
    "type": "112A",
    "dir": "동남",
-   "verify": "집주인확인 2026-08-07",
+   "verify": "집주인확인 2026-08-12",
    "fee": "관리비 15만",
    "broker": "정성어린아이파크",
    "room": 4,
@@ -1487,63 +1433,7 @@
     "에어컨4"
    ],
    "memo": "84A ,정성추천 gtx초인접동, 방4, 에어컨4, 조망, 입주협의",
-   "url": "https://fin.land.naver.com/articles/2642323914"
-  },
-  {
-   "trade": "매매",
-   "price": 7.8,
-   "dong": 114,
-   "floor": "고/25",
-   "floorSort": 22,
-   "area": 84.96,
-   "type": "112B",
-   "dir": "동남",
-   "verify": "집주인확인 2026-08-07",
-   "fee": "관리비 25만",
-   "broker": "GTX신화1",
-   "room": 3,
-   "cond": "",
-   "opts": [],
-   "memo": "방3개 전망 완전 굿 관리상태 굿 초중고 가까워요 주세조건가능",
-   "url": "https://fin.land.naver.com/articles/2642349374"
-  },
-  {
-   "trade": "매매",
-   "price": 7.8,
-   "dong": 108,
-   "floor": "저/29",
-   "floorSort": 3,
-   "area": 84.91,
-   "type": "112A",
-   "dir": "남서",
-   "verify": "집주인확인 2026-07-31",
-   "fee": "관리비 28만",
-   "broker": "화수분아이파크(9499-888)",
-   "room": 3,
-   "cond": "",
-   "opts": [
-    "팬트리"
-   ],
-   "memo": "84A.6층이상.방3.개방감있는팬트리구조.주인.컨디션최고.뻥뷰.GTX인접",
-   "url": "https://fin.land.naver.com/articles/2641226960"
-  },
-  {
-   "trade": "매매",
-   "price": 7.8,
-   "dong": 116,
-   "floor": "저/25",
-   "floorSort": 3,
-   "area": 84.96,
-   "type": "112B",
-   "dir": "동남",
-   "verify": "집주인확인 2026-07-31",
-   "fee": "관리비 28만",
-   "broker": "화수분아이파크(9499-888)",
-   "room": 4,
-   "cond": "입주협의",
-   "opts": [],
-   "memo": "추천.선호동.7층이상.컨디션최고.입주가.귀한 방4개구조.GTX역도보10분",
-   "url": "https://fin.land.naver.com/articles/2641227040"
+   "url": "https://fin.land.naver.com/articles/2643252161"
   },
   {
    "trade": "매매",
@@ -1554,7 +1444,7 @@
    "area": 84.96,
    "type": "112B",
    "dir": "남",
-   "verify": "집주인확인 2026-07-30",
+   "verify": "집주인확인 2026-08-10",
    "fee": "관리비 25만",
    "broker": "대장IPARK",
    "room": 4,
@@ -1563,7 +1453,65 @@
     "에어컨2"
    ],
    "memo": "o햇살가득. 방4. 에어컨2. 입주가. 컨디션 좋아요. 줄눈",
-   "url": "https://fin.land.naver.com/articles/2640996284"
+   "url": "https://fin.land.naver.com/articles/2642917122"
+  },
+  {
+   "trade": "매매",
+   "price": 7.8,
+   "dong": 116,
+   "floor": "저/25",
+   "floorSort": 3,
+   "area": 84.96,
+   "type": "112B",
+   "dir": "동남",
+   "verify": "집주인확인 2026-08-07",
+   "fee": "관리비 28만",
+   "broker": "화수분아이파크(9499-888)",
+   "room": 4,
+   "cond": "입주협의",
+   "opts": [],
+   "memo": "추천.선호동.7층이상.컨디션최고.입주가.귀한 방4개구조.GTX역도보10분",
+   "url": "https://fin.land.naver.com/articles/2642450024"
+  },
+  {
+   "trade": "매매",
+   "price": 7.8,
+   "dong": 112,
+   "floor": "고/29",
+   "floorSort": 22,
+   "area": 84.91,
+   "type": "112A",
+   "dir": "남",
+   "verify": "NDOC1 2026-08-07",
+   "fee": "관리비 15만",
+   "broker": "IPARK태양(957-6700)",
+   "room": null,
+   "cond": "전세안고",
+   "opts": [
+    "풀에어컨"
+   ],
+   "memo": "84A 트인조망 추천 풀에어컨 세안고 또는 늦은입주가능해요",
+   "url": "https://fin.land.naver.com/articles/2642454960"
+  },
+  {
+   "trade": "매매",
+   "price": 7.8,
+   "dong": 108,
+   "floor": "저/29",
+   "floorSort": 3,
+   "area": 84.91,
+   "type": "112A",
+   "dir": "남서",
+   "verify": "집주인확인 2026-08-07",
+   "fee": "관리비 28만",
+   "broker": "화수분아이파크(9499-888)",
+   "room": 3,
+   "cond": "",
+   "opts": [
+    "팬트리"
+   ],
+   "memo": "84A.6층이상.방3.개방감있는팬트리구조.주인.컨디션최고.뻥뷰.GTX인접",
+   "url": "https://fin.land.naver.com/articles/2642450088"
   },
   {
    "trade": "매매",
@@ -1624,27 +1572,6 @@
   {
    "trade": "매매",
    "price": 7.8,
-   "dong": 104,
-   "floor": "중/29",
-   "floorSort": 12,
-   "area": 84.95,
-   "type": "114C",
-   "dir": "남",
-   "verify": "집주인확인 2026-07-22",
-   "fee": "관리비 29만",
-   "broker": "행복한IPARK",
-   "room": 3,
-   "cond": "",
-   "opts": [
-    "에어컨5",
-    "인덕션"
-   ],
-   "memo": "84C GTX초역세권 ＆ 방3 에어컨5 인덕션 하이브리드 전기오븐",
-   "url": "https://fin.land.naver.com/articles/2639328145"
-  },
-  {
-   "trade": "매매",
-   "price": 7.8,
    "dong": 118,
    "floor": "고/28",
    "floorSort": 22,
@@ -1662,41 +1589,25 @@
   },
   {
    "trade": "매매",
-   "price": 7.8,
-   "dong": 112,
-   "floor": "고/29",
-   "floorSort": 22,
-   "area": 84.91,
-   "type": "112A",
-   "dir": "남",
-   "verify": "NDOC1 2026-07-09",
-   "fee": "관리비 15만",
-   "broker": "IPARK태양(957-6700)",
-   "room": null,
-   "cond": "전세안고",
-   "opts": [
-    "풀에어컨"
-   ],
-   "memo": "84A 트인조망 추천 풀에어컨 세안고 또는 늦은입주가능해요",
-   "url": "https://fin.land.naver.com/articles/2637018368"
-  },
-  {
-   "trade": "매매",
-   "price": 7.89,
-   "dong": 103,
-   "floor": "저/29",
-   "floorSort": 3,
+   "price": 7.9,
+   "dong": 121,
+   "floor": "20/29",
+   "floorSort": 20,
    "area": 84.91,
    "type": "112A",
    "dir": "동남",
-   "verify": "집주인확인 2026-07-24",
-   "fee": "관리비 20만",
-   "broker": "현대1등",
-   "room": null,
+   "verify": "집주인확인 2026-08-13",
+   "fee": "관리비 28만",
+   "broker": "행복한IPARK",
+   "room": 4,
    "cond": "",
-   "opts": [],
-   "memo": "급가격조정가능AC3대GTXA역바로거실앞참예쁜뷰행복이솔솔노블랜드상권등인근",
-   "url": "https://fin.land.naver.com/articles/2639855480"
+   "opts": [
+    "에어컨6",
+    "중문",
+    "인덕션"
+   ],
+   "memo": "84A 주인 GTX초역세권 방4 에어컨6 중문 식세 인덕션외옵션",
+   "url": "https://fin.land.naver.com/articles/2643437061"
   },
   {
    "trade": "매매",
@@ -1721,26 +1632,6 @@
   {
    "trade": "매매",
    "price": 8,
-   "dong": 105,
-   "floor": "10/29",
-   "floorSort": 10,
-   "area": 84.91,
-   "type": "112A",
-   "dir": "남서",
-   "verify": "집주인확인 2026-08-07",
-   "fee": "관리비 25만",
-   "broker": "GTX신화1",
-   "room": 4,
-   "cond": "전세안고",
-   "opts": [
-    "풀에어컨"
-   ],
-   "memo": "gtx초인접동 남서향 전망 완전 굿 방4 풀에어컨 세안고",
-   "url": "https://fin.land.naver.com/articles/2642341310"
-  },
-  {
-   "trade": "매매",
-   "price": 8,
    "dong": 102,
    "floor": "고/29",
    "floorSort": 22,
@@ -1761,20 +1652,41 @@
   {
    "trade": "매매",
    "price": 8,
+   "dong": 105,
+   "floor": "10/29",
+   "floorSort": 10,
+   "area": 84.91,
+   "type": "112A",
+   "dir": "남",
+   "verify": "집주인확인 2026-08-13",
+   "fee": "관리비 25만",
+   "broker": "행복한IPARK",
+   "room": 4,
+   "cond": "",
+   "opts": [
+    "에어컨4",
+    "중문"
+   ],
+   "memo": "운정중앙역 바로 앞. 방4 .에어컨4.뻥문,중문,시원한조망.",
+   "url": "https://fin.land.naver.com/articles/2643430408"
+  },
+  {
+   "trade": "매매",
+   "price": 8,
    "dong": 121,
    "floor": "28/29",
    "floorSort": 28,
    "area": 84.91,
    "type": "112A",
    "dir": "동남",
-   "verify": "집주인확인 2026-08-07",
+   "verify": "집주인확인 2026-08-13",
    "fee": "관리비 25만",
    "broker": "GTX신화1",
    "room": null,
    "cond": "입주협의",
    "opts": [],
    "memo": "끝내주는 뷰 에어컨등 옵션 많아요 입주조율가능 전자계약 가능",
-   "url": "https://fin.land.naver.com/articles/2642359568"
+   "url": "https://fin.land.naver.com/articles/2643532227"
   },
   {
    "trade": "매매",
@@ -1785,7 +1697,7 @@
    "area": 84.91,
    "type": "112A",
    "dir": "남서",
-   "verify": "집주인확인 2026-08-07",
+   "verify": "집주인확인 2026-08-13",
    "fee": "관리비 25만",
    "broker": "GTX신화1",
    "room": null,
@@ -1794,27 +1706,28 @@
     "인덕션"
    ],
    "memo": "전자계약가능 에어컨 인덕션 김치냉장고등 풀옵션 전망 완전 굿",
-   "url": "https://fin.land.naver.com/articles/2642358719"
+   "url": "https://fin.land.naver.com/articles/2643531249"
   },
   {
    "trade": "매매",
    "price": 8,
-   "dong": 105,
-   "floor": "10/29",
-   "floorSort": 10,
+   "dong": 102,
+   "floor": "20/29",
+   "floorSort": 20,
    "area": 84.91,
    "type": "112A",
-   "dir": "동남",
-   "verify": "집주인확인 2026-08-07",
+   "dir": "남서",
+   "verify": "NDOC1 2026-08-13",
    "fee": "관리비 25만",
-   "broker": "GTX신화1",
-   "room": 4,
-   "cond": "",
+   "broker": "아이파크(IPARK)단지내",
+   "room": null,
+   "cond": "입주협의",
    "opts": [
-    "에어컨4"
+    "중문",
+    "판상형"
    ],
-   "memo": "방4 에어컨4대 gtx도보이용 편리한 동 단지조경이뻐요",
-   "url": "https://fin.land.naver.com/articles/2642341968"
+   "memo": "추천, GTX코앞, 판상형, 주인거주, 실입주가, 중문,김냉,단지예쁜뷰",
+   "url": "https://fin.land.naver.com/articles/2643465360"
   },
   {
    "trade": "매매",
@@ -1825,76 +1738,36 @@
    "area": 84.91,
    "type": "112A",
    "dir": "동남",
-   "verify": "집주인확인 2026-08-07",
+   "verify": "집주인확인 2026-08-13",
    "fee": "관리비 25만",
-   "broker": "GTX신화1",
+   "broker": "행복한IPARK",
    "room": 4,
-   "cond": "전세안고",
+   "cond": "월세안고",
+   "opts": [
+    "풀에어컨"
+   ],
+   "memo": "84A. 방4. 풀에어컨. 조용한 파크전망. 월세안고.",
+   "url": "https://fin.land.naver.com/articles/2643437560"
+  },
+  {
+   "trade": "매매",
+   "price": 8,
+   "dong": 120,
+   "floor": "23/29",
+   "floorSort": 23,
+   "area": 84.91,
+   "type": "112A",
+   "dir": "남서",
+   "verify": "집주인확인 2026-08-12",
+   "fee": "관리비 25만",
+   "broker": "아이파크 꿀단지",
+   "room": null,
+   "cond": "",
    "opts": [
     "에어컨4"
    ],
-   "memo": "세안고 매매합니다 방4 에어컨4대 대중교통이용편리한 동",
-   "url": "https://fin.land.naver.com/articles/2642337435"
-  },
-  {
-   "trade": "매매",
-   "price": 8,
-   "dong": 106,
-   "floor": "고/29",
-   "floorSort": 22,
-   "area": 84.91,
-   "type": "112A",
-   "dir": "남",
-   "verify": "집주인확인 2026-08-07",
-   "fee": "관리비 29만",
-   "broker": "행복한IPARK",
-   "room": 3,
-   "cond": "전세안고",
-   "opts": [
-    "에어컨3",
-    "중문"
-   ],
-   "memo": "84a gtx역앞 시원한조망 방3 에3 중문 김냉 식세 세안고",
-   "url": "https://fin.land.naver.com/articles/2642291308"
-  },
-  {
-   "trade": "매매",
-   "price": 8,
-   "dong": 116,
-   "floor": "고/25",
-   "floorSort": 22,
-   "area": 84.96,
-   "type": "112B",
-   "dir": "남",
-   "verify": "집주인확인 2026-08-07",
-   "fee": "관리비 29만",
-   "broker": "행복한IPARK",
-   "room": 4,
-   "cond": "주인거주",
-   "opts": [],
-   "memo": "84B 방4. 단지중앙동. 주인거주로 상태최상.",
-   "url": "https://fin.land.naver.com/articles/2642292135"
-  },
-  {
-   "trade": "매매",
-   "price": 8,
-   "dong": 108,
-   "floor": "저/29",
-   "floorSort": 3,
-   "area": 84.91,
-   "type": "112A",
-   "dir": "남",
-   "verify": "집주인확인 2026-08-07",
-   "fee": "관리비 29만",
-   "broker": "행복한IPARK",
-   "room": 3,
-   "cond": "",
-   "opts": [
-    "풀에어컨",
-    "중문"
-   ],
-   "memo": "84A. GTX근동. 방3. 풀에어컨.식세. 중문",
-   "url": "https://fin.land.naver.com/articles/2642290941"
+   "memo": "84A,뷰최고,조용한동,GTX도보권,에어컨4,로얄층",
+   "url": "https://fin.land.naver.com/articles/2643401725"
   },
   {
    "trade": "매매",
@@ -1904,15 +1777,37 @@
    "floorSort": 12,
    "area": 84.91,
    "type": "112A",
-   "dir": "남서",
-   "verify": "집주인확인 2026-08-07",
-   "fee": "관리비 25만",
-   "broker": "GTX신화1",
-   "room": 4,
+   "dir": "동남",
+   "verify": "집주인확인 2026-08-13",
+   "fee": "관리비 28만",
+   "broker": "행복한IPARK",
+   "room": 3,
    "cond": "전세안고",
-   "opts": [],
-   "memo": "방4 뻥 뚫린 전망 운정중앙역 도보이용 편리한 동 주차굿 세안고매매",
-   "url": "https://fin.land.naver.com/articles/2642343749"
+   "opts": [
+    "에어컨4"
+   ],
+   "memo": "84A . 전세안고. 방3. 시스템에어컨4. 줄눈. 조용한전망.",
+   "url": "https://fin.land.naver.com/articles/2643431927"
+  },
+  {
+   "trade": "매매",
+   "price": 8,
+   "dong": 115,
+   "floor": "중/25",
+   "floorSort": 12,
+   "area": 84.96,
+   "type": "112B",
+   "dir": "남",
+   "verify": "집주인확인 2026-08-13",
+   "fee": "관리비 28만",
+   "broker": "화수분아이파크(9499-888)",
+   "room": 3,
+   "cond": "전세안고",
+   "opts": [
+    "에어컨4"
+   ],
+   "memo": "84B.전세안고.에어컨4.방3.확트인 전망",
+   "url": "https://fin.land.naver.com/articles/2643463458"
   },
   {
    "trade": "매매",
@@ -1923,7 +1818,7 @@
    "area": 84.91,
    "type": "112A",
    "dir": "남",
-   "verify": "집주인확인 2026-08-07",
+   "verify": "집주인확인 2026-08-13",
    "fee": "관리비 25만",
    "broker": "GTX신화1",
    "room": 4,
@@ -1934,27 +1829,147 @@
     "인덕션"
    ],
    "memo": "에어컨6대 인덕션 중문등 옵션 굿 방4개 단지조경뷰 이뻐요",
-   "url": "https://fin.land.naver.com/articles/2642343221"
+   "url": "https://fin.land.naver.com/articles/2643495612"
   },
   {
    "trade": "매매",
    "price": 8,
-   "dong": 102,
+   "dong": 109,
+   "floor": "저/29",
+   "floorSort": 3,
+   "area": 84.91,
+   "type": "112A",
+   "dir": "동남",
+   "verify": "집주인확인 2026-08-13",
+   "fee": "관리비 25만",
+   "broker": "GTX신화1",
+   "room": 3,
+   "cond": "",
+   "opts": [
+    "팬트리"
+   ],
+   "memo": "84A 방3 더블팬트리 GTX가까운 동 주차편리 늦은입주. 천천히입주",
+   "url": "https://fin.land.naver.com/articles/2643499037"
+  },
+  {
+   "trade": "매매",
+   "price": 8,
+   "dong": 109,
+   "floor": "중/29",
+   "floorSort": 12,
+   "area": 84.91,
+   "type": "112A",
+   "dir": "남서",
+   "verify": "집주인확인 2026-08-13",
+   "fee": "관리비 25만",
+   "broker": "GTX신화1",
+   "room": 4,
+   "cond": "전세안고",
+   "opts": [],
+   "memo": "방4 뻥 뚫린 전망 운정중앙역 도보이용 편리한 동 주차굿 세안고매매",
+   "url": "https://fin.land.naver.com/articles/2643498941"
+  },
+  {
+   "trade": "매매",
+   "price": 8,
+   "dong": 107,
+   "floor": "중/29",
+   "floorSort": 12,
+   "area": 84.91,
+   "type": "112A",
+   "dir": "동남",
+   "verify": "집주인확인 2026-08-13",
+   "fee": "관리비 15만",
+   "broker": "정성어린아이파크",
+   "room": 3,
+   "cond": "입주협의",
+   "opts": [
+    "에어컨5"
+   ],
+   "memo": "84A,정성추천, GTX인접로얄동,방3,에어컨5,옵션다수,입주협의",
+   "url": "https://fin.land.naver.com/articles/2643479254"
+  },
+  {
+   "trade": "매매",
+   "price": 8,
+   "dong": 116,
+   "floor": "고/25",
+   "floorSort": 22,
+   "area": 84.96,
+   "type": "112B",
+   "dir": "남서",
+   "verify": "집주인확인 2026-08-12",
+   "fee": "관리비 20만",
+   "broker": "GTX황금아이파크(944-8585)",
+   "room": null,
+   "cond": "",
+   "opts": [
+    "판상형"
+   ],
+   "memo": "84 인기 판상형, 실입주, 갭투 가능,넓은 동간거리, 내측 로얄동",
+   "url": "https://fin.land.naver.com/articles/2643381493"
+  },
+  {
+   "trade": "매매",
+   "price": 8,
+   "dong": 101,
+   "floor": "중/29",
+   "floorSort": 12,
+   "area": 84.91,
+   "type": "112A",
+   "dir": "남",
+   "verify": "집주인확인 2026-08-12",
+   "fee": "관리비 25만",
+   "broker": "화수분아이파크(9499-888)",
+   "room": null,
+   "cond": "전세안고",
+   "opts": [
+    "에어컨5",
+    "중문",
+    "팬트리",
+    "올수리"
+   ],
+   "memo": "84A.컨디션최고.늦은입주나 세안고.올인테리어.에5.팬트리.중문외옵션다수",
+   "url": "https://fin.land.naver.com/articles/2643368986"
+  },
+  {
+   "trade": "매매",
+   "price": 8,
+   "dong": 106,
    "floor": "고/29",
    "floorSort": 22,
    "area": 84.91,
    "type": "112A",
-   "dir": "남서",
-   "verify": "집주인확인 2026-08-07",
-   "fee": "관리비 25만",
-   "broker": "GTX신화1",
+   "dir": "남",
+   "verify": "집주인확인 2026-08-12",
+   "fee": "관리비 29만",
+   "broker": "행복한IPARK",
    "room": 3,
-   "cond": "주인거주",
+   "cond": "전세안고",
    "opts": [
-    "팬트리"
+    "에어컨3",
+    "중문"
    ],
-   "memo": "방3 팬트리 김냉 주인거주로 관리상태 좋아요 GTX역 및 대중교통이용 굿",
-   "url": "https://fin.land.naver.com/articles/2642337503"
+   "memo": "84a gtx역앞 시원한조망 방3 에3 중문 김냉 식세 세안고",
+   "url": "https://fin.land.naver.com/articles/2643227530"
+  },
+  {
+   "trade": "매매",
+   "price": 8,
+   "dong": 116,
+   "floor": "저/25",
+   "floorSort": 3,
+   "area": 84.96,
+   "type": "112B",
+   "dir": "동남",
+   "verify": "집주인확인 2026-08-07",
+   "fee": "관리비 29만",
+   "broker": "행복한IPARK",
+   "room": null,
+   "cond": "입주협의",
+   "opts": [],
+   "memo": "84A . 완전풀옵션형. 고급인테리어. 시원한조망. 입주협의.",
+   "url": "https://fin.land.naver.com/articles/2642289111"
   },
   {
    "trade": "매매",
@@ -1975,24 +1990,6 @@
    ],
    "memo": "84C GTX완전 초근접동 에어컨4대 입주협의",
    "url": "https://fin.land.naver.com/articles/2642342635"
-  },
-  {
-   "trade": "매매",
-   "price": 8,
-   "dong": 116,
-   "floor": "저/25",
-   "floorSort": 3,
-   "area": 84.96,
-   "type": "112B",
-   "dir": "동남",
-   "verify": "집주인확인 2026-08-07",
-   "fee": "관리비 29만",
-   "broker": "행복한IPARK",
-   "room": null,
-   "cond": "입주협의",
-   "opts": [],
-   "memo": "84A . 완전풀옵션형. 고급인테리어. 시원한조망. 입주협의.",
-   "url": "https://fin.land.naver.com/articles/2642289111"
   },
   {
    "trade": "매매",
@@ -2018,22 +2015,44 @@
   {
    "trade": "매매",
    "price": 8,
-   "dong": 109,
+   "dong": 108,
    "floor": "저/29",
    "floorSort": 3,
    "area": 84.91,
    "type": "112A",
-   "dir": "동남",
+   "dir": "남",
    "verify": "집주인확인 2026-08-07",
-   "fee": "관리비 25만",
-   "broker": "GTX신화1",
+   "fee": "관리비 29만",
+   "broker": "행복한IPARK",
    "room": 3,
    "cond": "",
    "opts": [
-    "팬트리"
+    "풀에어컨",
+    "중문"
    ],
-   "memo": "84A 방3 더블팬트리 GTX가까운 동 주차편리 늦은입주. 천천히입주",
-   "url": "https://fin.land.naver.com/articles/2642343814"
+   "memo": "84A. GTX근동. 방3. 풀에어컨.식세. 중문",
+   "url": "https://fin.land.naver.com/articles/2642290941"
+  },
+  {
+   "trade": "매매",
+   "price": 8,
+   "dong": 102,
+   "floor": "고/29",
+   "floorSort": 22,
+   "area": 84.91,
+   "type": "112A",
+   "dir": "동남",
+   "verify": "집주인확인 2026-08-07",
+   "fee": "관리비 15만",
+   "broker": "IPARK태양(957-6700)",
+   "room": 3,
+   "cond": "",
+   "opts": [
+    "풀에어컨",
+    "판상형"
+   ],
+   "memo": "84판상형 방3 풀에어컨외 옵션다수 고급진 인테리어 높은 고층뷰",
+   "url": "https://fin.land.naver.com/articles/2642453667"
   },
   {
    "trade": "매매",
@@ -2060,65 +2079,22 @@
   {
    "trade": "매매",
    "price": 8,
-   "dong": 107,
-   "floor": "고/29",
-   "floorSort": 22,
+   "dong": 112,
+   "floor": "저/29",
+   "floorSort": 3,
    "area": 84.95,
    "type": "114C",
    "dir": "남",
    "verify": "집주인확인 2026-08-07",
    "fee": "관리비 20만",
    "broker": "경남시티운정1등 l",
-   "room": 4,
-   "cond": "",
-   "opts": [
-    "에어컨6",
-    "중문",
-    "식세기",
-    "인덕션"
-   ],
-   "memo": "84C. 에어컨6. 중문. 인덕션. 식세기. 방4. 뻥뷰.",
-   "url": "https://fin.land.naver.com/articles/2642347512"
-  },
-  {
-   "trade": "매매",
-   "price": 8,
-   "dong": 107,
-   "floor": "중/29",
-   "floorSort": 12,
-   "area": 84.91,
-   "type": "112A",
-   "dir": "동남",
-   "verify": "집주인확인 2026-08-06",
-   "fee": "관리비 15만",
-   "broker": "정성어린아이파크",
-   "room": 3,
+   "room": null,
    "cond": "입주협의",
    "opts": [
-    "에어컨5"
+    "중문"
    ],
-   "memo": "84A,정성추천, GTX인접로얄동,방3,에어컨5,옵션다수,입주협의",
-   "url": "https://fin.land.naver.com/articles/2642216955"
-  },
-  {
-   "trade": "매매",
-   "price": 8,
-   "dong": 120,
-   "floor": "고/29",
-   "floorSort": 22,
-   "area": 84.91,
-   "type": "112A",
-   "dir": "남서",
-   "verify": "집주인확인 2026-08-06",
-   "fee": "관리비 25만",
-   "broker": "아이파크 꿀단지",
-   "room": null,
-   "cond": "",
-   "opts": [
-    "에어컨4"
-   ],
-   "memo": "84A,뷰최고,조용한동,GTX도보권,에어컨4,로얄층",
-   "url": "https://fin.land.naver.com/articles/2642261873"
+   "memo": "84C. 중문. 주인거주깨끗. 초품아. GTX운정역도보.협의입주가능.",
+   "url": "https://fin.land.naver.com/articles/2642349362"
   },
   {
    "trade": "매매",
@@ -2143,22 +2119,25 @@
   {
    "trade": "매매",
    "price": 8,
-   "dong": 112,
-   "floor": "저/29",
-   "floorSort": 3,
+   "dong": 107,
+   "floor": "고/29",
+   "floorSort": 22,
    "area": 84.95,
    "type": "114C",
    "dir": "남",
    "verify": "집주인확인 2026-08-07",
    "fee": "관리비 20만",
    "broker": "경남시티운정1등 l",
-   "room": null,
-   "cond": "입주협의",
+   "room": 4,
+   "cond": "",
    "opts": [
-    "중문"
+    "에어컨6",
+    "중문",
+    "식세기",
+    "인덕션"
    ],
-   "memo": "84C. 중문. 주인거주깨끗. 초품아. GTX운정역도보.협의입주가능.",
-   "url": "https://fin.land.naver.com/articles/2642349362"
+   "memo": "84C. 에어컨6. 중문. 인덕션. 식세기. 방4. 뻥뷰.",
+   "url": "https://fin.land.naver.com/articles/2642347512"
   },
   {
    "trade": "매매",
@@ -2218,26 +2197,6 @@
    ],
    "memo": "꿀단지추천,84B,방4,올인테리어,풀옵션,선호동",
    "url": "https://fin.land.naver.com/articles/2641232599"
-  },
-  {
-   "trade": "매매",
-   "price": 8,
-   "dong": 109,
-   "floor": "중/29",
-   "floorSort": 12,
-   "area": 84.91,
-   "type": "112A",
-   "dir": "동남",
-   "verify": "집주인확인 2026-07-31",
-   "fee": "관리비 15만",
-   "broker": "IPARK태양(957-6700)",
-   "room": 3,
-   "cond": "전세안고",
-   "opts": [
-    "에어컨4"
-   ],
-   "memo": "84A 방3 에어컨4 주차넉넉 전세안고 투자 물건",
-   "url": "https://fin.land.naver.com/articles/2641193412"
   },
   {
    "trade": "매매",
@@ -2304,65 +2263,23 @@
   },
   {
    "trade": "매매",
-   "price": 8,
-   "dong": 115,
-   "floor": "중/25",
+   "price": 8.1,
+   "dong": 119,
+   "floor": "중/28",
    "floorSort": 12,
-   "area": 84.96,
-   "type": "112B",
+   "area": 84.91,
+   "type": "112A",
    "dir": "남",
-   "verify": "집주인확인 2026-07-13",
+   "verify": "집주인확인 2026-08-11",
    "fee": "관리비 28만",
    "broker": "화수분아이파크(9499-888)",
-   "room": 3,
-   "cond": "전세안고",
+   "room": 4,
+   "cond": "입주협의",
    "opts": [
     "에어컨4"
    ],
-   "memo": "84B.전세안고.에어컨4.방3.확트인 전망",
-   "url": "https://fin.land.naver.com/articles/2637751856"
-  },
-  {
-   "trade": "매매",
-   "price": 8,
-   "dong": 112,
-   "floor": "고/29",
-   "floorSort": 22,
-   "area": 84.91,
-   "type": "112A",
-   "dir": "남",
-   "verify": "NDOC1 2026-07-13",
-   "fee": "관리비 25만",
-   "broker": "아이파크(IPARK)단지내",
-   "room": 3,
-   "cond": "전세안고",
-   "opts": [
-    "에어컨3",
-    "팬트리"
-   ],
-   "memo": "추천, GTX코앞, 방3, 에3, 싱글펜트리, 주세안고 or 실입주가능",
-   "url": "https://fin.land.naver.com/articles/2637639128"
-  },
-  {
-   "trade": "매매",
-   "price": 8,
-   "dong": 102,
-   "floor": "고/29",
-   "floorSort": 22,
-   "area": 84.91,
-   "type": "112A",
-   "dir": "동남",
-   "verify": "집주인확인 2026-07-09",
-   "fee": "관리비 15만",
-   "broker": "IPARK태양(957-6700)",
-   "room": 3,
-   "cond": "",
-   "opts": [
-    "풀에어컨",
-    "판상형"
-   ],
-   "memo": "84판상형 방3 풀에어컨외 옵션다수 고급진 인테리어 높은 고층뷰",
-   "url": "https://fin.land.naver.com/articles/2637019836"
+   "memo": "84A.컨디션굿.입주가.에어컨4.방4.시원한 뻥뷰",
+   "url": "https://fin.land.naver.com/articles/2643153800"
   },
   {
    "trade": "매매",
@@ -2387,25 +2304,46 @@
   {
    "trade": "매매",
    "price": 8.2,
-   "dong": 121,
-   "floor": "20/29",
-   "floorSort": 20,
+   "dong": 116,
+   "floor": "7/25",
+   "floorSort": 7,
+   "area": 84.96,
+   "type": "112B",
+   "dir": "남서",
+   "verify": "집주인확인 2026-08-12",
+   "fee": "관리비 20만",
+   "broker": "아이파크 꿀단지",
+   "room": 4,
+   "cond": "",
+   "opts": [
+    "에어컨4",
+    "중문",
+    "식세기"
+   ],
+   "memo": "꿀단지34B, 방4,에어컨4,중문,식세기",
+   "url": "https://fin.land.naver.com/articles/2643401463"
+  },
+  {
+   "trade": "매매",
+   "price": 8.2,
+   "dong": 101,
+   "floor": "저/29",
+   "floorSort": 3,
    "area": 84.91,
    "type": "112A",
    "dir": "남서",
-   "verify": "집주인확인 2026-08-07",
-   "fee": "관리비 25만",
+   "verify": "집주인확인 2026-08-12",
+   "fee": "관리비 28만",
    "broker": "GTX신화1",
    "room": 4,
    "cond": "",
    "opts": [
     "에어컨6",
     "중문",
-    "식세기",
-    "인덕션"
+    "식세기"
    ],
-   "memo": "방4 에6 인덕션 식세기 중문등 옵션 굿 대중교통 및 상권이용 편리한 동",
-   "url": "https://fin.land.naver.com/articles/2642360082"
+   "memo": "방4 에6 식세기 중문 작은방붙박이장설치 남서향 햇살좋고 전망 좋아요",
+   "url": "https://fin.land.naver.com/articles/2643244136"
   },
   {
    "trade": "매매",
@@ -2429,25 +2367,24 @@
   },
   {
    "trade": "매매",
-   "price": 8.2,
-   "dong": 116,
-   "floor": "7/25",
-   "floorSort": 7,
-   "area": 84.96,
-   "type": "112B",
-   "dir": "남서",
-   "verify": "집주인확인 2026-07-31",
-   "fee": "관리비 20만",
-   "broker": "아이파크 꿀단지",
-   "room": 4,
-   "cond": "",
+   "price": 8.3,
+   "dong": 118,
+   "floor": "19/28",
+   "floorSort": 19,
+   "area": 84.91,
+   "type": "112A",
+   "dir": "남",
+   "verify": "집주인확인 2026-08-13",
+   "fee": "관리비 15만",
+   "broker": "IPARK태양(957-6700)",
+   "room": 3,
+   "cond": "입주협의",
    "opts": [
-    "에어컨4",
-    "중문",
-    "식세기"
+    "에어컨5",
+    "인덕션"
    ],
-   "memo": "꿀단지34B, 방4,에어컨4,중문,식세기",
-   "url": "https://fin.land.naver.com/articles/2641232098"
+   "memo": "방3개.에어컨5대.인덕션.입주협의.좋은동좋은층.추천매물",
+   "url": "https://fin.land.naver.com/articles/2643469084"
   },
   {
    "trade": "매매",
@@ -2472,46 +2409,23 @@
   },
   {
    "trade": "매매",
-   "price": 8.3,
-   "dong": 118,
-   "floor": "고/28",
-   "floorSort": 22,
-   "area": 84.91,
-   "type": "112A",
-   "dir": "동남",
-   "verify": "집주인확인 2026-07-30",
-   "fee": "관리비 28만",
-   "broker": "화수분아이파크(9499-888)",
-   "room": null,
-   "cond": "",
-   "opts": [
-    "에어컨5",
-    "팬트리",
-    "인덕션"
-   ],
-   "memo": "84A.에어컨5.팬트리.인덕션.주인.전망굿.선호동.선호타입",
-   "url": "https://fin.land.naver.com/articles/2641020005"
-  },
-  {
-   "trade": "매매",
    "price": 8.4,
    "dong": 115,
    "floor": "13/25",
    "floorSort": 13,
    "area": 84.96,
    "type": "112B",
-   "dir": "남",
-   "verify": "집주인확인 2026-08-07",
+   "dir": "동남",
+   "verify": "NDOC1 2026-08-12",
    "fee": "관리비 25만",
-   "broker": "GTX신화1",
-   "room": null,
-   "cond": "입주협의",
+   "broker": "아이파크(IPARK)단지내",
+   "room": 3,
+   "cond": "주인거주",
    "opts": [
-    "풀에어컨",
-    "팬트리"
+    "에어컨5"
    ],
-   "memo": "전자계약 가능 전망좋은 라인 팬트리 풀에어컨 입주조율가능해요",
-   "url": "https://fin.land.naver.com/articles/2642355552"
+   "memo": "추천, GTX운정중앙역코앞,방3,에어컨5,이사협의,투자굿,주인거주관리굿",
+   "url": "https://fin.land.naver.com/articles/2643282335"
   },
   {
    "trade": "매매",
@@ -2542,16 +2456,16 @@
    "area": 84.96,
    "type": "112B",
    "dir": "동남",
-   "verify": "집주인확인 2026-08-06",
-   "fee": "관리비 29만",
-   "broker": "행복한IPARK",
+   "verify": "NDOC1 2026-08-11",
+   "fee": "관리비 28만",
+   "broker": "든든IPARK",
    "room": 3,
    "cond": "전세안고",
    "opts": [
-    "팬트리"
+    "판상형"
    ],
-   "memo": "84B 로얄매물. 방3. 팬트리형. 전세안고 조용한전망.",
-   "url": "https://fin.land.naver.com/articles/2642027899"
+   "memo": "판상형. 방3. 상가 및 커뮤 편리동. 옵션다수. 전세안고.",
+   "url": "https://fin.land.naver.com/articles/2643186437"
   },
   {
    "trade": "매매",
@@ -2562,17 +2476,59 @@
    "area": 84.91,
    "type": "112A",
    "dir": "동남",
-   "verify": "NDOC1 2026-08-07",
-   "fee": "관리비 25만",
-   "broker": "아이파크(IPARK)단지내",
-   "room": null,
-   "cond": "주인거주",
+   "verify": "집주인확인 2026-08-07",
+   "fee": "관리비 15만",
+   "broker": "IPARK태양(957-6700)",
+   "room": 3,
+   "cond": "입주협의",
    "opts": [
     "에어컨5",
+    "판상형"
+   ],
+   "memo": "84a 판상형, gtx 최근접동, 방3, 에어컨5, 주인 입주협의",
+   "url": "https://fin.land.naver.com/articles/2642455946"
+  },
+  {
+   "trade": "매매",
+   "price": 8.5,
+   "dong": 117,
+   "floor": "중/28",
+   "floorSort": 12,
+   "area": 84.91,
+   "type": "112A",
+   "dir": "남",
+   "verify": "집주인확인 2026-08-10",
+   "fee": "관리비 29만",
+   "broker": "행복한IPARK",
+   "room": 3,
+   "cond": "",
+   "opts": [
+    "중문",
     "팬트리"
    ],
-   "memo": "추천, 주인거주관리굿, GTX최근접동, 에5대, 투자추천매물, 팬트리",
-   "url": "https://fin.land.naver.com/articles/2642341946"
+   "memo": "행복한집 84A 추천로얄매물 방3개 에어컨 안방붙박이장 중문 2팬트리",
+   "url": "https://fin.land.naver.com/articles/2642688477"
+  },
+  {
+   "trade": "매매",
+   "price": 8.5,
+   "dong": 102,
+   "floor": "고/29",
+   "floorSort": 22,
+   "area": 84.91,
+   "type": "112A",
+   "dir": "동남",
+   "verify": "집주인확인 2026-08-07",
+   "fee": "관리비 25만",
+   "broker": "GTX신화1",
+   "room": 3,
+   "cond": "",
+   "opts": [
+    "풀에어컨",
+    "팬트리"
+   ],
+   "memo": "방3 팬트리있어 수납 빵빵 풀에어컨 전망굿 상권 및 교통이용 편리",
+   "url": "https://fin.land.naver.com/articles/2642336940"
   },
   {
    "trade": "매매",
@@ -2595,27 +2551,6 @@
    ],
    "memo": "풀에어컨 인덕션 중문등 옵션 빵빵 gtx역 완전 가까운동 전자계약가능",
    "url": "https://fin.land.naver.com/articles/2642340897"
-  },
-  {
-   "trade": "매매",
-   "price": 8.5,
-   "dong": 102,
-   "floor": "고/29",
-   "floorSort": 22,
-   "area": 84.91,
-   "type": "112A",
-   "dir": "동남",
-   "verify": "집주인확인 2026-08-07",
-   "fee": "관리비 25만",
-   "broker": "GTX신화1",
-   "room": 3,
-   "cond": "",
-   "opts": [
-    "풀에어컨",
-    "팬트리"
-   ],
-   "memo": "방3 팬트리있어 수납 빵빵 풀에어컨 전망굿 상권 및 교통이용 편리",
-   "url": "https://fin.land.naver.com/articles/2642336940"
   },
   {
    "trade": "매매",
@@ -2658,27 +2593,6 @@
   {
    "trade": "매매",
    "price": 8.5,
-   "dong": 117,
-   "floor": "중/28",
-   "floorSort": 12,
-   "area": 84.91,
-   "type": "112A",
-   "dir": "남서",
-   "verify": "NDOC1 2026-07-30",
-   "fee": "관리비 15만",
-   "broker": "정성어린아이파크",
-   "room": 3,
-   "cond": "주인거주",
-   "opts": [
-    "에어컨3",
-    "중문"
-   ],
-   "memo": "84A, GTX인접동, 방3,에어컨3 ,중문,옵션다수,주인거주상태최고",
-   "url": "https://fin.land.naver.com/articles/2640950512"
-  },
-  {
-   "trade": "매매",
-   "price": 8.5,
    "dong": 119,
    "floor": "고/28",
    "floorSort": 22,
@@ -2716,45 +2630,25 @@
   },
   {
    "trade": "매매",
-   "price": 8.5,
-   "dong": 115,
-   "floor": "고/25",
-   "floorSort": 22,
-   "area": 84.96,
-   "type": "112B",
-   "dir": "동남",
-   "verify": "집주인확인 2026-07-08",
-   "fee": "관리비 15만",
-   "broker": "GTX황금아이파크(944-8585)",
-   "room": 3,
-   "cond": "전세안고",
-   "opts": [
-    "에어컨3",
-    "판상형"
-   ],
-   "memo": "뷰맛집,34판상형,방3,에어컨3.높은전세안고,갭투굿",
-   "url": "https://fin.land.naver.com/articles/2636818504"
-  },
-  {
-   "trade": "매매",
    "price": 9,
    "dong": 105,
    "floor": "저/29",
    "floorSort": 3,
    "area": 84.91,
    "type": "112A",
-   "dir": "남서",
-   "verify": "집주인확인 2026-08-07",
-   "fee": "관리비 25만",
-   "broker": "GTX신화1",
+   "dir": "남",
+   "verify": "집주인확인 2026-08-13",
+   "fee": "관리비 15만",
+   "broker": "IPARK태양(957-6700)",
    "room": 3,
    "cond": "전세안고",
    "opts": [
     "에어컨4",
-    "중문"
+    "중문",
+    "판상형"
    ],
-   "memo": "GTX운정중앙역 초인접동 방3 에어컨4 중문등 옵션 굿 세안고매매",
-   "url": "https://fin.land.naver.com/articles/2642340759"
+   "memo": "84판상형. 방3. 에어컨4. 중문. 세안고",
+   "url": "https://fin.land.naver.com/articles/2643470293"
   },
   {
    "trade": "매매",
@@ -2779,78 +2673,60 @@
   {
    "trade": "전세",
    "price": 3.9,
+   "dong": 101,
+   "floor": "7/29",
+   "floorSort": 7,
+   "area": 84.95,
+   "type": "114C",
+   "dir": "남서",
+   "verify": "집주인확인 2026-08-13",
+   "fee": "관리비 28만",
+   "broker": "든든IPARK",
+   "room": 4,
+   "cond": "",
+   "opts": [],
+   "memo": "교통.마트 편리한동. 방4. 융자남기는조건. 전세권설정가능.",
+   "url": "https://fin.land.naver.com/articles/2643517303"
+  },
+  {
+   "trade": "전세",
+   "price": 3.9,
    "dong": 110,
    "floor": "저/29",
    "floorSort": 3,
    "area": 84.91,
    "type": "112A",
-   "dir": "동남",
-   "verify": "집주인확인 2026-08-06",
-   "fee": "관리비 29만",
-   "broker": "행복한IPARK",
+   "dir": "남",
+   "verify": "집주인확인 2026-08-07",
+   "fee": "관리비 17만",
+   "broker": "대장IPARK",
    "room": 4,
-   "cond": "",
+   "cond": "즉시입주",
    "opts": [
     "에어컨4"
    ],
-   "memo": "에4 방4 단기9개월 gtx이용 편한동 실거주 편리",
-   "url": "https://fin.land.naver.com/articles/2642028181"
+   "memo": "o시스템에어컨4. 방4. 즉시입주가. 8개월단기. 84A",
+   "url": "https://fin.land.naver.com/articles/2642480485"
   },
   {
    "trade": "전세",
    "price": 4,
    "dong": 101,
-   "floor": "저/29",
-   "floorSort": 3,
+   "floor": "8/29",
+   "floorSort": 8,
    "area": 84.95,
    "type": "114C",
    "dir": "동남",
-   "verify": "집주인확인 2026-08-07",
-   "fee": "관리비 28만",
-   "broker": "GTX신화1",
+   "verify": "집주인확인 2026-08-12",
+   "fee": "관리비 20만",
+   "broker": "GTX황금아이파크(944-8585)",
    "room": 4,
    "cond": "",
-   "opts": [],
-   "memo": "84C 방4, 에, 입주10월가능해요. 융무 저렴한 전세 입주하세요",
-   "url": "https://fin.land.naver.com/articles/2642332889"
-  },
-  {
-   "trade": "전세",
-   "price": 4.1,
-   "dong": 115,
-   "floor": "고/25",
-   "floorSort": 22,
-   "area": 84.96,
-   "type": "112B",
-   "dir": "남",
-   "verify": "집주인확인 2026-08-07",
-   "fee": "관리비 28만",
-   "broker": "화수분아이파크(9499-888)",
-   "room": 4,
-   "cond": "",
-   "opts": [],
-   "memo": "84B.착한전세.무융자.9월협의.방4.GTX역 도보10분",
-   "url": "https://fin.land.naver.com/articles/2642322044"
-  },
-  {
-   "trade": "전세",
-   "price": 4.2,
-   "dong": 107,
-   "floor": "17/29",
-   "floorSort": 17,
-   "area": 84.91,
-   "type": "112A",
-   "dir": "동남",
-   "verify": "집주인확인 2026-08-07",
-   "fee": "관리비 28만",
-   "broker": "GTX신화1",
-   "room": 4,
-   "cond": "즉시입주",
    "opts": [
-    "중문"
+    "에어컨3"
    ],
-   "memo": "84A 빠른입주가능 무융자 방4 중문 8월31일확정",
-   "url": "https://fin.land.naver.com/articles/2642332990"
+   "memo": "강추 저렴, 84C, 귀한 무융자, 방4, 에어컨3, 10월 26일 입주",
+   "url": "https://fin.land.naver.com/articles/2643378204"
   },
   {
    "trade": "전세",
@@ -2861,75 +2737,50 @@
    "area": 84.95,
    "type": "114C",
    "dir": "동남",
-   "verify": "집주인확인 2026-08-07",
+   "verify": "집주인확인 2026-08-13",
    "fee": "관리비 28만",
    "broker": "GTX신화1",
    "room": null,
    "cond": "",
    "opts": [],
    "memo": "84C 11월초부터 협의해야함. 에어컨 있어요. GTX가까운동",
-   "url": "https://fin.land.naver.com/articles/2642332257"
+   "url": "https://fin.land.naver.com/articles/2643467038"
   },
   {
    "trade": "전세",
    "price": 4.2,
-   "dong": 107,
-   "floor": "고/29",
+   "dong": 115,
+   "floor": "고/25",
    "floorSort": 22,
-   "area": 84.91,
-   "type": "112A",
-   "dir": "동남",
-   "verify": "NDOC1 2026-07-10",
-   "fee": "관리비 15만",
-   "broker": "IPARK태양(957-6700)",
-   "room": 3,
-   "cond": "입주협의",
-   "opts": [
-    "에어컨4"
-   ],
-   "memo": "84A무융자 방3 에어컨4 GTX운정역 근접동 9월부터입주협의",
-   "url": "https://fin.land.naver.com/articles/2637242231"
-  },
-  {
-   "trade": "전세",
-   "price": 4.3,
-   "dong": 111,
-   "floor": "중/29",
-   "floorSort": 12,
-   "area": 84.95,
-   "type": "114C",
-   "dir": "동남",
-   "verify": "집주인확인 2026-07-17",
-   "fee": "관리비 25만",
-   "broker": "운정대지IPARK",
-   "room": 3,
-   "cond": "입주협의",
-   "opts": [
-    "에어컨3",
-    "팬트리"
-   ],
-   "memo": "O 강추 84c 방3 에어컨3 펜트리 집상태굿 10월 입주 가능",
-   "url": "https://fin.land.naver.com/articles/2638502962"
+   "area": 84.96,
+   "type": "112B",
+   "dir": "남",
+   "verify": "집주인확인 2026-08-10",
+   "fee": "관리비 28만",
+   "broker": "화수분아이파크(9499-888)",
+   "room": 4,
+   "cond": "즉시입주",
+   "opts": [],
+   "memo": "84B.빠른입주도 가능.무융자.2in1에어컨.방4.GTX역 도보10분",
+   "url": "https://fin.land.naver.com/articles/2642952474"
   },
   {
    "trade": "전세",
    "price": 4.5,
    "dong": 106,
-   "floor": "저/29",
+   "floor": "3/29",
    "floorSort": 3,
    "area": 84.95,
    "type": "114C",
    "dir": "동남",
-   "verify": "집주인확인 2026-08-07",
+   "verify": "NDOC1 2026-08-12",
    "fee": "관리비 25만",
-   "broker": "운정대지IPARK",
-   "room": 4,
-   "cond": "",
-   "opts": [
-    "에어컨4"
-   ],
-   "memo": "84C타워형 융자무 방4 GTX 도보권 에어컨4 도배새로 10월 금액절충",
-   "url": "https://fin.land.naver.com/articles/2642352897"
+   "broker": "아이파크(IPARK)단지내",
+   "room": null,
+   "cond": "입주협의",
+   "opts": [],
+   "memo": "GTX코앞, 무융자, 에어컨 새로4대예정, 도배, 예쁜정원뷰, 입주협의",
+   "url": "https://fin.land.naver.com/articles/2643309910"
   }
  ]
 }
