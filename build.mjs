@@ -1,7 +1,6 @@
 // 운정신도시아이파크 34평 매물 페이지 빌더
 // 사용법: node build.mjs   → index.html 생성
-import { Client } from "@modelcontextprotocol/sdk/client/index.js";
-import { StdioClientTransport } from "@modelcontextprotocol/sdk/client/stdio.js";
+// MCP SDK는 실제 수집할 때만 불러온다(오프라인 재생성은 SDK 없이 동작하도록)
 import fs from "fs";
 import os from "os";
 import path from "path";
@@ -16,10 +15,12 @@ const CANDIDATES = [
   path.join(os.homedir(), "mcp-realestate", "index.js"),
 ].filter(Boolean);
 const MCP_SERVER = CANDIDATES.find((p) => fs.existsSync(p));
+const OFFLINE = process.argv.includes("--offline");
 if (MCP_SERVER) console.log("MCP 서버:", MCP_SERVER);
-if (!MCP_SERVER) {
+if (!MCP_SERVER && !OFFLINE) {
   console.error("mcp-realestate 서버를 찾지 못했습니다. 찾아본 경로:\n  " + CANDIDATES.join("\n  ") +
-    "\n\n해결: MCP_REALESTATE=/경로/index.js node build.mjs");
+    "\n\n해결: MCP_REALESTATE=/경로/index.js node build.mjs" +
+    "\n또는 수집 없이 캐시로 페이지만 다시 만들기: node build.mjs --offline");
   process.exit(1);
 }
 const COMPLEX = { no: "119854", name: "운정신도시아이파크", station: "GTX-A 운정중앙역", distance: 561 };
@@ -29,9 +30,14 @@ const DIR = { ES: "동남", WS: "남서", SS: "남", SE: "남동", EE: "동", WW
 function parse(text, trade) {
   const out = [];
   const seen = new Set();
+  const cleanB = (s) => String(s).replace(/공인중개사사무소/g, "").replace(/부동산$/g, "").replace(/부동산/g, "").trim();
   for (const line of text.split("\n")) {
     if (!line.includes("fin.land.naver.com/articles/")) continue;
-    const parts = line.split(" | ").map((s) => s.trim());
+    // 공동중개(같은 집 보유 중개사 목록)를 먼저 떼어낸다 — 나머지 파싱에 안 섞이도록
+    let work = line, brokers = [];
+    const bm = work.match(/ \| 보유중개사» ([^|]+)/);
+    if (bm) { brokers = bm[1].trim().split(" ; ").map((s) => cleanB(s)).filter(Boolean); work = work.replace(bm[0], ""); }
+    const parts = work.split(" | ").map((s) => s.trim());
     const url = parts[parts.length - 1];
     const id = url.split("/").pop();
     if (seen.has(id)) continue;
@@ -70,7 +76,8 @@ function parse(text, trade) {
       area: am ? +am[1] : 0, type: am ? am[2] : "",
       dir: DIR[parts[3]] || parts[3],
       verify: parts[4] || "", fee: parts[5] || "",
-      broker: (parts[6] || "").replace(/공인중개사사무소/g, "").replace(/부동산/g, "").trim(),
+      broker: cleanB(parts[6] || ""),
+      brokers,
       room: roomM ? +roomM[1] : null,
       cond, opts, memo, url,
     });
@@ -82,7 +89,7 @@ const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replac
 
 function render(items, counts, stamp) {
   // KPI·분포는 클라이언트에서 현재 필터 기준으로 다시 계산한다 (표와 숫자가 어긋나지 않도록)
-  const rows = items.map((i) => `{p:${i.price},t:"${i.trade}",d:${i.dong},f:"${esc(i.floor)}",fs:${i.floorSort},a:${i.area},y:"${i.type}",dir:"${i.dir}",v:"${esc(i.verify)}",fee:"${esc(i.fee)}",b:"${esc(i.broker)}",r:${i.room ?? "null"},c:"${i.cond}",o:${JSON.stringify(i.opts)},m:"${esc(i.memo).replace(/"/g, "&quot;")}",u:"${i.url}"}`).join(",\n");
+  const rows = items.map((i) => `{p:${i.price},t:"${i.trade}",d:${i.dong},f:"${esc(i.floor)}",fs:${i.floorSort},a:${i.area},y:"${i.type}",dir:"${i.dir}",v:"${esc(i.verify)}",fee:"${esc(i.fee)}",b:"${esc(i.broker)}",br:[${(i.brokers || []).map((b) => `"${esc(b).replace(/"/g, "&quot;")}"`).join(",")}],r:${i.room ?? "null"},c:"${i.cond}",o:${JSON.stringify(i.opts)},m:"${esc(i.memo).replace(/"/g, "&quot;")}",u:"${i.url}"}`).join(",\n");
 
   return `<!doctype html>
 <html lang="ko" data-theme="">
@@ -150,6 +157,28 @@ function render(items, counts, stamp) {
   select,input[type=search]{background:var(--surface-1);color:var(--ink);border:1px solid var(--ring);
     border-radius:8px;padding:8px 10px;font-size:13px;font-family:inherit}
   input[type=search]{flex:1;min-width:150px}
+  .ms{position:relative}
+  .ms-btn{background:var(--surface-1);color:var(--ink);border:1px solid var(--ring);border-radius:8px;
+    padding:8px 10px;font-size:13px;font-family:inherit;cursor:pointer;white-space:nowrap}
+  .ms-btn:hover{border-color:var(--series-1)}
+  .ms-btn[aria-expanded=true]{border-color:var(--series-1)}
+  .ms-panel{position:absolute;z-index:10;top:calc(100% + 4px);left:0;background:var(--surface-1);
+    border:1px solid var(--ring);border-radius:10px;padding:6px;box-shadow:0 8px 24px rgba(0,0,0,.18);
+    display:grid;grid-template-columns:repeat(2,minmax(96px,1fr));gap:1px;
+    min-width:210px;max-height:300px;overflow:auto}
+  .ms-panel[hidden]{display:none}
+  .ms-opt{display:flex;align-items:center;gap:7px;padding:7px 9px;border-radius:7px;
+    font-size:13px;color:var(--ink-2);cursor:pointer;user-select:none}
+  .ms-opt:hover{background:var(--chip)}
+  .ms-opt input{accent-color:var(--series-1);margin:0;width:15px;height:15px}
+  .ms-opt .cnt{margin-left:auto;color:var(--muted);font-size:12px;font-variant-numeric:tabular-nums}
+  .ms-opt.ms-all{grid-column:1/-1;border-bottom:1px solid var(--grid);margin-bottom:3px;
+    padding-bottom:8px;font-weight:600;color:var(--ink)}
+  .ms-panel .linkbtn{grid-column:1/-1;text-align:left;padding:6px 9px}
+  .cobadge{display:inline-block;background:var(--series-1);color:#fff;border-radius:5px;
+    padding:1px 6px;font-size:11px;font-weight:600;margin-right:5px;white-space:nowrap}
+  .brokers{color:var(--ink-2);font-size:12.5px;line-height:1.5}
+  .brokers .rep{color:var(--ink);font-weight:600}
   .chkrow{border:0;padding:0;margin:12px 0 0;display:flex;flex-wrap:wrap;gap:7px;align-items:center}
   .chkrow legend{float:left;font-size:12px;color:var(--muted);padding:0 8px 0 2px;line-height:34px}
   .chkrow #f-cond{display:contents}
@@ -215,19 +244,7 @@ function render(items, counts, stamp) {
   <div class="chartbox"><div id="chart"></div></div>
 </div>
 
-<div class="filters">
-  <select id="f-trade"><option value="">거래 전체</option><option value="매매" selected>매매</option><option value="전세">전세</option></select>
-  <select id="f-type"><option value="">타입 전체</option></select>
-  <select id="f-dong"><option value="">동 전체</option></select>
-  <select id="f-dir"><option value="">향 전체</option></select>
-  <select id="f-room"><option value="">방 전체</option><option value="3">방3</option><option value="4">방4</option></select>
-  <input type="search" id="f-q" placeholder="중개사·설명 검색">
-</div>
-<fieldset class="chkrow">
-  <legend>입주조건</legend>
-  <div id="f-cond"></div>
-  <button type="button" class="linkbtn" id="cond-all">전체 선택</button>
-</fieldset>
+<div class="filters" id="filters"></div>
 
 <p class="count" id="count"></p>
 <table>
@@ -256,39 +273,81 @@ const $=s=>document.querySelector(s);
 const fmt=n=>(Math.round(n*100)/100).toFixed(2).replace(/\\.?0+$/,'')+'억';
 const uniq=(k,f)=>[...new Set(DATA.filter(f||(()=>1)).map(x=>x[k]).filter(v=>v!==''&&v!=null))];
 
-const AGO=['전세안고','월세안고'];   // 기본으로 체크 해제되는 조건
-for(const [sel,key,lab] of [['#f-type','y',v=>v],['#f-dong','d',v=>v+'동'],['#f-dir','dir',v=>v+'향']]){
-  uniq(key).sort((a,b)=>typeof a==='number'?a-b:String(a).localeCompare(b))
-    .forEach(v=>$(sel).insertAdjacentHTML('beforeend','<option value="'+v+'">'+lab(v)+'</option>'));
+const AGO=['전세안고','월세안고'];   // 입주조건 중 기본 해제
+const NULLK=' none';            // 값 없음(방 미기재 등) 인코딩
+const enc=v=>(v===null||v===undefined)?NULLK:String(v);
+const esA=s=>String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;');
+
+// 모든 필터를 '드롭다운 + 체크박스(다중선택)'로 통일. 각 맨 위에 전체 선택.
+const FILTERS=[
+  {id:'trade',key:'t',label:'거래',off:['전세']},
+  {id:'type', key:'y',label:'타입'},
+  {id:'dong', key:'d',label:'동', fmt:v=>v+'동'},
+  {id:'dir',  key:'dir',label:'향', fmt:v=>v+'향'},
+  {id:'room', key:'r',label:'방', fmt:v=>v==null?'방 미기재':'방'+v, blank:true},
+  {id:'cond', key:'c',label:'입주조건', fmt:v=>v||'미기재', blank:true, off:AGO},
+];
+const MS={};
+function optsOf(f){
+  let vals=[...new Set(DATA.map(x=>x[f.key]))];
+  if(!f.blank) vals=vals.filter(v=>v!==''&&v!=null&&v!==0);
+  return vals.sort((a,b)=>{
+    if(f.id==='cond') return (AGO.includes(a)-AGO.includes(b))||String(a).localeCompare(String(b),'ko');
+    if(a==null) return 1; if(b==null) return -1;
+    return (typeof a==='number'&&typeof b==='number')?a-b:String(a).localeCompare(String(b),'ko');
+  });
+}
+FILTERS.forEach(f=>{
+  const opts=optsOf(f), off=new Set(f.off||[]);
+  const lab=v=>f.fmt?f.fmt(v):(v===''||v==null?'미기재':String(v));
+  const labMap=new Map(opts.map(v=>[enc(v),lab(v)]));
+  const body='<label class="ms-opt ms-all"><input type="checkbox" data-all> 전체 선택</label>'+
+    opts.map(v=>'<label class="ms-opt"><input type="checkbox" value="'+esA(enc(v))+'"'+
+      (off.has(v)?'':' checked')+'> '+esA(lab(v))+' <span class="cnt"></span></label>').join('');
+  const wrap=document.createElement('div');
+  wrap.className='ms'; wrap.dataset.f=f.id;
+  wrap.innerHTML='<button type="button" class="ms-btn" aria-expanded="false" aria-haspopup="true"></button>'+
+    '<div class="ms-panel" role="group" aria-label="'+esA(f.label)+' 선택" hidden>'+body+'</div>';
+  $('#filters').appendChild(wrap);
+  MS[f.id]={f,opts,labMap,btn:wrap.querySelector('.ms-btn'),panel:wrap.querySelector('.ms-panel')};
+});
+$('#filters').insertAdjacentHTML('beforeend','<input type="search" id="f-q" placeholder="중개사·설명 검색">');
+
+const boxesOf=id=>[...MS[id].panel.querySelectorAll('.ms-opt input[value]')];
+const onSet=id=>new Set(boxesOf(id).filter(b=>b.checked).map(b=>b.value));
+function tradeLabel(){ const on=boxesOf('trade').filter(b=>b.checked); return on.length===1?on[0].value:'전체'; }
+function updateBtn(f){
+  const M=MS[f.id], bx=boxesOf(f.id), on=bx.filter(b=>b.checked);
+  let t;
+  if(on.length===bx.length) t=f.label+' 전체';
+  else if(on.length===0) t=f.label+' 없음';
+  else if(on.length<=2) t=on.map(b=>M.labMap.get(b.value)).join('·');
+  else t=f.label+' '+on.length+'개';
+  M.btn.textContent=t+' ▾';
+  const allBox=M.panel.querySelector('input[data-all]');
+  allBox.checked=on.length===bx.length;
+  allBox.indeterminate=on.length>0&&on.length<bx.length;
 }
 
-// 입주조건 체크박스 — 안고 2종은 기본 해제
-const CONDS=[...new Set(DATA.map(x=>x.c))]
-  .sort((a,b)=>(AGO.includes(a)-AGO.includes(b))||String(a).localeCompare(b,'ko'));
-const condLabel=c=>c||'미기재';
-$('#f-cond').innerHTML=CONDS.map((c,i)=>
-  '<label class="chk"><input type="checkbox" value="'+c+'" data-ci="'+i+'"'+
-  (AGO.includes(c)?'':' checked')+'> '+condLabel(c)+' <span class="cnt" data-cnt="'+i+'"></span></label>'
-).join('');
-const condBoxes=()=>[...document.querySelectorAll('#f-cond input')];
-const condOn=()=>condBoxes().filter(b=>b.checked).map(b=>b.value);
-
 let sortKey='p', sortAsc=true;
-// skip: 이 조건 하나만 빼고 필터 (체크박스 옆 건수 계산용)
+// skip: 이 필터 하나만 빼고 계산 (체크박스 옆 건수용)
 function current(skip){
-  const t=$('#f-trade').value,ty=$('#f-type').value,dg=$('#f-dong').value,
-        dr=$('#f-dir').value,rm=$('#f-room').value,
-        q=$('#f-q').value.trim().toLowerCase();
-  const on=condOn();
+  const sels={};
+  FILTERS.forEach(f=>{ if(f.id!==skip) sels[f.id]=onSet(f.id); });
+  const q=$('#f-q').value.trim().toLowerCase();
   return DATA.filter(x=>
-    (!t||x.t===t)&&(!ty||x.y===ty)&&(!dg||x.d==dg)&&(!dr||x.dir===dr)&&
-    (!rm||x.r==rm)&&(skip==='cond'||on.includes(x.c))&&
-    (!q||(x.b+' '+x.m).toLowerCase().includes(q))
+    FILTERS.every(f=> f.id===skip || sels[f.id].has(enc(x[f.key])))
+    && (!q||(x.b+' '+x.br.join(' ')+' '+x.m).toLowerCase().includes(q))
   ).sort((a,b)=>{
     const A=a[sortKey],B=b[sortKey];
     const c=typeof A==='number'&&typeof B==='number'?A-B:String(A).localeCompare(String(B),'ko');
     return sortAsc?c:-c;
   });
+}
+function brokerCell(x){
+  if(x.br&&x.br.length>1)
+    return '<span class="cobadge">공동 '+x.br.length+'</span><span class="brokers"><span class="rep">'+x.br[0]+'</span> · '+x.br.slice(1).join(' · ')+'</span>';
+  return x.b||'—';
 }
 function chips(x){
   let h='';
@@ -298,8 +357,7 @@ function chips(x){
 const BW=44,GAP=6,CH=150,PADB=26;
 function drawStats(rows){
   const ps=rows.map(x=>x.p).sort((a,b)=>a-b);
-  const t=$('#f-trade').value;
-  $('#k0').textContent=(t||'전체')+' 매물';
+  $('#k0').textContent=tradeLabel()+' 매물';
   if(!ps.length){
     $('#v0').textContent='0건';
     ['1','2','3'].forEach(i=>{$('#v'+i).textContent='–';$('#n'+i).textContent='';});
@@ -344,28 +402,29 @@ function draw(){
   const rows=current();
   drawStats(rows);
 
-  // 체크박스 옆 건수 — 조건 필터만 뺀 결과 기준
-  const pool=current('cond');
-  CONDS.forEach((c,i)=>{
-    const el=document.querySelector('[data-cnt="'+i+'"]');
-    if(el)el.textContent=pool.filter(x=>x.c===c).length;
+  // 각 드롭다운의 체크박스 옆 건수 + 버튼 라벨 갱신 (그 필터만 빼고 계산)
+  FILTERS.forEach(f=>{
+    const pool=current(f.id);
+    boxesOf(f.id).forEach(b=>{
+      const cnt=b.parentNode.querySelector('.cnt');
+      if(cnt) cnt.textContent=pool.filter(x=>enc(x[f.key])===b.value).length;
+    });
+    updateBtn(f);
   });
-  const off=CONDS.filter(c=>!condOn().includes(c));
-  const hidden=pool.length-rows.length;
-  $('#count').textContent=rows.length+'건 표시 중 (전체 '+DATA.length+'건)'+
-    (off.length&&hidden?' · '+off.map(condLabel).join('·')+' '+hidden+'건 숨김':'');
+  $('#count').textContent=rows.length+'건 표시 중 (전체 '+DATA.length+'건)';
   $('#tb-body').innerHTML=rows.map(x=>
     '<tr><td class="price"><a href="'+x.u+'" target="_blank" rel="noopener">'+fmt(x.p)+'</a></td>'+
     '<td class="num">'+x.d+'동</td><td class="num">'+x.f+'</td><td>'+x.y+'</td>'+
     '<td>'+x.dir+'</td><td class="num">'+(x.r?'방'+x.r:'—')+'</td>'+
     '<td>'+(x.c?'<span class="chip">'+x.c+'</span>':'—')+'</td>'+
     '<td>'+(x.o.length?x.o.map(o=>'<span class="chip">'+o+'</span>').join(''):'—')+'</td>'+
-    '<td>'+x.b+'</td><td class="memo">'+x.m+'</td></tr>').join('');
+    '<td>'+brokerCell(x)+'</td><td class="memo">'+x.m+'</td></tr>').join('');
   $('#mob').innerHTML=rows.map(x=>
     '<div class="item"><div class="top"><span class="price"><a href="'+x.u+'" target="_blank" rel="noopener">'+fmt(x.p)+'</a></span>'+
     '<span class="num">'+x.d+'동 '+x.f+'층</span></div>'+
-    '<div class="meta">'+x.y+' · '+x.dir+'향'+(x.r?' · 방'+x.r:'')+' · '+x.b+'</div>'+
+    '<div class="meta">'+x.y+' · '+x.dir+'향'+(x.r?' · 방'+x.r:'')+'</div>'+
     '<div>'+chips(x)+x.o.map(o=>'<span class="chip">'+o+'</span>').join('')+'</div>'+
+    '<div class="brokers">'+(x.br&&x.br.length>1?'<span class="cobadge">공동 '+x.br.length+'</span><span class="rep">'+x.br[0]+'</span> · '+x.br.slice(1).join(' · '):x.b)+'</div>'+
     (x.m?'<div class="memo">'+x.m+'</div>':'')+'</div>').join('');
 }
 document.querySelectorAll('th[data-s]').forEach(th=>th.addEventListener('click',()=>{
@@ -375,14 +434,23 @@ document.querySelectorAll('th[data-s]').forEach(th=>th.addEventListener('click',
   th.insertAdjacentHTML('beforeend',' <span class="ar">'+(sortAsc?'▲':'▼')+'</span>');
   draw();
 }));
-document.querySelectorAll('.filters select,.filters input').forEach(e=>e.addEventListener('input',draw));
-$('#f-cond').addEventListener('change',draw);
-$('#cond-all').addEventListener('click',()=>{
-  const allOn=condBoxes().every(b=>b.checked);
-  condBoxes().forEach(b=>{b.checked=allOn?!AGO.includes(b.value):true;});
-  $('#cond-all').textContent=allOn?'전체 선택':'안고 빼기';
+// 필터 이벤트 (드롭다운 다중선택 공통)
+$('#filters').addEventListener('change',e=>{
+  const inp=e.target; if(inp.tagName!=='INPUT'||inp.type!=='checkbox') return;
+  const ms=inp.closest('.ms'); if(!ms) return;
+  if(inp.dataset.all!==undefined) boxesOf(ms.dataset.f).forEach(b=>b.checked=inp.checked); // 전체 선택
   draw();
 });
+$('#filters').addEventListener('input',e=>{ if(e.target.id==='f-q') draw(); });
+$('#filters').addEventListener('click',e=>{
+  const btn=e.target.closest('.ms-btn'); if(!btn) return;
+  e.stopPropagation();
+  const panel=btn.nextElementSibling, open=panel.hidden;
+  closeAllMenus(); panel.hidden=!open; btn.setAttribute('aria-expanded',open?'true':'false');
+});
+function closeAllMenus(){ document.querySelectorAll('#filters .ms-panel').forEach(p=>{p.hidden=true;p.previousElementSibling.setAttribute('aria-expanded','false');}); }
+document.addEventListener('click',e=>{ if(!e.target.closest('.ms')) closeAllMenus(); });
+document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeAllMenus(); });
 
 const tip=$('#tip');
 function showTip(g,ev){
@@ -415,7 +483,17 @@ draw();
 </html>`;
 }
 
-// ── main ──
+// 오프라인 재생성: 수집 없이 data.json 캐시로 index.html만 다시 만든다
+if (OFFLINE) {
+  const cached = JSON.parse(fs.readFileSync(path.join(__dirname, "data.json"), "utf8"));
+  fs.writeFileSync(path.join(__dirname, "index.html"), render(cached.items, cached.counts, cached.stamp));
+  console.log(`✓ index.html 재생성(오프라인 캐시) — ${cached.items.length}건 (${cached.stamp})`);
+  process.exit(0);
+}
+
+// ── main ── (여기서부터는 수집 서버가 필요하므로 SDK를 동적으로 불러온다)
+const { Client } = await import("@modelcontextprotocol/sdk/client/index.js");
+const { StdioClientTransport } = await import("@modelcontextprotocol/sdk/client/stdio.js");
 const c = new Client({ name: "build", version: "1" }, { capabilities: {} });
 await c.connect(new StdioClientTransport({ command: "node", args: [MCP_SERVER] }));
 
