@@ -87,10 +87,15 @@
     padding:1px 6px;font-size:11px;font-weight:600;margin-right:5px;white-space:nowrap}
   .brokers{color:var(--ink-2);font-size:12.5px;line-height:1.5}
   .brokers .rep{color:var(--ink);font-weight:600}
-  .star{background:none;border:0;cursor:pointer;padding:2px 3px;color:var(--axis);line-height:0;vertical-align:middle}
-  .star svg{display:block}
+  .star{background:none;border:0;cursor:pointer;padding:0 3px;font-size:21px;line-height:1;
+    color:var(--axis);font-family:inherit;vertical-align:middle}
   .star:hover{color:#f0b400}
-  .starcol{width:48px;cursor:pointer}
+  .rankbadge{border:0;cursor:pointer;width:25px;height:25px;border-radius:50%;color:#fff;
+    font-size:13px;font-weight:800;font-family:inherit;font-variant-numeric:tabular-nums;
+    display:inline-flex;align-items:center;justify-content:center;vertical-align:middle;
+    box-shadow:0 1px 3px rgba(0,0,0,.22)}
+  .rankbadge:hover{filter:brightness(1.08)}
+  .starcol{width:52px;cursor:pointer}
   th.starcol{font-size:11px;color:var(--muted);text-align:center}
   td.starcell{padding:6px 0 6px 6px;text-align:center;white-space:nowrap}
   .grip{display:none;color:var(--muted);cursor:grab;font-size:13px;margin-right:1px;vertical-align:middle}
@@ -344,15 +349,12 @@ let favOnly=false;
 const rankOf=x=>favs.indexOf(fid(x));       // 0-based, 없으면 -1
 const isFav=x=>rankOf(x)>=0;
 const saveFav=()=>localStorage.setItem('unjeong-fav',JSON.stringify(favs));
-const STAR="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z";
+// 관심 없음 = 빈 별, 관심 있음 = 순위 번호 배지(1·2·3위 금·은·동)
 function starBtn(x){
   const id=fid(x), i=favs.indexOf(id);
-  if(i<0) return '<button class="star" data-id="'+id+'" title="즐겨찾기 추가" aria-label="즐겨찾기 추가">'+
-    '<svg viewBox="0 0 24 24" width="22" height="22"><path d="'+STAR+'" fill="none" stroke="currentColor" stroke-width="1.7"/></svg></button>';
-  const r=i+1, col=['#f0b400','#aab1b8','#cd7f32'][i]||'var(--series-1)', fs=r<10?11:8.5;
-  return '<button class="star on" data-id="'+id+'" title="'+r+'순위 · 클릭하면 해제" aria-label="'+r+'순위">'+
-    '<svg viewBox="0 0 24 24" width="22" height="22"><path d="'+STAR+'" fill="'+col+'"/>'+
-    '<text x="12" y="15.2" text-anchor="middle" font-size="'+fs+'" font-weight="800" fill="#fff">'+r+'</text></svg></button>';
+  if(i<0) return '<button class="star" data-id="'+id+'" title="즐겨찾기 추가" aria-label="즐겨찾기 추가">☆</button>';
+  const r=i+1, col=['#f0b400','#9aa0a6','#cd7f32'][i]||'var(--series-1)';
+  return '<button class="rankbadge" data-id="'+id+'" title="'+r+'순위 · 클릭하면 해제" aria-label="'+r+'순위" style="background:'+col+'">'+r+'</button>';
 }
 
 const AGO=['전세안고','월세안고'];   // 입주조건 중 기본 해제
@@ -546,9 +548,9 @@ function closeAllMenus(){ document.querySelectorAll('#filters .ms-panel').forEac
 document.addEventListener('click',e=>{ if(!e.target.closest('.ms')) closeAllMenus(); });
 document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeAllMenus(); });
 
-// 별 클릭(표·모바일 공통) — 있으면 해제, 없으면 맨 끝 순위로 추가
+// 별/순위배지 클릭(표·모바일 공통) — 있으면 해제, 없으면 맨 끝 순위로 추가
 document.addEventListener('click',e=>{
-  const s=e.target.closest('.star'); if(!s) return;
+  const s=e.target.closest('.star,.rankbadge'); if(!s) return;
   const id=s.dataset.id, i=favs.indexOf(id);
   if(i>=0) favs.splice(i,1); else favs.push(id);
   saveFav(); draw();
