@@ -205,6 +205,12 @@ function render(items, counts, stamp) {
     border-radius:8px;padding:8px 12px;font-size:13px;cursor:pointer;font-family:inherit;white-space:nowrap}
   .favbtn:hover{border-color:#f0b400}
   .favbtn.on{border-color:#f0b400;color:var(--ink);background:rgba(240,180,0,.10)}
+  #share-box{margin:0 0 12px}
+  .sharecard{background:var(--surface-1);border:1px solid var(--ring);border-radius:10px;padding:12px 14px;max-width:540px}
+  .sharemsg{font-size:13px;color:var(--ink-2);margin-bottom:8px;line-height:1.5}
+  #share-link{width:100%;font-size:12.5px;padding:9px 10px;border:1px solid var(--ring);
+    border-radius:8px;background:var(--plane);color:var(--ink);font-family:inherit}
+  .sharerow{display:flex;gap:10px;margin-top:9px;align-items:center}
   .chkrow{border:0;padding:0;margin:12px 0 0;display:flex;flex-wrap:wrap;gap:7px;align-items:center}
   .chkrow legend{float:left;font-size:12px;color:var(--muted);padding:0 8px 0 2px;line-height:34px}
   .chkrow #f-cond{display:contents}
@@ -274,8 +280,10 @@ function render(items, counts, stamp) {
 
 <div class="listtop">
   <button type="button" class="favbtn" id="fav-only" aria-pressed="false">☆ 즐겨찾기만</button>
+  <button type="button" class="favbtn" id="fav-share">🔗 순위 공유</button>
   <p class="count" id="count"></p>
 </div>
+<div id="share-box" hidden></div>
 <table>
   <thead><tr>
     <th class="starcol" data-s="rank" title="순위순 정렬">순위</th>
@@ -312,6 +320,17 @@ let favOnly=false;
 const rankOf=x=>favs.indexOf(fid(x));       // 0-based, 없으면 -1
 const isFav=x=>rankOf(x)>=0;
 const saveFav=()=>localStorage.setItem('unjeong-fav',JSON.stringify(favs));
+// 공유 링크(#fav=아이디.아이디...)로 들어오면 그 순위를 불러온다
+{
+  const m=(location.hash||'').match(/fav=([\\d.]+)/);
+  if(m){
+    favs=m[1].split('.').filter(Boolean);
+    try{ saveFav(); }catch(e){}
+    try{ history.replaceState(null,'',location.pathname+location.search); }catch(e){ location.hash=''; }
+  }
+}
+const SHARE_BASE='https://yire99-svg.github.io/unjeong-ipark/';
+const shareLink=()=>(location.protocol.indexOf('http')===0?location.href.split('#')[0]:SHARE_BASE)+'#fav='+favs.join('.');
 // 관심 없음 = 빈 별, 관심 있음 = 순위 번호 배지(1·2·3위 금·은·동)
 function starBtn(x){
   const id=fid(x), i=favs.indexOf(id);
@@ -523,6 +542,29 @@ $('#fav-only').addEventListener('click',()=>{
   favOnly=!favOnly;
   if(favOnly){ sortKey='rank'; sortAsc=true; document.querySelectorAll('th .ar').forEach(a=>a.remove()); }
   draw();
+});
+// 순위 공유 — 현재 순위를 링크로 만들어 복사(휴대폰 등 다른 기기로 보내기)
+async function copyText(t){
+  try{ await navigator.clipboard.writeText(t); return true; }catch(e){}
+  const ta=document.createElement('textarea'); ta.value=t;
+  ta.style.position='fixed'; ta.style.top='-999px'; document.body.appendChild(ta); ta.focus(); ta.select();
+  let ok=false; try{ ok=document.execCommand('copy'); }catch(e){}
+  document.body.removeChild(ta); return ok;
+}
+$('#fav-share').addEventListener('click',async ()=>{
+  if(!favs.length){ alert('먼저 별을 눌러 관심 매물을 담아주세요.'); return; }
+  const link=shareLink(), ok=await copyText(link), box=$('#share-box');
+  box.hidden=false;
+  box.innerHTML='<div class="sharecard"><div class="sharemsg">'+
+    (ok?'✅ 링크가 복사됐어요. 카톡·문자에 붙여넣어 휴대폰으로 보내세요. 그 링크로 열면 이 순위가 그대로 나옵니다.'
+       :'아래 링크를 길게 눌러 복사해서 휴대폰으로 보내세요. 그 링크로 열면 이 순위가 그대로 나옵니다.')+
+    ' (순위 '+favs.length+'개)</div>'+
+    '<input id="share-link" readonly value="'+link.replace(/"/g,'&quot;')+'">'+
+    '<div class="sharerow"><button type="button" class="favbtn" id="share-copy">복사</button>'+
+    '<button type="button" class="linkbtn" id="share-close">닫기</button></div></div>';
+  const inp=$('#share-link'); inp.focus(); inp.select();
+  $('#share-copy').addEventListener('click',async ()=>{ await copyText(link); inp.select(); });
+  $('#share-close').addEventListener('click',()=>{ box.hidden=true; });
 });
 
 // 순위 드래그 재배치 (즐겨찾기만 보기에서만) — 배열 순서를 바꿔 순위 갱신
