@@ -394,7 +394,10 @@ function startSync(){
       let data=null; try{ data=JSON.parse(e.data).data; }catch(err){}
       if(!sawFirstRemote){
         sawFirstRemote=true;
-        if(hadHashImport){ syncPush(); return; }  // 방금 공유 링크로 불러온 값을 다른 기기에도 반영
+        // 방금 공유 링크로 불러왔거나, 저장소는 비어있는데 이 기기엔 이미 즐겨찾기가 있으면
+        // 지우지 말고 이 기기 값을 저장소로 올린다 (빈 저장소가 기존 즐겨찾기를 덮어쓰는 사고 방지)
+        const remoteEmpty=!Array.isArray(data)||data.length===0;
+        if(hadHashImport || (remoteEmpty && favs.length>0)){ syncPush(); return; }
       }
       applyRemote(data);
     });
