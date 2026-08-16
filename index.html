@@ -181,7 +181,7 @@
 <div class="filters" id="filters"></div>
 
 <div class="listtop">
-  <button type="button" class="favbtn" id="fav-only" aria-pressed="false">☆ 즐겨찾기만</button>
+  <button type="button" class="favbtn" id="fav-only" aria-pressed="false">☆ 즐겨찾기</button>
   <span id="sync-status"><span class="syncdot" id="sync-dot"></span><span id="sync-label">동기화 확인 중…</span></span>
   <p class="count" id="count"></p>
 </div>
@@ -348,7 +348,9 @@ const uniq=(k,f)=>[...new Set(DATA.filter(f||(()=>1)).map(x=>x[k]).filter(v=>v!=
 
 // 즐겨찾기·순위 — 매물 고유번호(네이버 article 번호)의 '순서 있는' 목록으로 저장
 // 배열 순서 = 순위(맨 앞이 1순위). 별을 누르면 맨 끝 순위로 추가된다.
-const fid=x=>String(x.u).split('/').pop();
+// 매물 고유번호는 데이터를 다시 받을 때마다 대표 중개사가 바뀌며 함께 바뀐다(같은 집인데 번호만 달라짐).
+// 그래서 즐겨찾기는 번호 대신 '집 자체'를 가리키는 거래·동·층·타입 조합으로 식별한다.
+const fid=x=>x.t+'-'+x.d+'-'+x.f+'-'+x.y;
 let favs; try{favs=JSON.parse(localStorage.getItem('unjeong-fav')||'[]');}catch(e){favs=[];}
 if(!Array.isArray(favs)) favs=[...favs];   // 예전 저장형식(집합) 호환
 let favOnly=false;
@@ -475,10 +477,11 @@ function current(skip){
   const sels={};
   FILTERS.forEach(f=>{ if(f.id!==skip) sels[f.id]=onSet(f.id); });
   const q=$('#f-q').value.trim().toLowerCase();
+  // 즐겨찾기 보기는 찜한 것 전부를 보여준다 — 거래/타입/향/방/조건 등 다른 필터에 안 걸린다.
   return DATA.filter(x=>
-    (!favOnly||isFav(x))
-    && FILTERS.every(f=> f.id===skip || sels[f.id].has(enc(x[f.key])))
-    && (!q||(x.b+' '+x.br.join(' ')+' '+x.m).toLowerCase().includes(q))
+    favOnly ? isFav(x) :
+    (FILTERS.every(f=> f.id===skip || sels[f.id].has(enc(x[f.key])))
+    && (!q||(x.b+' '+x.br.join(' ')+' '+x.m).toLowerCase().includes(q)))
   ).sort((a,b)=>{
     if(sortKey==='rank'){   // 순위순: 즐겨찾기가 순위대로 위로, 나머지는 뒤에 호가순
       const ra=rankOf(a), rb=rankOf(b);
@@ -563,7 +566,7 @@ function draw(){
   const fb=$('#fav-only');
   fb.classList.toggle('on',favOnly);
   fb.setAttribute('aria-pressed',favOnly?'true':'false');
-  fb.textContent=(favOnly?'★':'☆')+' 즐겨찾기만'+(favs.length?' '+favs.length+'개':'');
+  fb.textContent=(favOnly?'★':'☆')+' 즐겨찾기'+(favs.length?' '+favs.length+'개':'');
   $('#tb-body').innerHTML=rows.map(x=>
     '<tr data-id="'+fid(x)+'"'+(favOnly?' draggable="true"':'')+'><td class="starcell">'+(favOnly?'<span class="grip" aria-hidden="true">⠿</span>':'')+starBtn(x)+'</td><td class="price"><a href="'+x.u+'" target="_blank" rel="noopener">'+fmt(x.p)+'</a></td>'+
     '<td class="num">'+x.d+'동</td><td class="num">'+x.f+'</td><td>'+x.y+'</td>'+
