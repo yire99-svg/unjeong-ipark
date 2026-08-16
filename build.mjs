@@ -205,12 +205,10 @@ function render(items, counts, stamp) {
     border-radius:8px;padding:8px 12px;font-size:13px;cursor:pointer;font-family:inherit;white-space:nowrap}
   .favbtn:hover{border-color:#f0b400}
   .favbtn.on{border-color:#f0b400;color:var(--ink);background:rgba(240,180,0,.10)}
-  #share-box{margin:0 0 12px}
-  .sharecard{background:var(--surface-1);border:1px solid var(--ring);border-radius:10px;padding:12px 14px;max-width:540px}
-  .sharemsg{font-size:13px;color:var(--ink-2);margin-bottom:8px;line-height:1.5}
-  #share-link{width:100%;font-size:12.5px;padding:9px 10px;border:1px solid var(--ring);
-    border-radius:8px;background:var(--plane);color:var(--ink);font-family:inherit}
-  .sharerow{display:flex;gap:10px;margin-top:9px;align-items:center}
+  .syncdot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--muted);margin-right:6px;vertical-align:1px}
+  .syncdot.on{background:#2fb344}
+  .syncdot.err{background:#e0554f}
+  #sync-status{font-size:12px;color:var(--muted)}
   .chkrow{border:0;padding:0;margin:12px 0 0;display:flex;flex-wrap:wrap;gap:7px;align-items:center}
   .chkrow legend{float:left;font-size:12px;color:var(--muted);padding:0 8px 0 2px;line-height:34px}
   .chkrow #f-cond{display:contents}
@@ -280,10 +278,9 @@ function render(items, counts, stamp) {
 
 <div class="listtop">
   <button type="button" class="favbtn" id="fav-only" aria-pressed="false">☆ 즐겨찾기만</button>
-  <button type="button" class="favbtn" id="fav-share">🔗 순위 공유</button>
+  <span id="sync-status"><span class="syncdot" id="sync-dot"></span><span id="sync-label">동기화 확인 중…</span></span>
   <p class="count" id="count"></p>
 </div>
-<div id="share-box" hidden></div>
 <table>
   <thead><tr>
     <th class="starcol" data-s="rank" title="순위순 정렬">순위</th>
@@ -320,17 +317,53 @@ let favOnly=false;
 const rankOf=x=>favs.indexOf(fid(x));       // 0-based, 없으면 -1
 const isFav=x=>rankOf(x)>=0;
 const saveFav=()=>localStorage.setItem('unjeong-fav',JSON.stringify(favs));
-// 공유 링크(#fav=아이디.아이디...)로 들어오면 그 순위를 불러온다
+// 공유 링크(#fav=아이디.아이디...)로 들어오면 그 순위를 불러온다 (예전 링크 호환용, 평소엔 자동 동기화가 대신함)
+let hadHashImport=false;
 {
-  const m=(location.hash||'').match(/fav=([\\d.]+)/);
+  const m=(location.hash||'').match(/fav=([\d.]+)/);
   if(m){
     favs=m[1].split('.').filter(Boolean);
+    hadHashImport=true;
     try{ saveFav(); }catch(e){}
     try{ history.replaceState(null,'',location.pathname+location.search); }catch(e){ location.hash=''; }
   }
 }
-const SHARE_BASE='https://yire99-svg.github.io/unjeong-ipark/';
-const shareLink=()=>(location.protocol.indexOf('http')===0?location.href.split('#')[0]:SHARE_BASE)+'#fav='+favs.join('.');
+// 기기 간 자동 동기화 — 파이어베이스 Realtime Database에 즐겨찾기·순위를 저장.
+// 이 앱 전용 저장소라 코드 입력 없이, 열기만 하면 폰·맥이 항상 같은 목록을 본다.
+// 실시간 스트림(EventSource)으로 다른 기기의 변경이 즉시 반영된다.
+const SYNC_URL='https://unjung-ipark-default-rtdb.firebaseio.com/favs.json';
+function setSyncUI(state){   // 'ok' | 'wait' | 'err'
+  const d=$('#sync-dot'); if(!d) return;
+  d.classList.toggle('on', state==='ok');
+  d.classList.toggle('err', state==='err');
+  $('#sync-label').textContent = state==='ok' ? '동기화됨' : state==='err' ? '동기화 안 됨(오프라인?)' : '동기화 확인 중…';
+}
+async function syncPush(){
+  try{ await fetch(SYNC_URL,{method:'PUT',body:JSON.stringify(favs)}); setSyncUI('ok'); }
+  catch(e){ setSyncUI('err'); }
+}
+function applyRemote(list){
+  if(!Array.isArray(list)) list=[];
+  if(JSON.stringify(list)===JSON.stringify(favs)){ setSyncUI('ok'); return; }
+  favs=list; saveFav(); setSyncUI('ok'); draw();
+}
+let sawFirstRemote=false;
+function startSync(){
+  if(typeof EventSource==='undefined'){ setSyncUI('err'); return; }
+  try{
+    const es=new EventSource(SYNC_URL);
+    es.addEventListener('put',e=>{
+      let data=null; try{ data=JSON.parse(e.data).data; }catch(err){}
+      if(!sawFirstRemote){
+        sawFirstRemote=true;
+        if(hadHashImport){ syncPush(); return; }  // 방금 공유 링크로 불러온 값을 다른 기기에도 반영
+      }
+      applyRemote(data);
+    });
+    es.onerror=()=>setSyncUI('err');
+  }catch(e){ setSyncUI('err'); }
+}
+startSync();
 // 관심 없음 = 빈 별, 관심 있음 = 순위 번호 배지(1·2·3위 금·은·동)
 function starBtn(x){
   const id=fid(x), i=favs.indexOf(id);
@@ -340,7 +373,7 @@ function starBtn(x){
 }
 
 const AGO=['전세안고','월세안고'];   // 입주조건 중 기본 해제
-const NULLK=' none';            // 값 없음(방 미기재 등) 인코딩
+const NULLK=' none';            // 값 없음(방 미기재 등) 인코딩
 const enc=v=>(v===null||v===undefined)?NULLK:String(v);
 const esA=s=>String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;');
 
@@ -535,36 +568,13 @@ document.addEventListener('click',e=>{
   const s=e.target.closest('.star,.rankbadge'); if(!s) return;
   const id=s.dataset.id, i=favs.indexOf(id);
   if(i>=0) favs.splice(i,1); else favs.push(id);
-  saveFav(); draw();
+  saveFav(); draw(); syncPush();
 });
 // 즐겨찾기만 보기 — 켜면 자동으로 순위순 정렬
 $('#fav-only').addEventListener('click',()=>{
   favOnly=!favOnly;
   if(favOnly){ sortKey='rank'; sortAsc=true; document.querySelectorAll('th .ar').forEach(a=>a.remove()); }
   draw();
-});
-// 순위 공유 — 현재 순위를 링크로 만들어 복사(휴대폰 등 다른 기기로 보내기)
-async function copyText(t){
-  try{ await navigator.clipboard.writeText(t); return true; }catch(e){}
-  const ta=document.createElement('textarea'); ta.value=t;
-  ta.style.position='fixed'; ta.style.top='-999px'; document.body.appendChild(ta); ta.focus(); ta.select();
-  let ok=false; try{ ok=document.execCommand('copy'); }catch(e){}
-  document.body.removeChild(ta); return ok;
-}
-$('#fav-share').addEventListener('click',async ()=>{
-  if(!favs.length){ alert('먼저 별을 눌러 관심 매물을 담아주세요.'); return; }
-  const link=shareLink(), ok=await copyText(link), box=$('#share-box');
-  box.hidden=false;
-  box.innerHTML='<div class="sharecard"><div class="sharemsg">'+
-    (ok?'✅ 링크가 복사됐어요. 카톡·문자에 붙여넣어 휴대폰으로 보내세요. 그 링크로 열면 이 순위가 그대로 나옵니다.'
-       :'아래 링크를 길게 눌러 복사해서 휴대폰으로 보내세요. 그 링크로 열면 이 순위가 그대로 나옵니다.')+
-    ' (순위 '+favs.length+'개)</div>'+
-    '<input id="share-link" readonly value="'+link.replace(/"/g,'&quot;')+'">'+
-    '<div class="sharerow"><button type="button" class="favbtn" id="share-copy">복사</button>'+
-    '<button type="button" class="linkbtn" id="share-close">닫기</button></div></div>';
-  const inp=$('#share-link'); inp.focus(); inp.select();
-  $('#share-copy').addEventListener('click',async ()=>{ await copyText(link); inp.select(); });
-  $('#share-close').addEventListener('click',()=>{ box.hidden=true; });
 });
 
 // 순위 드래그 재배치 (즐겨찾기만 보기에서만) — 배열 순서를 바꿔 순위 갱신
@@ -593,7 +603,7 @@ $('#tb-body').addEventListener('drop',e=>{
   favs.splice(from,1);
   const to=favs.indexOf(targetId);
   favs.splice(to<0?favs.length:to,0,dragId);
-  saveFav(); dragId=null; draw();
+  saveFav(); dragId=null; draw(); syncPush();
 });
 
 const tip=$('#tip');
